@@ -10,6 +10,22 @@
 
 DSHIT is a community-driven memecoin on Base L2 — raw, unfiltered, and unapologetically chaotic. No fake utility promises. No VC roadmap cosplay. Just meme warfare, prank commerce, and a community that runs on pure unhinged energy.
 
+DSHIT utility is used for shit. Literally. If you trade DSHIT, at any time you can spend it on some shit, and another person who needs DSHIT will drop off a package filled with their shit, in exchange for DSHIT with confirmation of delivery tracking releasing DSHIT governance. 
+
+This is some seriously funny shit, so if you have a bad experience maybe with:
+
+- a terrible ex. 
+
+- a really annoying sibling
+
+- absent parent(s)
+
+- legal trouble
+
+- money problems
+
+All are things we'd love to throw some shit at to feel a bit better. Feel like dshit 💩
+
 **Contract:** ERC-20 on Base (deployment pending)
 **Ticker:** $DSHIT
 **Supply:** 1,000,000,000
