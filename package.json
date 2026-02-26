@@ -1,0 +1,20 @@
+{
+  "name": "dshitxyz",
+  "version": "0.0.1",
+  "private": true,
+  "description": "DSHIT - Brutalist meme commerce platform on Base L2",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint",
+    "type-check": "pnpm -r run type-check"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

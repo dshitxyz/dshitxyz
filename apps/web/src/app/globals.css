@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Permanent+Marker&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --shit-yellow: #F4D03F;
+  --shit-yellow-dark: #D4AC0D;
+  --shit-brown: #8B4513;
+  --shit-brown-light: #A0522D;
+  --glitch-red: #FF0000;
+  --glitch-red-dark: #CC0000;
+  --bg-raw: #1A1A1A;
+  --bg-dirty: #2D2D2D;
+  --bg-waste: #3D3D3D;
+  --text-shit: #FFFFFF;
+  --text-dim: #CCCCCC;
+  --toxic-green: #39FF14;
+  --cyber-purple: #BF00FF;
+  --industrial-orange: #FF6600;
+  --dirty-white: #E5E5E5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--bg-raw);
+  color: var(--text-shit);
+  font-family: var(--font-body, 'Space Mono', monospace);
+  line-height: 1.6;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+/* Glitch Animation */
+@keyframes shit-glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-text {
+  animation: shit-glitch 0.3s infinite;
+  position: relative;
+}
+
+/* Brutalist Border */
+.brutalist-border {
+  border: 4px solid var(--shit-yellow);
+  box-shadow: 8px 8px 0px var(--shit-brown);
+}
+
+.brutalist-border:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px var(--shit-brown);
+  transition: all 0.2s ease;
+}
+
+/* Warning Stripes */
+.warning-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--shit-yellow),
+    var(--shit-yellow) 10px,
+    var(--bg-waste) 10px,
+    var(--bg-waste) 20px
+  );
+}
+
+/* Shit Gradient */
+.shit-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--bg-raw) 0%,
+    var(--bg-dirty) 50%,
+    var(--bg-waste) 100%
+  );
+}
+
+/* Raw Button */
+.shit-button {
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+  border: 3px solid var(--shit-brown);
+  padding: 1rem 2rem;
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 6px 6px 0px var(--shit-brown);
+  transition: all 0.2s ease;
+}
+
+.shit-button:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px var(--shit-brown);
+}
+
+.shit-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
