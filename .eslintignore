@@ -1,9 +1,0 @@
-node_modules
-dist
-build
-.next
-artifacts
-cache
-coverage
-*.min.js
-typechain
