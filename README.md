@@ -109,8 +109,26 @@ dshitxyz/
 ├── docs/             # Documentation & roadmap
 ├── CLAUDE.md         # Project DNA
 ├── ROADMAP.md        # Autonomous development roadmap
+├── DESIGN_SYSTEM.md  # Visual design system & component library
+├── shitcoin_protocol_v2_poopy.html  # Design prototype
 └── README.md         # You are here
 ```
+
+---
+
+## 🎨 Design System
+
+The dshit.xyz visual identity is a **brutalist, unpolished aesthetic** with intentional chaos. See [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) for:
+
+- **Color Palette:** Shit Yellow, Poop Brown, Glitch Red, Toxic Green, Cyberpunk Purple, Industrial Orange
+- **Typography:** Bebas Neue (display), Space Mono (body), Permanent Marker (accents)
+- **Components:** Navigation, hero, ticker, stats, drops grid, flush meter, newsletter, community, footer
+- **Animations:** Glitch effects, blinks, shakes, pulses, scrolls
+- **Responsive:** Mobile-first design (700px breakpoint)
+
+Reference design prototype: [`shitcoin_protocol_v2_poopy.html`](./shitcoin_protocol_v2_poopy.html)
+
+**Design Philosophy:** Ugly is beautiful. The dump is the way.
 
 ---
 
