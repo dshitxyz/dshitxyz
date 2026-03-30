@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+coverage
+.next
+artifacts
+cache
+typechain-types
+pnpm-lock.yaml
+*.lock
+.git
+.github
