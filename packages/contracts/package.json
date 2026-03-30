@@ -9,11 +9,16 @@
     "deploy": "hardhat run scripts/deploy.ts",
     "deploy:testnet": "hardhat run scripts/deploy.ts --network base-sepolia"
   },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "@openzeppelin/contracts": "^5.0.0",
     "@openzeppelin/hardhat-upgrades": "^2.0.0",
+    "chai": "^4.3.10",
     "hardhat": "^2.19.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.4",
     "typescript": "^5.3.3"
   }
 }
