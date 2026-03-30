@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Permanent+Marker&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --shit-yellow:#F4D03F;
+  --shit-brown:#8B4513;
+  --shit-brown-light:#A0522D;
+  --shit-dark:#3D1A00;
+  --glitch-red:#FF0000;
+  --toxic-green:#39FF14;
+  --cyber-purple:#BF00FF;
+  --industrial-orange:#FF6600;
+  --bg-raw:#1A1A1A;
+  --bg-dirty:#2D2D2D;
+  --bg-waste:#3D3D3D;
+  --font-display:'Bebas Neue',sans-serif;
+  --font-body:'Space Mono',monospace;
+  --font-accent:'Permanent Marker',cursive;
+}
+body{background:var(--bg-raw);color:#fff;font-family:var(--font-body);overflow-x:hidden}
+
+/* NAV */
+.nav{background:#0a0500;border-bottom:4px solid var(--shit-yellow);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--font-display);font-size:2.4rem;color:var(--shit-yellow);text-shadow:4px 4px 0 var(--shit-brown);letter-spacing:3px}
+.logo .emoji{font-size:2rem;vertical-align:middle;margin-left:6px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:var(--font-body);font-size:0.65rem;color:#888;text-decoration:none;text-transform:uppercase;letter-spacing:2px}
+.nav-links a:hover{color:var(--shit-yellow)}
+.live-pill{background:var(--glitch-red);color:#fff;font-family:var(--font-display);font-size:0.8rem;padding:5px 14px;letter-spacing:2px;animation:blink 1.2s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* HERO */
+.hero{padding:56px 24px 48px;background:radial-gradient(ellipse at top left, #2a0e00 0%, #1A1A1A 60%);border-bottom:4px solid var(--shit-yellow);position:relative;overflow:hidden}
+.hero-smell{position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(ellipse,rgba(139,69,19,0.15) 0%,transparent 70%);pointer-events:none}
+.eyebrow{font-family:var(--font-accent);color:var(--industrial-orange);font-size:1rem;transform:rotate(-1.5deg);display:inline-block;margin-bottom:10px}
+.hero-h1{font-family:var(--font-display);font-size:clamp(4rem,11vw,8rem);line-height:0.88;letter-spacing:3px;color:var(--shit-yellow);text-shadow:5px 5px 0 var(--shit-brown)}
+.hero-h1 .white{color:#fff;text-shadow:3px 3px 0 #000}
+.hero-h1 .stink{color:var(--industrial-orange);text-shadow:3px 3px 0 #5a2000}
+.hero-sub{font-family:var(--font-body);font-size:0.75rem;color:#888;max-width:460px;margin-top:20px;line-height:1.9;border-left:4px solid var(--shit-brown);padding-left:16px}
+.hero-sub b{color:var(--shit-yellow);font-weight:700}
+.cta-row{display:flex;gap:14px;margin-top:32px;align-items:center;flex-wrap:wrap}
+.btn-main{background:var(--shit-yellow);color:#000;font-family:var(--font-display);font-size:1.3rem;letter-spacing:2px;padding:14px 32px;border:3px solid var(--shit-brown);box-shadow:6px 6px 0 var(--shit-brown);cursor:pointer;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all 0.15s}
+.btn-main:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--shit-brown)}
+.btn-ghost{background:transparent;color:var(--shit-yellow);font-family:var(--font-display);font-size:1.1rem;letter-spacing:2px;padding:13px 24px;border:3px solid var(--shit-yellow);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.15s}
+.btn-ghost:hover{background:rgba(244,208,63,0.1)}
+.hero-disclaimer{font-family:var(--font-body);font-size:0.6rem;color:#444;text-transform:uppercase;letter-spacing:1px;margin-top:12px}
+
+/* STINK LINES SVG */
+.stink-art{position:absolute;right:40px;top:40px;opacity:0.18}
+
+/* TICKER */
+.ticker{background:var(--shit-brown);padding:10px 0;overflow:hidden;border-top:2px solid var(--shit-brown-light);border-bottom:2px solid var(--shit-dark)}
+.ticker-inner{display:flex;white-space:nowrap;animation:scroll 20s linear infinite}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick{font-family:var(--font-display);font-size:1.1rem;color:#000;letter-spacing:3px;padding:0 36px}
+.tick-sep{color:var(--shit-dark);margin:0 4px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:3px solid var(--bg-waste)}
+.stat{padding:26px 20px;border-right:2px solid var(--bg-waste);background:var(--bg-dirty);position:relative}
+.stat:last-child{border-right:none}
+.stat-accent{position:absolute;top:0;left:0;right:0;height:3px}
+.stat-num{font-family:var(--font-display);font-size:2.6rem;color:#fff;line-height:1}
+.stat-label{font-family:var(--font-body);font-size:0.6rem;color:#555;text-transform:uppercase;letter-spacing:2px;margin-top:6px}
+.stat-sub{font-family:var(--font-body);font-size:0.6rem;color:var(--toxic-green);margin-top:4px}
+
+/* ALERT */
+.alert{background:#1a0000;border-left:6px solid var(--glitch-red);border-bottom:2px solid #330000;padding:14px 24px;display:flex;align-items:center;gap:16px}
+.alert-tag{background:var(--glitch-red);font-family:var(--font-display);font-size:0.8rem;color:#fff;padding:4px 12px;letter-spacing:2px;white-space:nowrap}
+.alert-msg{font-family:var(--font-body);font-size:0.7rem;color:#cc6666;text-transform:uppercase;letter-spacing:1px;line-height:1.6}
+.alert-msg b{color:#fff}
+
+/* DROPS SECTION */
+.section{padding:40px 24px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;border-bottom:2px solid var(--bg-waste);padding-bottom:14px}
+.sec-title{font-family:var(--font-display);font-size:2.4rem;letter-spacing:2px}
+.sec-title span{color:var(--shit-yellow)}
+.sec-more{font-family:var(--font-body);font-size:0.6rem;color:#555;text-transform:uppercase;letter-spacing:2px;cursor:pointer}
+.sec-more:hover{color:var(--shit-yellow)}
+
+.drops-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.drop{background:var(--bg-dirty);border:2px solid var(--bg-waste);padding:20px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.drop:hover{border-color:var(--shit-yellow);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--shit-brown)}
+.drop-big{grid-column:span 2}
+.drop-tag{font-family:var(--font-display);font-size:0.7rem;letter-spacing:2px;padding:3px 10px;display:inline-block;margin-bottom:12px}
+.ty{background:var(--shit-yellow);color:#000}
+.tr{background:var(--glitch-red);color:#fff}
+.tg{background:var(--toxic-green);color:#000}
+.tp{background:var(--cyber-purple);color:#fff}
+.to{background:var(--industrial-orange);color:#000}
+.tb{background:var(--shit-brown);color:#f4d03f}
+.drop-title{font-family:var(--font-display);font-size:1.5rem;letter-spacing:1px;color:#fff;line-height:1.05;margin-bottom:10px}
+.drop-big .drop-title{font-size:2.1rem}
+.drop-body{font-family:var(--font-body);font-size:0.62rem;color:#777;line-height:1.9;margin-bottom:16px}
+.drop-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--bg-waste);padding-top:10px}
+.drop-by{font-family:var(--font-body);font-size:0.58rem;color:#444;text-transform:uppercase;letter-spacing:1px}
+.drop-arr{color:var(--shit-yellow)}
+.poop-stamp{position:absolute;bottom:-8px;right:-8px;font-size:4rem;opacity:0.07;transform:rotate(15deg)}
+
+/* FLUSH METER */
+.meter-section{margin:0 24px 40px;background:var(--bg-dirty);border:3px solid var(--shit-brown);box-shadow:8px 8px 0 var(--shit-dark);padding:28px;position:relative}
+.meter-section::before{content:'💩 FLUSH STATUS';position:absolute;top:-13px;left:16px;background:var(--bg-raw);padding:0 10px;font-family:var(--font-display);font-size:0.8rem;color:var(--shit-yellow);letter-spacing:3px}
+.meter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.meter-item{display:flex;flex-direction:column;gap:8px}
+.meter-label{font-family:var(--font-body);font-size:0.6rem;color:#666;text-transform:uppercase;letter-spacing:2px}
+.meter-bar-bg{background:#1a1a1a;border:1px solid var(--bg-waste);height:14px;position:relative}
+.meter-bar-fill{height:100%;transition:width 0.3s}
+.meter-val{font-family:var(--font-display);font-size:1.2rem;color:#fff;letter-spacing:1px}
+
+/* NEWSLETTER */
+.nl{margin:0 24px 40px;background:linear-gradient(135deg,#1a0800,#2d1200);border:3px solid var(--shit-yellow);box-shadow:8px 8px 0 var(--shit-brown);padding:32px;position:relative}
+.nl::before{content:'📬 ENTER THE BOWL';position:absolute;top:-13px;left:16px;background:var(--bg-raw);padding:0 10px;font-family:var(--font-display);font-size:0.8rem;color:var(--shit-yellow);letter-spacing:3px}
+.nl-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.nl-left h2{font-family:var(--font-display);font-size:2.6rem;letter-spacing:2px;line-height:1}
+.nl-left h2 span{color:var(--shit-yellow)}
+.nl-left p{font-family:var(--font-body);font-size:0.68rem;color:#666;margin-top:12px;line-height:1.9}
+.nl-left p b{color:var(--industrial-orange)}
+.input-row{display:flex;gap:0;margin-top:20px}
+.sh-input{background:#0a0500;border:2px solid var(--bg-waste);border-right:none;color:#fff;font-family:var(--font-body);font-size:0.72rem;padding:12px 16px;flex:1;outline:none}
+.sh-input:focus{border-color:var(--shit-yellow)}
+.sh-input::placeholder{color:#333}
+.nl-right{display:flex;flex-direction:column;gap:10px}
+.feat{display:flex;align-items:flex-start;gap:10px;font-family:var(--font-body);font-size:0.62rem;color:#666;line-height:1.6}
+.feat-icon{font-size:1rem;flex-shrink:0;margin-top:-2px}
+
+/* COMMUNITY */
+.community{padding:40px 24px;border-top:3px solid var(--bg-waste)}
+.com-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.com-card{background:var(--bg-dirty);border:2px solid var(--bg-waste);padding:20px;text-align:center;transition:all 0.2s;cursor:pointer}
+.com-card:hover{border-color:var(--shit-yellow);transform:translateY(-3px)}
+.com-icon{font-size:2rem;margin-bottom:10px}
+.com-name{font-family:var(--font-display);font-size:1rem;letter-spacing:2px;color:#ccc;margin-bottom:4px}
+.com-count{font-family:var(--font-body);font-size:0.6rem;color:#555;text-transform:uppercase;letter-spacing:1px}
+
+/* FOOTER */
+.footer{background:#0a0500;border-top:4px solid var(--shit-brown);padding:28px 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+.f-brand{font-family:var(--font-display);font-size:2.2rem;color:var(--shit-yellow);letter-spacing:3px;text-shadow:3px 3px 0 var(--shit-brown)}
+.f-tag{font-family:var(--font-accent);font-size:0.9rem;color:#4a2a00;margin-top:4px}
+.f-col-title{font-family:var(--font-display);font-size:0.8rem;color:#555;letter-spacing:3px;margin-bottom:12px;border-bottom:1px solid #2a1500;padding-bottom:6px}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:7px}
+.f-links a{font-family:var(--font-body);font-size:0.6rem;color:#444;text-decoration:none;text-transform:uppercase;letter-spacing:1px}
+.f-links a:hover{color:var(--shit-yellow)}
+.footer-bot{background:#000;border-top:1px solid #1a0800;padding:12px 24px;display:flex;justify-content:space-between}
+.f-bot-l{font-family:var(--font-body);font-size:0.58rem;color:#333;text-transform:uppercase;letter-spacing:1px}
+.f-bot-r{font-family:var(--font-accent);font-size:0.85rem;color:#2a1500}
+
+@media(max-width:700px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .drops-grid{grid-template-columns:1fr}
+  .drop-big{grid-column:span 1}
+  .nl-inner{grid-template-columns:1fr}
+  .meter-grid{grid-template-columns:1fr}
+  .com-grid{grid-template-columns:repeat(2,1fr)}
+  .footer{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="logo">💩PROTOCOL</div>
+  <ul class="nav-links">
+    <li><a href="#">Drops</a></li>
+    <li><a href="#">The Bowl</a></li>
+    <li><a href="#">Stinkpaper</a></li>
+    <li><a href="#">Flush Docs</a></li>
+  </ul>
+  <div class="live-pill">● LIVE</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-smell"></div>
+  <svg class="stink-art" width="180" height="200" viewBox="0 0 180 200">
+    <path d="M90 180 Q70 140 90 100 Q110 60 90 20" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M110 180 Q85 130 110 90 Q135 50 110 10" stroke="#8B4513" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M70 180 Q50 145 70 110 Q90 75 70 40" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="30" y="100" font-family="Bebas Neue" font-size="12" fill="#8B4513" opacity="0.6" transform="rotate(-20,30,100)">STENCH</text>
+    <text x="120" y="60" font-family="Bebas Neue" font-size="10" fill="#8B4513" opacity="0.5" transform="rotate(15,120,60)">AROMA</text>
+  </svg>
+  <div class="eyebrow">↯ Decentralized. Degenerate. Deployed.</div>
+  <h1 class="hero-h1">
+    MONEY<br>
+    <span class="white">DOESN'T</span><br>
+    <span class="stink">STINK</span>
+  </h1>
+  <p class="hero-sub">
+    The world's first <b>fully on-chain fecal finance protocol.</b><br>
+    We built a DeFi platform that doesn't pretend to be clean.<br>
+    Every drop is a feature. Every dump is a signal.<br>
+    <b>You in, or what?</b>
+  </p>
+  <div class="cta-row">
+    <a href="#" class="btn-main">💩 TAKE THE PLUNGE</a>
+    <a href="#" class="btn-ghost">READ THE STINKPAPER</a>
+  </div>
+  <div class="hero-disclaimer">* not financial advice. this is a toilet. do not eat.</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="tick">💩 $DUMP <span class="tick-sep">▲</span> +420%</span>
+    <span class="tick">🚽 $FLUSH <span class="tick-sep">▲</span> +69%</span>
+    <span class="tick">💨 $STANK <span class="tick-sep">▼</span> -4.20%</span>
+    <span class="tick">🧻 $WIPE <span class="tick-sep">▲</span> +13.37%</span>
+    <span class="tick">🪣 $BROWN <span class="tick-sep">▲</span> +88.8%</span>
+    <span class="tick">🌀 $SWIRL <span class="tick-sep">▲</span> +1337%</span>
+    <span class="tick">💩 $DUMP <span class="tick-sep">▲</span> +420%</span>
+    <span class="tick">🚽 $FLUSH <span class="tick-sep">▲</span> +69%</span>
+    <span class="tick">💨 $STANK <span class="tick-sep">▼</span> -4.20%</span>
+    <span class="tick">🧻 $WIPE <span class="tick-sep">▲</span> +13.37%</span>
+    <span class="tick">🪣 $BROWN <span class="tick-sep">▲</span> +88.8%</span>
+    <span class="tick">🌀 $SWIRL <span class="tick-sep">▲</span> +1337%</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-accent" style="background:var(--shit-yellow)"></div>
+    <div class="stat-num">$4.2B</div>
+    <div class="stat-label">Total Value Dumped</div>
+    <div class="stat-sub">▲ +12.3% since last flush</div>
+  </div>
+  <div class="stat">
+    <div class="stat-accent" style="background:var(--glitch-red)"></div>
+    <div class="stat-num">847K</div>
+    <div class="stat-label">Degens in the Bowl</div>
+    <div class="stat-sub">▲ +3.1K today alone</div>
+  </div>
+  <div class="stat">
+    <div class="stat-accent" style="background:var(--toxic-green)"></div>
+    <div class="stat-num">69M</div>
+    <div class="stat-label">Turds Minted</div>
+    <div class="stat-sub" style="color:var(--industrial-orange)">∞ supply. yes, really.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-accent" style="background:var(--cyber-purple)"></div>
+    <div class="stat-num">0</div>
+    <div class="stat-label">Audits Passed</div>
+    <div class="stat-sub" style="color:var(--glitch-red)">▼ we don't do audits</div>
+  </div>
+</div>
+
+<!-- ALERT -->
+<div class="alert">
+  <div class="alert-tag">💩 DROPPING NOW</div>
+  <div class="alert-msg"><b>MEGA DUMP EVENT:</b> The protocol has entered Massive Dump Mode. All transactions processed in order of stench. Estimated clearance: 4–6 business dumps. <b>Stay in the bowl.</b></div>
+</div>
+
+<!-- DROPS -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-title">FRESH <span>DROPS</span> 💩</div>
+    <div class="sec-more">See all drops ↗</div>
+  </div>
+  <div class="drops-grid">
+
+    <div class="drop drop-big">
+      <div><span class="drop-tag ty">💩 FEATURED DROP</span></div>
+      <div class="drop-title">TURD SEASON 3:<br>THE GREAT DUMP</div>
+      <p class="drop-body">10,000 generative turds, each unique. Some are corn. Some are smooth. One is platinum. All are worthless, except financially. The rarest drop of the season is rumored to smell like success. Probably doesn't. Mint one anyway — you've made worse decisions.</p>
+      <div class="drop-foot">
+        <div class="drop-by">by anon_plumber_0x3f • 4,200/10,000 minted</div>
+        <div class="drop-arr">→</div>
+      </div>
+      <div class="poop-stamp">💩</div>
+    </div>
+
+    <div class="drop">
+      <div><span class="drop-tag tr">🚨 HOT DROP</span></div>
+      <div class="drop-title">SKIDMARK<br>PROTOCOL V2</div>
+      <p class="drop-body">Cross-chain bridge. No audit. Deployed on a Friday after taco night. Somehow still standing. The skidmarks are features, not bugs.</p>
+      <div class="drop-foot">
+        <div class="drop-by">by gm_gg_ser</div>
+        <div class="drop-arr">→</div>
+      </div>
+      <div class="poop-stamp">💨</div>
+    </div>
+
+    <div class="drop">
+      <div><span class="drop-tag tg">✅ LIVE</span></div>
+      <div class="drop-title">FLOATER<br>YIELD FARM</div>
+      <p class="drop-body">4,200% APY. Like a floater, it refuses to go away and the returns just keep coming up. Audit pending. Bowl status: clogged.</p>
+      <div class="drop-foot">
+        <div class="drop-by">by degen_plumbing_dao</div>
+        <div class="drop-arr">→</div>
+      </div>
+      <div class="poop-stamp">🚽</div>
+    </div>
+
+    <div class="drop">
+      <div><span class="drop-tag tp">📜 RESEARCH</span></div>
+      <div class="drop-title">CORN REPORT<br>Q4 2024</div>
+      <p class="drop-body">Comprehensive analysis of undigested assets, residual yield, and corn-based liquidity positions across 14 chains. Dense reading. Smells like alpha.</p>
+      <div class="drop-foot">
+        <div class="drop-by">by corn_analyst_irl</div>
+        <div class="drop-arr">→</div>
+      </div>
+      <div class="poop-stamp">🌽</div>
+    </div>
+
+    <div class="drop">
+      <div><span class="drop-tag to">🔥 COLLAB</span></div>
+      <div class="drop-title">DOUBLE<br>FLUSH EVENT</div>
+      <p class="drop-body">When one dump isn't enough. Double flush mechanics live on mainnet. Twice the gas. Twice the glory. Once the regret.</p>
+      <div class="drop-foot">
+        <div class="drop-by">by plunger_maxi</div>
+        <div class="drop-arr">→</div>
+      </div>
+      <div class="poop-stamp">🌀</div>
+    </div>
+
+    <div class="drop">
+      <div><span class="drop-tag tb">💀 RUGGED</span></div>
+      <div class="drop-title">GHOST WIPE<br>(RIP 2024)</div>
+      <p class="drop-body">Gone but never forgotten. Like a ghost wipe, you thought it was over — then it came back. Contract still exists. Dev deleted Twitter.</p>
+      <div class="drop-foot">
+        <div class="drop-by">by unknown_cheeks</div>
+        <div class="drop-arr">→</div>
+      </div>
+      <div class="poop-stamp">👻</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLUSH METER -->
+<div class="meter-section">
+  <div class="meter-grid">
+    <div class="meter-item">
+      <div class="meter-label">Bowl Pressure (TVL)</div>
+      <div class="meter-bar-bg"><div class="meter-bar-fill" style="width:78%;background:var(--shit-yellow)"></div></div>
+      <div class="meter-val" style="color:var(--shit-yellow)">$4.2B — FULL</div>
+    </div>
+    <div class="meter-item">
+      <div class="meter-label">Flush Velocity (TPS)</div>
+      <div class="meter-bar-bg"><div class="meter-bar-fill" style="width:62%;background:var(--industrial-orange)"></div></div>
+      <div class="meter-val" style="color:var(--industrial-orange)">847K txns/day</div>
+    </div>
+    <div class="meter-item">
+      <div class="meter-label">Stench Index (Volatility)</div>
+      <div class="meter-bar-bg"><div class="meter-bar-fill" style="width:91%;background:var(--glitch-red)"></div></div>
+      <div class="meter-val" style="color:var(--glitch-red)">EXTREMELY HIGH 🚨</div>
+    </div>
+    <div class="meter-item">
+      <div class="meter-label">Wipe Coverage (Insurance)</div>
+      <div class="meter-bar-bg"><div class="meter-bar-fill" style="width:4%;background:var(--toxic-green)"></div></div>
+      <div class="meter-val" style="color:var(--toxic-green)">4% — LOL</div>
+    </div>
+    <div class="meter-item">
+      <div class="meter-label">Corn Ratio (Undigested Assets)</div>
+      <div class="meter-bar-bg"><div class="meter-bar-fill" style="width:55%;background:var(--shit-brown-light)"></div></div>
+      <div class="meter-val" style="color:var(--shit-brown-light)">55% CORNY</div>
+    </div>
+    <div class="meter-item">
+      <div class="meter-label">Clog Risk (Congestion)</div>
+      <div class="meter-bar-bg"><div class="meter-bar-fill" style="width:84%;background:var(--cyber-purple)"></div></div>
+      <div class="meter-val" style="color:var(--cyber-purple)">CALL A PLUMBER</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="nl">
+  <div class="nl-inner">
+    <div class="nl-left">
+      <h2>SLIDE INTO<br><span>THE BOWL</span></h2>
+      <p>Weekly drops, protocol dumps, and raw market data direct to your inbox. <b>No fluff. No polish.</b> Just the undigested truth about what's moving onchain.</p>
+      <div class="input-row">
+        <input class="sh-input" type="email" placeholder="your@wallet.eth">
+        <button class="btn-main" style="padding:12px 18px;font-size:1rem">FLUSH IT</button>
+      </div>
+    </div>
+    <div class="nl-right">
+      <div class="feat"><span class="feat-icon">💩</span>Weekly dump report — every Tuesday</div>
+      <div class="feat"><span class="feat-icon">🚽</span>Flash flush alerts when TVL spikes</div>
+      <div class="feat"><span class="feat-icon">🌽</span>Corn ratio tracker — weekly digestion update</div>
+      <div class="feat"><span class="feat-icon">🧻</span>Rug wipe notifications before it happens*</div>
+      <div class="feat"><span class="feat-icon">👻</span>Ghost wipe obituaries for dead protocols</div>
+      <div class="feat" style="margin-top:6px"><span class="feat-icon">📊</span><span style="color:#444">*we don't know before it happens. nobody does.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMUNITY -->
+<section class="community">
+  <div class="sec-head">
+    <div class="sec-title">JOIN THE <span>BOWL</span> 🚽</div>
+    <div class="sec-more">All channels ↗</div>
+  </div>
+  <div class="com-grid">
+    <div class="com-card">
+      <div class="com-icon">💬</div>
+      <div class="com-name">DISCORD</div>
+      <div class="com-count">28,400 degens active</div>
+    </div>
+    <div class="com-card">
+      <div class="com-icon">🐦</div>
+      <div class="com-name">X / TWITTER</div>
+      <div class="com-count">142K followers (some real)</div>
+    </div>
+    <div class="com-card">
+      <div class="com-icon">✈️</div>
+      <div class="com-name">TELEGRAM</div>
+      <div class="com-count">69,420 in the pipe</div>
+    </div>
+    <div class="com-card">
+      <div class="com-icon">📖</div>
+      <div class="com-name">MIRROR</div>
+      <div class="com-count">the stinkpaper lives here</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="f-brand">💩PROTOCOL</div>
+    <div class="f-tag">ugly is beautiful. the dump is the way.</div>
+  </div>
+  <div>
+    <div class="f-col-title">THE PLUMBING</div>
+    <ul class="f-links">
+      <li><a href="#">Flush Docs</a></li>
+      <li><a href="#">Stinkpaper</a></li>
+      <li><a href="#">Audit (lol)</a></li>
+      <li><a href="#">Github (messy)</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="f-col-title">THE BOWL</div>
+    <ul class="f-links">
+      <li><a href="#">Drop Calendar</a></li>
+      <li><a href="#">Flush Tracker</a></li>
+      <li><a href="#">Corn Report</a></li>
+      <li><a href="#">Ghost Wipes</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="f-col-title">FINE PRINT</div>
+    <ul class="f-links">
+      <li><a href="#">Not Advice</a></li>
+      <li><a href="#">Terms (lol)</a></li>
+      <li><a href="#">Rug Policy</a></li>
+      <li><a href="#">Smell Complaints</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bot">
+  <div class="f-bot-l">© 2024 💩 Protocol — All turds reserved. Not your keys, not your cornhole.</div>
+  <div class="f-bot-r">if it stinks, it ships.</div>
+</div>
+
+</body>
+</html>
