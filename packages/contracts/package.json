@@ -1,0 +1,19 @@
+{
+  "name": "@dshit/contracts",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "hardhat node",
+    "test": "hardhat test",
+    "build": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.ts",
+    "deploy:testnet": "hardhat run scripts/deploy.ts --network base-sepolia"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "@openzeppelin/hardhat-upgrades": "^2.0.0",
+    "hardhat": "^2.19.0",
+    "typescript": "^5.3.3"
+  }
+}

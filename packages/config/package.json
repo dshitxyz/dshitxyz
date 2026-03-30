@@ -1,0 +1,11 @@
+{
+  "name": "@dshit/config",
+  "version": "0.0.1",
+  "private": true,
+  "files": [
+    "tsconfig.json",
+    "tsconfig.*.json",
+    "eslint-preset.js",
+    ".prettierrc.json"
+  ]
+}
