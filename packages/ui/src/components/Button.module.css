@@ -1,0 +1,82 @@
+/* Button Component Styles - DESIGN_SYSTEM.md aligned */
+
+:root {
+  --shit-yellow: #F4D03F;
+  --shit-brown: #8B4513;
+  --glitch-red: #FF0000;
+  --toxic-green: #39FF14;
+  --cyber-purple: #BF00FF;
+  --industrial-orange: #FF6600;
+  --bg-dirty: #2D2D2D;
+  --bg-waste: #3D3D3D;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Mono', monospace;
+}
+
+.button {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  padding: 14px 32px;
+  border: 3px solid;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Main variant - Solid yellow button */
+.main {
+  background-color: var(--shit-yellow);
+  color: #000;
+  border-color: var(--shit-brown);
+  box-shadow: 6px 6px 0 var(--shit-brown);
+}
+
+.main:hover:not(.disabled) {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--shit-brown);
+}
+
+.main:active:not(.disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 7px 7px 0 var(--shit-brown);
+}
+
+/* Ghost variant - Transparent with border */
+.ghost {
+  background-color: transparent;
+  color: var(--shit-yellow);
+  border-color: var(--shit-yellow);
+  box-shadow: none;
+}
+
+.ghost:hover:not(.disabled) {
+  background-color: rgba(244, 208, 63, 0.1);
+  box-shadow: 4px 4px 0 rgba(139, 69, 19, 0.3);
+  transform: translate(-2px, -2px);
+}
+
+.ghost:active:not(.disabled) {
+  background-color: rgba(244, 208, 63, 0.15);
+  transform: translate(-1px, -1px);
+}
+
+/* Disabled state */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .button {
+    font-size: 1rem;
+    padding: 12px 24px;
+    letter-spacing: 1px;
+  }
+}

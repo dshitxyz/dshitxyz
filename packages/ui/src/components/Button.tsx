@@ -1,29 +1,46 @@
 import React from 'react';
+import styles from './Button.module.css';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
-  size?: 'sm' | 'md' | 'lg';
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'main' | 'ghost';
+  children: React.ReactNode;
+  href?: string;
+  disabled?: boolean;
 }
 
+/**
+ * Button Component - Follows dshit.xyz design system
+ *
+ * Variants:
+ * - main: Yellow solid button with brown shadow (primary actions)
+ * - ghost: Transparent with yellow border (secondary actions)
+ */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className = '', variant = 'primary', size = 'md', ...props }, ref) => {
-    const baseClasses = 'font-bold transition-all';
-    const variantClasses = {
-      primary: 'bg-yellow-400 text-gray-900 hover:bg-yellow-500',
-      secondary: 'bg-gray-700 text-white hover:bg-gray-800',
-    };
-    const sizeClasses = {
-      sm: 'px-3 py-1 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
-    };
+  ({ variant = 'main', children, className = '', disabled = false, href, ...props }, ref) => {
+    const baseClasses = [
+      styles.button,
+      styles[variant],
+      disabled && styles.disabled,
+      className
+    ].filter(Boolean).join(' ');
+
+    if (href && !disabled) {
+      return (
+        <a href={href} className={baseClasses}>
+          {children}
+        </a>
+      );
+    }
 
     return (
       <button
         ref={ref}
-        className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+        className={baseClasses}
+        disabled={disabled}
         {...props}
-      />
+      >
+        {children}
+      </button>
     );
   }
 );

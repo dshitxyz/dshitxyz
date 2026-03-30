@@ -1,0 +1,132 @@
+/* Card Component Styles - DESIGN_SYSTEM.md aligned */
+
+:root {
+  --shit-yellow: #F4D03F;
+  --shit-brown: #8B4513;
+  --glitch-red: #FF0000;
+  --toxic-green: #39FF14;
+  --cyber-purple: #BF00FF;
+  --industrial-orange: #FF6600;
+  --bg-dirty: #2D2D2D;
+  --bg-waste: #3D3D3D;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Mono', monospace;
+}
+
+.card {
+  background-color: var(--bg-dirty);
+  border: 2px solid var(--bg-waste);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: var(--shit-yellow);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--shit-brown);
+}
+
+/* Variants */
+.default {
+  /* Base styling */
+}
+
+.featured {
+  grid-column: span 2;
+}
+
+.alert {
+  background-color: #1a0000;
+  border-left: 6px solid var(--glitch-red);
+  border-bottom: 2px solid #330000;
+}
+
+.alert:hover {
+  box-shadow: none;
+  transform: none;
+  border-color: var(--glitch-red);
+}
+
+/* Tag styling */
+.tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  display: inline-block;
+  margin-bottom: 12px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.tagYellow {
+  background-color: var(--shit-yellow);
+  color: #000;
+}
+
+.tagRed {
+  background-color: var(--glitch-red);
+  color: #fff;
+}
+
+.tagGreen {
+  background-color: var(--toxic-green);
+  color: #000;
+}
+
+.tagPurple {
+  background-color: var(--cyber-purple);
+  color: #fff;
+}
+
+.tagOrange {
+  background-color: var(--industrial-orange);
+  color: #000;
+}
+
+.tagBrown {
+  background-color: var(--shit-brown);
+  color: var(--shit-yellow);
+}
+
+/* Content sections */
+.title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: #fff;
+  line-height: 1.05;
+  margin: 0 0 10px 0;
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  color: #777;
+  line-height: 1.9;
+  margin: 0 0 16px 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--bg-waste);
+  padding-top: 10px;
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .featured {
+    grid-column: span 1;
+  }
+}
