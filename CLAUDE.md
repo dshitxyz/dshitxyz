@@ -1,7 +1,24 @@
-# dshitxyz 
-I ain’t shittin you when I tell you you’re sitting on gold. 
+# dshitxyz
+I ain’t shittin you when I tell you you’re sitting on gold.
 
-## 💩 dshit.xyz - REVENGE PROTOCOL EDITION
+---
+
+## 🎨 DESIGN SYSTEM REFERENCE
+
+The visual identity for dshit.xyz is documented in [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) with the reference design prototype in [`shitcoin_protocol_v2_poopy.html`](./shitcoin_protocol_v2_poopy.html).
+
+**Key Design Elements:**
+- **Aesthetic:** Brutalist, unpolished, intentionally raw/industrial
+- **Color Palette:** Shit Yellow (#F4D03F), Poop Brown (#8B4513), Glitch Red, Toxic Green, Cyberpunk Purple, Industrial Orange
+- **Typography:** Bebas Neue (display), Space Mono (body), Permanent Marker (accents)
+- **Components:** Full component library documented in DESIGN_SYSTEM.md
+- **Philosophy:** "Ugly is beautiful. The dump is the way."
+
+All frontend implementations should reference DESIGN_SYSTEM.md for consistent visual design and component specifications.
+
+---
+
+## 💩 dshit.xyz - MEME PROTOCOL EDITION
 
 **Decentralized Meme Warfare & Political Retribution Protocol**
 
