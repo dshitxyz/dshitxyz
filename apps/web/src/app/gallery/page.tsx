@@ -1,34 +1,30 @@
 'use client';
 
 import Link from 'next/link';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function GalleryPage() {
+  // Phase 0: Placeholder
+  // Phase 2: Meme gallery with wallet integration
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       {/* Header */}
-      <header className="border-b-4 border-shit-yellow p-6 flex justify-between items-center">
+      <header className="border-b-4 border-yellow-400 p-6 flex justify-between items-center">
         <Link href="/">
-          <h1 className="text-3xl font-bold font-display text-shit-yellow cursor-pointer">
+          <h1 className="text-3xl font-bold text-yellow-400 cursor-pointer">
             D-SHIT™
           </h1>
         </Link>
-        <ConnectButton />
       </header>
 
       {/* Content */}
       <div className="max-w-6xl mx-auto p-6">
-        <h2 className="text-4xl font-display text-shit-yellow mb-12">MEME GALLERY</h2>
+        <h2 className="text-4xl font-bold text-yellow-400 mb-12">MEME GALLERY</h2>
 
-        <div className="text-center text-gray-400 py-24">
-          <p className="text-xl font-body">Gallery coming soon...</p>
-          <p className="text-sm text-gray-500 mt-4">Be the first to submit your masterpiece.</p>
-        </div>
-
-        <div className="text-center mt-12">
-          <Link href="/auth/login">
-            <button className="shit-button">Start Creating</button>
-          </Link>
+        <div className="rounded border-4 border-yellow-400 p-8 bg-gray-800">
+          <p className="text-gray-300 mb-4">Gallery features coming in Phase 2 (Frontend & Memes).</p>
+          <p className="text-gray-400 text-sm">
+            Phase 0 focuses on: Monorepo setup, CI/CD pipelines, code quality tools, and foundational scaffolding.
+          </p>
         </div>
       </div>
     </main>

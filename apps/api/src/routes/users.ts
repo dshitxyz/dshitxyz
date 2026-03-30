@@ -9,11 +9,11 @@ const updateProfileSchema = z.object({
 
 export async function userRoutes(app: FastifyInstance) {
   // Get current user profile
-  app.get('/me', async (request, reply) => {
+  app.get<{ Reply: any }>('/me', async (request, reply) => {
     try {
       await request.jwtVerify();
 
-      const user = await getUserByAddress(request.user.address);
+      const user = await getUserByAddress((request.user as any).address);
       if (!user) {
         return reply.status(404).send({ message: 'User not found' });
       }
@@ -39,7 +39,7 @@ export async function userRoutes(app: FastifyInstance) {
 
       const { pseudonym, bio } = updateProfileSchema.parse(request.body);
 
-      const user = await updateUserProfile(request.user.address, {
+      const user = await updateUserProfile((request.user as any).address, {
         pseudonym,
         bio,
       });
@@ -62,7 +62,7 @@ export async function userRoutes(app: FastifyInstance) {
         return reply.status(400).send({ message: 'Invalid request', errors: error.errors });
       }
 
-      app.log.error(error);
+      console.error(error);
       return reply.status(500).send({ message: 'Internal server error' });
     }
   });
@@ -86,7 +86,7 @@ export async function userRoutes(app: FastifyInstance) {
         createdAt: user.created_at,
       });
     } catch (error) {
-      app.log.error(error);
+      console.error(error);
       return reply.status(500).send({ message: 'Internal server error' });
     }
   });
