@@ -67,17 +67,17 @@ export async function authRoutes(app: FastifyInstance) {
         return reply.status(400).send({ message: 'Invalid request', errors: error.errors });
       }
 
-      app.log.error(error);
+      console.error(error);
       return reply.status(500).send({ message: 'Internal server error' });
     }
   });
 
   // Verify token
-  app.get('/me', async (request, reply) => {
+  app.get<{ Reply: any }>('/me', async (request, reply) => {
     try {
       await request.jwtVerify();
 
-      const user = await getUserByAddress(request.user.address);
+      const user = await getUserByAddress((request.user as any).address);
       if (!user) {
         return reply.status(404).send({ message: 'User not found' });
       }
