@@ -77,7 +77,7 @@ export async function authRoutes(app: FastifyInstance) {
     try {
       await request.jwtVerify();
 
-      const user = await getUserByAddress(request.user.address);
+      const user = await getUserByAddress((request.user as any).address);
       if (!user) {
         return reply.status(404).send({ message: 'User not found' });
       }
