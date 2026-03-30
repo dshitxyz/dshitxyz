@@ -1,0 +1,7 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "types": ["next/env", "node", "jest", "@testing-library/jest-dom"]
+  }
+}

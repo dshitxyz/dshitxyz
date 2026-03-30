@@ -1,0 +1,29 @@
+{
+  "name": "@dshitxyz/contracts",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Smart contracts for dshit.xyz platform on Base L2",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network baseSepolia",
+    "deploy:mainnet": "hardhat run scripts/deploy.ts --network baseMainnet",
+    "verify": "hardhat verify",
+    "typechain": "typechain --target ethers-v6 'artifacts/contracts/**/*.json'"
+  },
+  "devDependencies": {
+    "hardhat": "^2.19.0",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "ethers": "^6.10.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "typechain": "^8.3.0",
+    "@typechain/ethers-v6": "^11.1.0",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.0",
+    "@types/node": "^20.0.0",
+    "solidity-coverage": "^0.8.0",
+    "hardhat-gas-reporter": "^1.0.0"
+  }
+}
