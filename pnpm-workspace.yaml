@@ -1,7 +1,0 @@
-packages:
-  - 'apps/*'
-  - 'packages/*'
-
-preferences:
-  shamefully-hoist: false
-  strict-peer-dependencies: true
