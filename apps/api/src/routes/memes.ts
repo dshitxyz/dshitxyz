@@ -1,5 +1,6 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { verifyToken } from '../lib/auth';
+import type { MemeQuery } from '@/types/routes';
 
 interface Meme {
   id: string;
@@ -18,10 +19,11 @@ const memes: Map<string, Meme> = new Map();
 
 export async function memesRoutes(app: FastifyInstance) {
   // GET /api/memes - List all memes with pagination
-  app.get('/memes', async (request: FastifyRequest, reply: FastifyReply) => {
+  app.get<{ Querystring: MemeQuery }>('/memes', async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      const page = Number(request.query.page) || 1;
-      const limit = Number(request.query.limit) || 20;
+      const query = request.query as MemeQuery;
+      const page = Number(query.page) || 1;
+      const limit = Number(query.limit) || 20;
       const skip = (page - 1) * limit;
 
       const allMemes = Array.from(memes.values()).sort(
