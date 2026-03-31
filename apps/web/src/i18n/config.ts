@@ -8,9 +8,10 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';
 
 // Configure next-intl
-export default getRequestConfig(async ({ locale }) => ({
+export default getRequestConfig(async ({ locale: currentLocale }) => ({
+  locale: currentLocale || defaultLocale,
   messages: (
-    await import(`./locales/${locale}.json`)
+    await import(`./locales/${currentLocale || defaultLocale}.json`)
   ).default,
   timeZone: 'UTC',
   now: new Date(),

@@ -13,7 +13,8 @@ export async function userRoutes(app: FastifyInstance) {
     try {
       await request.jwtVerify();
 
-      const user = await getUserByAddress(request.user.address);
+      const userAddress = (request.user as any)?.address || '';
+      const user = await getUserByAddress(userAddress);
       if (!user) {
         return reply.status(404).send({ message: 'User not found' });
       }
@@ -39,7 +40,8 @@ export async function userRoutes(app: FastifyInstance) {
 
       const { pseudonym, bio } = updateProfileSchema.parse(request.body);
 
-      const user = await updateUserProfile(request.user.address, {
+      const userAddress = (request.user as any)?.address || '';
+      const user = await updateUserProfile(userAddress, {
         pseudonym,
         bio,
       });

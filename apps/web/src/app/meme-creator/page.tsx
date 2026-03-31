@@ -162,7 +162,7 @@ export default function MemeCreatorPage() {
   };
 
   // Draw whenever state changes
-  React.useEffect(() => {
+  useEffect(() => {
     drawMeme();
   }, [selectedTemplate, topText, bottomText, fontSize]);
 

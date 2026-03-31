@@ -1,4 +1,5 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import type { PublicMemesQuery, LeaderboardQuery, CombinedLeaderboardQuery } from '@/types/routes';
 
 interface PublicMeme {
   id: string;
@@ -69,13 +70,14 @@ interface PlatformStats {
 
 export async function publicRoutes(app: FastifyInstance) {
   // GET /api/public/memes - Public meme gallery (paginated, sortable)
-  app.get<{ Querystring: { page?: string; limit?: string; sort?: string } }>(
+  app.get<{ Querystring: PublicMemesQuery }>(
     '/memes',
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const page = Math.max(1, parseInt(request.query.page || '1', 10));
-        const limit = Math.min(100, Math.max(1, parseInt(request.query.limit || '20', 10)));
-        const sort = (request.query.sort || 'trending') as string;
+        const query = request.query as PublicMemesQuery;
+        const page = Math.max(1, parseInt(query.page || '1', 10));
+        const limit = Math.min(100, Math.max(1, parseInt(query.limit || '20', 10)));
+        const sort = (query.sort || 'trending') as string;
 
         // Set cache headers for 1 minute
         reply.header('Cache-Control', 'public, max-age=60');
@@ -153,7 +155,8 @@ export async function publicRoutes(app: FastifyInstance) {
           },
         });
       } catch (error) {
-        app.log.error(error);
+        const logger = app.log as any;
+        logger.error(error);
         return reply.status(500).send({ error: 'Internal server error' });
       }
     }
@@ -216,11 +219,12 @@ export async function publicRoutes(app: FastifyInstance) {
   });
 
   // GET /api/public/leaderboard/creators - Top meme creators
-  app.get<{ Querystring: { limit?: string } }>(
+  app.get<{ Querystring: LeaderboardQuery }>(
     '/leaderboard/creators',
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const limit = Math.min(100, Math.max(1, parseInt(request.query.limit || '10', 10)));
+        const query = request.query as LeaderboardQuery;
+        const limit = Math.min(100, Math.max(1, parseInt(query.limit || '10', 10)));
 
         // Set cache headers for 5 minutes
         reply.header('Cache-Control', 'public, max-age=300');
@@ -276,18 +280,20 @@ export async function publicRoutes(app: FastifyInstance) {
           timestamp: new Date().toISOString(),
         });
       } catch (error) {
-        app.log.error(error);
+        const logger = app.log as any;
+        logger.error(error);
         return reply.status(500).send({ error: 'Internal server error' });
       }
     }
   );
 
   // GET /api/public/leaderboard/holders - Top token holders
-  app.get<{ Querystring: { limit?: string } }>(
+  app.get<{ Querystring: LeaderboardQuery }>(
     '/leaderboard/holders',
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const limit = Math.min(100, Math.max(1, parseInt(request.query.limit || '10', 10)));
+        const query = request.query as LeaderboardQuery;
+        const limit = Math.min(100, Math.max(1, parseInt(query.limit || '10', 10)));
 
         // Set cache headers for 5 minutes
         reply.header('Cache-Control', 'public, max-age=300');
@@ -338,18 +344,20 @@ export async function publicRoutes(app: FastifyInstance) {
           timestamp: new Date().toISOString(),
         });
       } catch (error) {
-        app.log.error(error);
+        const logger = app.log as any;
+        logger.error(error);
         return reply.status(500).send({ error: 'Internal server error' });
       }
     }
   );
 
   // GET /api/public/leaderboard - Combined leaderboard (creators by default)
-  app.get<{ Querystring: { type?: string; limit?: string } }>(
+  app.get<{ Querystring: CombinedLeaderboardQuery }>(
     '/leaderboard',
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const type = request.query.type || 'creators';
-      const limit = request.query.limit;
+      const query = request.query as CombinedLeaderboardQuery;
+      const type = query.type || 'creators';
+      const limit = query.limit;
 
       if (type === 'holders') {
         return app.inject({
