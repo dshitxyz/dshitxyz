@@ -1,0 +1,106 @@
+{
+  "common": {
+    "language": "Language",
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "german": "Deutsch",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "gallery": "Gallery",
+    "products": "Products",
+    "memeCreator": "Meme Creator",
+    "checkout": "Checkout",
+    "login": "Login",
+    "logout": "Logout",
+    "connectWallet": "Connect Wallet",
+    "disconnect": "Disconnect",
+    "settings": "Settings",
+    "about": "About"
+  },
+  "header": {
+    "title": "dshit.xyz",
+    "subtitle": "Decentralized Meme Commerce"
+  },
+  "hero": {
+    "title": "Welcome to dshit.xyz",
+    "subtitle": "The future of meme-based commerce",
+    "cta": "Get Started"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "balance": "Your Balance",
+    "portfolio": "Portfolio",
+    "stats": "Statistics",
+    "recentTransactions": "Recent Transactions"
+  },
+  "gallery": {
+    "title": "Meme Gallery",
+    "trending": "Trending",
+    "newest": "Newest",
+    "mostViral": "Most Viral",
+    "empty": "No memes found",
+    "upvote": "Upvote",
+    "downvote": "Downvote",
+    "share": "Share"
+  },
+  "products": {
+    "title": "Product Catalog",
+    "price": "Price",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of Stock",
+    "description": "Description",
+    "quantity": "Quantity"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "orderSummary": "Order Summary",
+    "shippingAddress": "Shipping Address",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "zipCode": "Zip Code",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "orderConfirmed": "Order Confirmed!",
+    "orderNumber": "Order Number",
+    "estimatedDelivery": "Estimated Delivery"
+  },
+  "memeCreator": {
+    "title": "Meme Creator",
+    "selectTemplate": "Select Template",
+    "topText": "Top Text",
+    "bottomText": "Bottom Text",
+    "fontSize": "Font Size",
+    "color": "Color",
+    "download": "Download Meme",
+    "share": "Share on Twitter",
+    "upload": "Upload Custom Image"
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Access forbidden",
+    "serverError": "Server error",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home"
+  },
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "social": "Follow us",
+    "copyright": "© 2026 dshit.xyz. All rights reserved."
+  },
+  "auth": {
+    "signMessage": "Please sign this message to authenticate",
+    "signing": "Signing...",
+    "verifying": "Verifying...",
+    "success": "Authentication successful!",
+    "error": "Authentication failed"
+  }
+}
