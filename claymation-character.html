@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crude Claymation Character - dshitxyz</title>
+    <style>
+        :root {
+            --shit-yellow: #F4D03F;
+            --shit-brown: #8B4513;
+            --shit-brown-light: #A0522D;
+            --glitch-red: #FF0000;
+            --bg-raw: #1A1A1A;
+            --bg-dirty: #2D2D2D;
+            --toxic-green: #39FF14;
+            --cyber-purple: #BF00FF;
+            --industrial-orange: #FF6600;
+            --text-shit: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-raw);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-shit);
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-shadow: 3px 3px var(--shit-brown);
+            color: var(--shit-yellow);
+            letter-spacing: 2px;
+        }
+
+        .character-wrapper {
+            perspective: 1000px;
+            filter: drop-shadow(8px 8px 0px var(--shit-brown));
+        }
+
+        svg {
+            display: block;
+            filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.8));
+        }
+
+        /* Crude animation */
+        @keyframes crude-wobble {
+            0%, 100% { transform: rotate(-0.5deg) translateY(0); }
+            25% { transform: rotate(0.5deg) translateY(-5px); }
+            50% { transform: rotate(-0.5deg) translateY(0); }
+            75% { transform: rotate(0.5deg) translateY(5px); }
+        }
+
+        .character-wrapper {
+            animation: crude-wobble 2s infinite ease-in-out;
+        }
+
+        .description {
+            max-width: 600px;
+            text-align: center;
+            border: 3px solid var(--shit-yellow);
+            padding: 1.5rem;
+            background: var(--bg-dirty);
+            box-shadow: 6px 6px 0px var(--shit-brown);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .description strong {
+            color: var(--shit-yellow);
+        }
+
+        .crude-label {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            color: var(--industrial-orange);
+            text-shadow: 2px 2px var(--glitch-red);
+            transform: rotate(-5deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍠 CLAYBOY 🍠</h1>
+
+        <div class="character-wrapper">
+            <svg width="300" height="400" viewBox="0 0 300 400">
+                <!-- Define some crude textures/patterns -->
+                <defs>
+                    <filter id="crude-blur">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
+                    </filter>
+                    <pattern id="clay-texture" patternUnits="userSpaceOnUse" width="4" height="4">
+                        <rect width="4" height="4" fill="#8B4513" opacity="0.8" />
+                        <circle cx="1" cy="1" r="0.5" fill="#A0522D" opacity="0.6" />
+                        <circle cx="3" cy="3" r="0.5" fill="#704214" opacity="0.6" />
+                    </pattern>
+                </defs>
+
+                <!-- Body - Main chunky form -->
+                <ellipse cx="150" cy="180" rx="85" ry="110" fill="#8B4513" stroke="#5C2E0F" stroke-width="3"/>
+
+                <!-- Body shine/highlight - crude -->
+                <ellipse cx="120" cy="140" rx="35" ry="45" fill="#A0522D" opacity="0.6"/>
+
+                <!-- Left arm - stubby and crude -->
+                <ellipse cx="70" cy="160" rx="28" ry="50" fill="#8B4513" stroke="#5C2E0F" stroke-width="2" transform="rotate(-30 70 160)"/>
+                <circle cx="45" cy="185" r="18" fill="#8B4513" stroke="#5C2E0F" stroke-width="2"/>
+                <!-- Hand gesture - crude point -->
+                <line x1="45" y1="185" x2="20" y2="175" stroke="#704214" stroke-width="4" stroke-linecap="round"/>
+
+                <!-- Right arm - reaching up slightly -->
+                <ellipse cx="230" cy="155" rx="28" ry="55" fill="#8B4513" stroke="#5C2E0F" stroke-width="2" transform="rotate(25 230 155)"/>
+                <circle cx="255" cy="105" r="18" fill="#8B4513" stroke="#5C2E0F" stroke-width="2"/>
+                <!-- Hand finger -->
+                <line x1="255" y1="105" x2="270" y2="90" stroke="#704214" stroke-width="4" stroke-linecap="round"/>
+
+                <!-- Legs - stubby clay legs -->
+                <ellipse cx="115" cy="280" rx="22" ry="45" fill="#8B4513" stroke="#5C2E0F" stroke-width="2"/>
+                <ellipse cx="185" cy="280" rx="22" ry="45" fill="#8B4513" stroke="#5C2E0F" stroke-width="2"/>
+
+                <!-- Feet - crude -->
+                <ellipse cx="115" cy="330" rx="20" ry="15" fill="#704214" stroke="#4A1F0A" stroke-width="2"/>
+                <ellipse cx="185" cy="330" rx="20" ry="15" fill="#704214" stroke="#4A1F0A" stroke-width="2"/>
+
+                <!-- Head - awkward bulbous shape -->
+                <circle cx="150" cy="85" r="55" fill="#8B4513" stroke="#5C2E0F" stroke-width="3"/>
+
+                <!-- Head shine -->
+                <ellipse cx="130" cy="65" rx="22" ry="28" fill="#A0522D" opacity="0.5"/>
+
+                <!-- Eyes - crude and off-center -->
+                <circle cx="125" cy="75" r="12" fill="#F4D03F" stroke="#5C2E0F" stroke-width="2"/>
+                <circle cx="175" cy="82" r="12" fill="#F4D03F" stroke="#5C2E0F" stroke-width="2"/>
+
+                <!-- Pupils - looking slightly up and to the left (crude) -->
+                <circle cx="128" cy="70" r="7" fill="#5C2E0F"/>
+                <circle cx="177" cy="78" r="7" fill="#5C2E0F"/>
+
+                <!-- Eyebrows - uneven and messy -->
+                <path d="M 110 60 Q 125 55 140 60" stroke="#5C2E0F" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M 160 67 Q 180 62 195 70" stroke="#5C2E0F" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                <!-- Mouth - crude smile/expression -->
+                <path d="M 135 95 Q 150 110 165 95" stroke="#5C2E0F" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                <!-- Tongue - crude -->
+                <ellipse cx="150" cy="105" rx="10" ry="8" fill="#FF6B6B" stroke="#5C2E0F" stroke-width="1"/>
+
+                <!-- Texture marks - crude clay imperfections -->
+                <circle cx="140" cy="120" r="3" fill="#5C2E0F" opacity="0.7"/>
+                <circle cx="160" cy="130" r="2" fill="#5C2E0F" opacity="0.6"/>
+                <circle cx="100" cy="200" r="2.5" fill="#5C2E0F" opacity="0.7"/>
+                <circle cx="200" cy="210" r="2" fill="#5C2E0F" opacity="0.6"/>
+                <circle cx="150" cy="250" r="3" fill="#5C2E0F" opacity="0.7"/>
+
+                <!-- Clay crack marks - crude imperfections -->
+                <path d="M 110 150 L 115 165" stroke="#5C2E0F" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+                <path d="M 190 170 L 185 185" stroke="#5C2E0F" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <div class="description">
+            <p><strong>CLAYBOY™</strong> - A crude mashup of meme culture</p>
+            <p>Brown poop-like claymation body with an awkward personality. Yellow eyes bulging with questionable intent. Stubby limbs reaching in different directions. Crudely handmade. Intentionally unpolished. Maximum ugliness achieved.</p>
+            <p style="margin-top: 1rem; color: var(--toxic-green); font-family: 'Permanent Marker', cursive; font-size: 1.1rem;">
+                ✦ UGLY IS BEAUTIFUL ✦
+            </p>
+        </div>
+    </div>
+</body>
+</html>
