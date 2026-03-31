@@ -7,6 +7,8 @@ import { userRoutes } from '@/routes/users';
 import { statsRoutes } from '@/routes/stats';
 import { memesRoutes } from '@/routes/memes';
 import { checkoutRoutes } from '@/routes/checkout';
+import { publicRoutes } from '@/routes/public';
+import { analyticsRoutes } from '@/routes/analytics';
 
 const app = Fastify({
   logger: true,
@@ -33,6 +35,8 @@ app.register(userRoutes, { prefix: '/api/users' });
 app.register(statsRoutes, { prefix: '/api/stats' });
 app.register(memesRoutes, { prefix: '/api' });
 app.register(checkoutRoutes, { prefix: '/api' });
+app.register(publicRoutes, { prefix: '/api/public' });
+app.register(analyticsRoutes, { prefix: '/api/analytics' });
 
 // Start server
 const start = async () => {

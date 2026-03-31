@@ -1,0 +1,23 @@
+{
+  "name": "@dshit/telegram-bot",
+  "version": "0.1.0",
+  "description": "Telegram bot for dshit.xyz - price alerts, meme submissions, order notifications",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "telegraf": "^4.14.0",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "typescript": "^5.2.2",
+    "tsx": "^3.14.0"
+  }
+}
