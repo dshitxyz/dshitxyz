@@ -1,9 +1,9 @@
 'use client';
 
 import { useAccount } from 'wagmi';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { Header } from '@/components/Header';
 import { DashboardStats } from '@/components/DashboardStats';
 import { DashboardDrops } from '@/components/DashboardDrops';
 import { FlushMeter } from '@/components/FlushMeter';
@@ -24,23 +24,9 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      {/* Header */}
-      <header className="border-b-4 border-shit-yellow p-6">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/">
-            <h1 className="text-3xl font-bold font-display text-shit-yellow cursor-pointer">
-              D-SHIT™
-            </h1>
-          </Link>
-          <div className="text-right hidden sm:block">
-            <p className="text-gray-400 text-sm">Wallet</p>
-            <p className="text-shit-yellow font-mono text-sm">
-              {address?.slice(0, 10)}...{address?.slice(-8)}
-            </p>
-          </div>
-        </div>
-      </header>
+    <>
+      <Header />
+      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -94,5 +80,6 @@ export default function DashboardPage() {
         </section>
       </div>
     </main>
+    </>
   );
 }

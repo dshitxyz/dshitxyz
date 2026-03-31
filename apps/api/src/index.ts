@@ -4,6 +4,7 @@ import helmet from '@fastify/helmet';
 import jwt from '@fastify/jwt';
 import { authRoutes } from '@/routes/auth';
 import { userRoutes } from '@/routes/users';
+import { statsRoutes } from '@/routes/stats';
 
 const app = Fastify({
   logger: true,
@@ -27,6 +28,7 @@ app.get('/health', async () => ({
 // Routes
 app.register(authRoutes, { prefix: '/api/auth' });
 app.register(userRoutes, { prefix: '/api/users' });
+app.register(statsRoutes, { prefix: '/api/stats' });
 
 // Start server
 const start = async () => {
