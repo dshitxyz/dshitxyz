@@ -1,0 +1,18 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy monorepo files
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY packages ./packages
+COPY apps/api ./apps/api
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+EXPOSE 3001
+
+CMD ["pnpm", "-F", "@dshit/api", "dev"]
