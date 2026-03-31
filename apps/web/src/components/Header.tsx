@@ -36,9 +36,14 @@ export function Header() {
                 GALLERY
               </Link>
               {isConnected && (
-                <Link href="/dashboard" className="hover:text-shit-yellow transition-colors">
-                  DASHBOARD
-                </Link>
+                <>
+                  <Link href="/dashboard" className="hover:text-shit-yellow transition-colors">
+                    DASHBOARD
+                  </Link>
+                  <Link href="/analytics" className="hover:text-shit-yellow transition-colors">
+                    ANALYTICS
+                  </Link>
+                </>
               )}
             </nav>
 
