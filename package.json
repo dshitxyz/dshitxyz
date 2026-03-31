@@ -1,0 +1,36 @@
+{
+  "name": "dshitxyz",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Decentralized meme protocol - satirical Web3 platform",
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "test:watch": "pnpm -r --parallel run test:watch",
+    "lint": "pnpm -r run lint",
+    "typecheck": "pnpm -r run typecheck",
+    "format": "pnpm -r run format",
+    "format:check": "pnpm -r run format:check",
+    "clean": "pnpm -r run clean && rm -rf node_modules pnpm-lock.yaml",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.0"
+  }
+}

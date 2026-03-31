@@ -1,0 +1,17 @@
+{
+  "name": "@dshitxyz/config",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Shared configuration for TypeScript, ESLint, and Prettier",
+  "files": [
+    "eslint.config.js",
+    "tsconfig.json",
+    "tsconfig.app.json",
+    "prettier.config.js"
+  ],
+  "exports": {
+    "./eslint": "./eslint.config.js",
+    "./typescript": "./tsconfig.json",
+    "./prettier": "./prettier.config.js"
+  }
+}

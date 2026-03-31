@@ -1,0 +1,15 @@
+{
+  "extends": "@dshitxyz/config/typescript",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./.",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "hardhat.config.ts",
+    "scripts/**/*.ts",
+    "test/**/*.ts",
+    "typechain/**/*.ts"
+  ],
+  "exclude": ["node_modules", "artifacts", "cache"]
+}

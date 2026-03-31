@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: var(--font-body, "Space Mono", monospace);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display, "Bebas Neue", sans-serif);
+  }
+}
+
+@layer components {
+  .brutalist-border {
+    @apply border-4 border-shit-yellow shadow-[8px_8px_0px_rgb(139,69,19)] transition-all duration-200;
+  }
+
+  .brutalist-border:hover {
+    @apply -translate-x-1 -translate-y-1 shadow-[12px_12px_0px_rgb(139,69,19)];
+  }
+
+  .shit-button {
+    @apply bg-shit-yellow text-bg-raw border-3 border-shit-brown px-8 py-4 font-display text-xl uppercase font-bold cursor-pointer shadow-[6px_6px_0px_rgb(139,69,19)] hover:shadow-[8px_8px_0px_rgb(139,69,19)] transition-all duration-200;
+  }
+}
+
+@keyframes shit-glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-text {
+  animation: shit-glitch 0.3s infinite;
+}

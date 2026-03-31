@@ -1,0 +1,25 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+catalogs:
+  react:
+    react: "^18.2.0"
+    react-dom: "^18.2.0"
+
+  testing:
+    vitest: "^1.0.0"
+    @testing-library/react: "^14.0.0"
+    @testing-library/jest-dom: "^6.1.0"
+
+  linting:
+    eslint: "^8.50.0"
+    "@typescript-eslint/eslint-plugin": "^7.0.0"
+    "@typescript-eslint/parser": "^7.0.0"
+    prettier: "^3.0.0"
+
+  web3:
+    ethers: "^6.10.0"
+    "@rainbow-me/rainbowkit": "^2.0.0"
+    wagmi: "^2.0.0"
+    "viem": "^2.0.0"
