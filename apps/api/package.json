@@ -21,11 +21,13 @@
     "drizzle-orm": "^0.29.0",
     "drizzle-kit": "^0.20.0",
     "pg": "^8.11.0",
-    "zod": "^3.22.0"
+    "zod": "^3.22.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
     "@types/pg": "^8.11.0",
+    "@types/uuid": "^9.0.0",
     "typescript": "^5.3.3",
     "tsx": "^4.6.0"
   }
