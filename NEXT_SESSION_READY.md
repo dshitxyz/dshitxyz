@@ -1,75 +1,89 @@
-# 🚀 Session 3 Ready - Wallet Connection & Auth Implementation
+# 🚀 Session 4 Ready - Commerce & Meme Engine Implementation
 
 **Status:** ✅ READY FOR IMMEDIATE EXECUTION
-**Session 2 Merge Commit:** `6a087e4`
-**Duration:** 25 minutes (Session 2)
-**Remaining Time in Hour:** ~30-35 minutes available
+**Session 3 Merge Commit:** `befccac`
+**Duration:** 35 minutes (Session 3)
+**Remaining Time in Hour:** ~25 minutes available
 
 ---
 
-## ✅ What Was Completed (Session 2)
+## ✅ What Was Completed (Session 3)
 
-### Dashboard Page Fully Integrated ✅
-- Created responsive dashboard at `/dashboard`
-- 4 sub-components working: DashboardStats, DashboardDrops, FlushMeter, Newsletter
-- UI component library integrated (StatBox, Card, Button from @dshit/ui)
-- Protected route that checks wallet connection
-- Design system fully applied (colors, typography, spacing)
-
-### Critical Fixes ✅
-- Fixed wagmi v1 API in Providers.tsx
-- Added missing @tanstack/react-query dependency
-- Fixed WalletLoginForm hook usage
-- All TypeScript errors resolved
-- Type check passing
+### Wallet Connection & Authentication ✅
+- Created Header.tsx with RainbowKit wallet modal
+- Implemented useAuth hook for token persistence
+- Created API endpoints for dashboard stats (/api/stats/*)
+- Integrated real data fetching in dashboard components
+- Added user profile display and logout functionality
+- All TypeScript checks passing
+- PR #22 merged to main
 
 ### Current Status
-- Main branch clean at commit `6a087e4`
+- Main branch clean at commit `befccac`
 - All dependencies installed
-- Ready for next phase
+- Ready for commerce phase
 
 ---
 
-## 🎯 Session 3: Wallet Connection & Auth
+## 🎯 Session 4: Commerce & Meme Engine
 
-**Estimated Duration:** 40-45 minutes
-**Time Remaining:** ~30-35 minutes (can continue into next hour)
+**Estimated Duration:** 45-50 minutes
+**Time Remaining:** ~25 minutes (can continue into next hour)
 
 ### Tasks (Priority Order)
 
-#### Task 1: RainbowKit Wallet Modal (5 min)
-**File:** `apps/web/src/components/Header.tsx` (new)
-- Import RainbowKit components
-- Create header with wallet button
-- Show connected address
-- Show balance display
+#### Task 1: Shopping Cart System (10 min)
+**File:** `apps/web/src/hooks/useCart.ts` (new)
+- Create cart state management hook
+- Add/remove/clear items functions
+- Calculate total in DSHIT
+- localStorage persistence
 
-#### Task 2: Auth Login Page (10 min)
-**File:** `apps/web/src/app/auth/login/page.tsx`
-- Use WalletLoginForm component (already exists)
-- Add loading/error states
-- Redirect to dashboard on success
-- Clean styling
+**File:** `apps/web/src/components/ShoppingCart.tsx` (new)
+- Display cart items with quantities
+- Show prices and total
+- Checkout button
+- Empty state
 
-#### Task 3: Backend Auth Endpoints (15 min)
-**File:** `apps/api/src/routes/auth.ts`
-- POST /api/auth/login - initiate sign request
-- POST /api/auth/verify - verify signature, return JWT
-- POST /api/auth/logout - clear session
-- Implement JWT token generation
-- Store user profile in database
+#### Task 2: Checkout Flow (15 min)
+**File:** `apps/web/src/app/checkout/page.tsx`
+- Protected route using useAuth
+- Shipping address form
+- Order summary display
+- Confirmation screen
 
-#### Task 4: Real Data Display (10 min)
-- Update DashboardStats to fetch from API
-- Update DashboardDrops from database
-- Add price ticker (DEX API)
-- Display user portfolio
+**File:** `apps/api/src/routes/checkout.ts`
+- POST /api/checkout/create - Create order
+- GET /api/checkout/:orderId - Get order status
 
-#### Task 5: Protected Routes & Persistence (5 min)
-- Dashboard redirects to login if not auth
-- localStorage token persistence
-- Token in API request headers
-- Handle token expiration
+#### Task 3: Product Grid (10 min)
+**File:** `apps/web/src/app/products/page.tsx`
+- Display products in grid
+- Use /api/stats/drops endpoint
+- Add to cart button on each product
+- Mobile responsive
+
+**File:** `apps/web/src/components/ProductCard.tsx`
+- Individual product display
+- Price in DSHIT
+- Quick add to cart
+
+#### Task 4: Meme Creator MVP (10 min)
+**File:** `apps/web/src/app/meme-creator/page.tsx`
+- Select meme template
+- Add text overlay
+- Download button
+- Share functionality
+
+**File:** `apps/api/src/routes/memes.ts`
+- POST /api/memes - Create meme
+- GET /api/memes - List memes
+
+#### Task 5: Integration & Testing (5 min)
+- Test full cart → checkout flow
+- Verify real data integration
+- Mobile responsiveness
+- Error handling
 
 ---
 
@@ -83,26 +97,26 @@ git status
 
 ### Recent Commits
 ```
-6a087e4 - Session 2 completion report
-f716e3e - Dashboard page + TypeScript fixes (PR #21 merged)
-3687ec3 - Dashboard page implementation
+befccac - Session 3 completion report
+a8ac9d8 - Session 3 features (wallet + auth)
+6a087e4 - Session 2 completion
 ```
 
-### Key Files Modified in Session 2
+### Key Files Ready for Use
 ```
-apps/web/package.json              # Added @tanstack/react-query
-apps/web/src/components/Providers.tsx      # Fixed wagmi API
-apps/web/src/components/auth/WalletLoginForm.tsx  # Fixed hooks
-apps/web/src/app/dashboard/page.tsx        # Already exists
+apps/web/src/hooks/useAuth.ts            # Token management
+apps/web/src/components/Header.tsx       # User info + logout
+apps/api/src/routes/stats.ts             # Product data
+apps/api/src/routes/auth.ts              # Auth verified
 ```
 
 ---
 
-## 🔧 Setup for Session 3 (If Continuing Now)
+## 🔧 Setup for Session 4 (If Continuing Now)
 
 ```bash
-# Already done - dependencies are installed
-pnpm install  # (skip if continuing immediately)
+# Already done - dependencies installed
+pnpm install  # Skip if continuing immediately
 
 # Verify everything works
 pnpm --filter @dshit/web type-check  # Should pass
@@ -113,68 +127,79 @@ pnpm dev
 
 ---
 
-## 📁 Files to Create/Modify in Session 3
+## 📁 Files to Create/Modify in Session 4
 
-### NEW FILES
+### NEW FILES (Frontend)
 ```
-apps/web/src/components/Header.tsx              # Wallet header
-apps/web/src/components/ConnectWallet.tsx       # Wallet button
+apps/web/src/hooks/useCart.ts                    # Cart state
+apps/web/src/components/ShoppingCart.tsx         # Cart display
+apps/web/src/components/ProductCard.tsx          # Product item
+apps/web/src/app/checkout/page.tsx               # Checkout page
+apps/web/src/app/products/page.tsx               # Products listing
+apps/web/src/app/meme-creator/page.tsx           # Meme creator
+```
+
+### NEW FILES (Backend)
+```
+apps/api/src/routes/checkout.ts                  # Checkout endpoints
+apps/api/src/routes/memes.ts                     # Meme endpoints
+apps/api/src/lib/orders.ts                       # Order management
 ```
 
 ### MODIFY FILES
 ```
-apps/web/src/app/layout.tsx                     # Add Header
-apps/web/src/app/auth/login/page.tsx            # Enhance login
-apps/api/src/routes/auth.ts                     # Backend endpoints
-apps/web/src/components/DashboardStats.tsx      # Fetch real data
-apps/web/src/components/DashboardDrops.tsx      # Fetch real data
+apps/web/src/app/layout.tsx                      # Add routes/nav
+apps/api/src/index.ts                            # Register routes
+apps/web/src/components/Header.tsx               # Add cart icon
 ```
 
 ---
 
-## 📊 Success Metrics for Session 3
+## 📊 Success Metrics for Session 4
 
 | Item | Requirement |
 |------|-------------|
-| Wallet Modal | Functional in header, shows address & balance |
-| Auth Flow | Message signing → verification → JWT token |
-| Login Page | Accessible at /auth/login, working UI |
-| Protected Routes | Dashboard redirects to login if not auth |
-| Real Data | Dashboard fetches stats from API |
+| Shopping Cart | Functional, persistent, add/remove items |
+| Checkout Flow | Complete form, address validation, confirmation |
+| Product Display | Grid layout, mobile responsive, add to cart |
+| Meme Creator | Template selection, text input, download |
+| Orders API | Create, read, list order endpoints |
+| Real Integration | Cart prices from API, order creation works |
 | TypeScript | Zero errors, all checks pass |
 | PR | Created with goals and metrics |
 | Merge | PR merged to main |
 
 ---
 
-## 🎯 Session 3 Execution Plan
+## 🎯 Session 4 Execution Plan
 
-1. **Create branch:** `feat/wallet-auth`
-2. **Implement header with wallet modal** (5 min)
-3. **Create login page** (5 min)
-4. **Backend auth endpoints** (15 min)
-5. **Real data integration** (10 min)
-6. **Create PR with metrics** (3 min)
-7. **Merge to main** (2 min)
+1. **Create branch:** `feat/commerce-memes`
+2. **Shopping cart hook + component** (10 min)
+3. **Checkout flow (page + API)** (15 min)
+4. **Product grid + cards** (10 min)
+5. **Meme creator + API** (10 min)
+6. **Test integration** (3 min)
+7. **Create PR with metrics** (2 min)
+8. **Merge to main** (2 min)
 
-**Total: ~40 minutes**
+**Total: ~50 minutes**
 
 ---
 
-## 🚀 How to Start Session 3
+## 🚀 How to Start Session 4
 
 ### Option A: Run Now (Continue in This Window)
 ```bash
 # Create feature branch
-git checkout -b feat/wallet-auth
+git checkout -b feat/commerce-memes
 
 # Start implementing
 # Follow tasks above in priority order
 
 # When done
 git add -A
-git commit -m "feat(auth): Wallet connection & authentication flow"
-git push -u origin feat/wallet-auth
+git commit -m "feat(commerce): Shopping cart, checkout, meme creator"
+git push -u origin feat/commerce-memes
 
 # Create PR with success metrics
 # Merge PR
@@ -183,12 +208,12 @@ git push -u origin feat/wallet-auth
 
 ### Option B: Schedule for Next Hour
 ```bash
-/schedule create session-3 "0 * * * *" < [use Session 3 prompt below]
+/schedule create session-4 "0 * * * *" < [use Session 4 prompt below]
 ```
 
 ---
 
-## 📝 Session 3 Full Prompt (For Next Agent)
+## 📝 Session 4 Full Prompt (For Next Agent)
 
 ```
 PROJECT CONTEXT: dshit.xyz Autonomous Development
