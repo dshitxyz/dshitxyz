@@ -2,9 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  webpack: (config) => {
-    config.externals.push('pino-pretty', 'lokijs', 'encoding');
-    return config;
+  images: {
+    unoptimized: true,
+  },
+  typescript: {
+    tsconfigPath: './tsconfig.json',
   },
 };
 

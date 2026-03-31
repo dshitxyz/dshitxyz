@@ -1,27 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Permanent+Marker&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --shit-yellow: #F4D03F;
-  --shit-yellow-dark: #D4AC0D;
-  --shit-brown: #8B4513;
-  --shit-brown-light: #A0522D;
-  --glitch-red: #FF0000;
-  --glitch-red-dark: #CC0000;
-  --bg-raw: #1A1A1A;
-  --bg-dirty: #2D2D2D;
-  --bg-waste: #3D3D3D;
-  --text-shit: #FFFFFF;
-  --text-dim: #CCCCCC;
-  --toxic-green: #39FF14;
-  --cyber-purple: #BF00FF;
-  --industrial-orange: #FF6600;
-  --dirty-white: #E5E5E5;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -30,156 +6,82 @@
 
 html,
 body {
-  background: var(--bg-raw);
-  color: var(--text-shit);
-  font-family: var(--font-body, 'Space Mono', monospace);
-  line-height: 1.6;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4d03f;
+  color: #1a1a1a;
 }
 
 body {
-  overflow-x: hidden;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #3d3d3d 100%);
+  color: #ffffff;
+  min-height: 100vh;
 }
 
-/* Mascot animation */
-@keyframes bounce-gentle {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+main {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@keyframes wiggle {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-2deg);
-  }
-  75% {
-    transform: rotate(2deg);
-  }
-}
-
-.animate-bounce-gentle {
-  animation: bounce-gentle 2.5s ease-in-out infinite;
-}
-
-.animate-wiggle {
-  animation: wiggle 0.5s ease-in-out;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+h1 {
+  font-size: 3rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #f4d03f;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #f4d03f;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #f4d03f;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+ul {
+  margin-left: 1.5rem;
+  line-height: 1.8;
+}
+
+li {
+  margin-bottom: 0.5rem;
 }
 
 a {
-  color: inherit;
+  color: #39ff14;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
+a:hover {
+  color: #f4d03f;
+  text-decoration: underline;
 }
 
-input,
-textarea {
-  font-family: inherit;
-  color: inherit;
-  background: transparent;
+section {
+  background: rgba(139, 69, 19, 0.1);
+  border: 3px solid #8b4513;
+  padding: 1.5rem;
+  border-radius: 0;
 }
 
-/* Glitch Animation */
-@keyframes shit-glitch {
-  0% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-2px, 2px);
-  }
-  40% {
-    transform: translate(-2px, -2px);
-  }
-  60% {
-    transform: translate(2px, 2px);
-  }
-  80% {
-    transform: translate(2px, -2px);
-  }
-  100% {
-    transform: translate(0);
-  }
-}
-
-.glitch-text {
-  animation: shit-glitch 0.3s infinite;
-  position: relative;
-}
-
-/* Brutalist Border */
-.brutalist-border {
-  border: 4px solid var(--shit-yellow);
-  box-shadow: 8px 8px 0px var(--shit-brown);
-}
-
-.brutalist-border:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 12px 12px 0px var(--shit-brown);
-  transition: all 0.2s ease;
-}
-
-/* Warning Stripes */
-.warning-stripes {
-  background: repeating-linear-gradient(
-    45deg,
-    var(--shit-yellow),
-    var(--shit-yellow) 10px,
-    var(--bg-waste) 10px,
-    var(--bg-waste) 20px
-  );
-}
-
-/* Shit Gradient */
-.shit-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--bg-raw) 0%,
-    var(--bg-dirty) 50%,
-    var(--bg-waste) 100%
-  );
-}
-
-/* Raw Button */
-.shit-button {
-  background: var(--shit-yellow);
-  color: var(--bg-raw);
-  border: 3px solid var(--shit-brown);
-  padding: 1rem 2rem;
-  font-family: var(--font-display, 'Bebas Neue', sans-serif);
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 6px 6px 0px var(--shit-brown);
-  transition: all 0.2s ease;
-}
-
-.shit-button:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 9px 9px 0px var(--shit-brown);
-}
-
-.shit-button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0px var(--shit-brown);
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  opacity: 0.7;
 }

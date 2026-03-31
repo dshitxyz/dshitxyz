@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm run pre-build && pnpm --filter @dshit/web build",
+  "installCommand": "pnpm install",
+  "builds": [
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
