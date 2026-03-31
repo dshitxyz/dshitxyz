@@ -1,153 +1,173 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Snapshot.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
 /**
  * @title DSHIT Token
- * @dev ERC-20 token implementation with tax, pause, and governance features
+ * @dev ERC-20 token with tax, pause, and snapshot features for governance
  *
  * Features:
- * - Fixed 1B supply (no mint after deployment)
- * - 5% transfer tax (configurable)
- * - Pausable emergency circuit breaker
- * - Snapshot support for governance voting
- * - Burnable tokens
- * - Reentrancy guard on state-changing functions
+ * - Fixed 1 billion supply (no mint after deployment)
+ * - 5% configurable transfer tax directed to treasury
+ * - Pausable emergency circuit breaker (owner-only)
+ * - Snapshot capability for governance voting (owner-only)
+ * - Burnable tokens (users can burn their own)
+ * - Reentrancy protection on external transfers
+ *
+ * Tax Mechanism:
+ * - 5% tax on all transfers (except minting and burning)
+ * - Tax recipient receives taxed amount
+ * - Transfer amount shown to recipient is after tax
+ * - Transparent: tax is emitted in Transfer event
  */
+contract DSHIT is
+    ERC20,
+    ERC20Burnable,
+    ERC20Snapshot,
+    Pausable,
+    Ownable,
+    ReentrancyGuard
+{
+    // Constants
+    uint256 public constant INITIAL_SUPPLY = 1_000_000_000 * 10**18; // 1 billion tokens
+    uint256 public constant MAX_TAX_RATE = 100; // 10% maximum tax (100 basis points / 1000)
 
-interface IERC20 {
-  function totalSupply() external view returns (uint256);
-  function balanceOf(address account) external view returns (uint256);
-  function transfer(address to, uint256 amount) external returns (bool);
-  function allowance(address owner, address spender) external view returns (uint256);
-  function approve(address spender, uint256 amount) external returns (bool);
-  function transferFrom(address from, address to, uint256 amount) external returns (bool);
-}
+    // Tax configuration
+    uint256 public taxRate = 50; // 5% = 50 basis points / 1000
+    address public taxRecipient;
 
-contract DSHIT {
-  // Metadata
-  string public constant name = "DSHIT";
-  string public constant symbol = "DSHIT";
-  uint8 public constant decimals = 18;
-  uint256 public constant INITIAL_SUPPLY = 1_000_000_000 * (10 ** uint256(decimals));
+    // Events
+    event TaxRateUpdated(uint256 indexed oldRate, uint256 indexed newRate);
+    event TaxRecipientUpdated(address indexed oldRecipient, address indexed newRecipient);
+    event SnapshotCreated(uint256 indexed snapshotId);
+    event TokensPaused();
+    event TokensUnpaused();
 
-  // State
-  uint256 public totalSupply = INITIAL_SUPPLY;
-  mapping(address => uint256) public balanceOf;
-  mapping(address => mapping(address => uint256)) public allowance;
+    /**
+     * @dev Initialize DSHIT token with fixed supply and tax configuration
+     * @param _taxRecipient Address to receive tax proceeds
+     */
+    constructor(address _taxRecipient) ERC20("DSHIT", "DSHIT") Ownable(msg.sender) {
+        require(_taxRecipient != address(0), "Invalid tax recipient");
 
-  // Tax configuration
-  uint256 public taxRate = 50; // 5% = 50 basis points / 1000
-  address public taxRecipient;
+        taxRecipient = _taxRecipient;
 
-  // Pause state
-  bool public paused;
+        // Mint entire supply to deployer
+        _mint(msg.sender, INITIAL_SUPPLY);
 
-  // Owner
-  address public owner;
-
-  // Events
-  event Transfer(address indexed from, address indexed to, uint256 amount);
-  event Approval(address indexed owner, address indexed spender, uint256 amount);
-  event TaxRateChanged(uint256 oldRate, uint256 newRate);
-  event TaxRecipientChanged(address indexed oldRecipient, address indexed newRecipient);
-  event Paused(address indexed by);
-  event Unpaused(address indexed by);
-  event Burned(address indexed from, uint256 amount);
-
-  constructor(address _taxRecipient) {
-    owner = msg.sender;
-    taxRecipient = _taxRecipient;
-    balanceOf[msg.sender] = INITIAL_SUPPLY;
-  }
-
-  modifier onlyOwner() {
-    require(msg.sender == owner, "Only owner");
-    _;
-  }
-
-  modifier whenNotPaused() {
-    require(!paused, "Token paused");
-    _;
-  }
-
-  // Core ERC20 functions
-  function transfer(address to, uint256 amount) public whenNotPaused returns (bool) {
-    _transfer(msg.sender, to, amount);
-    return true;
-  }
-
-  function approve(address spender, uint256 amount) public returns (bool) {
-    allowance[msg.sender][spender] = amount;
-    emit Approval(msg.sender, spender, amount);
-    return true;
-  }
-
-  function transferFrom(address from, address to, uint256 amount) public whenNotPaused returns (bool) {
-    require(allowance[from][msg.sender] >= amount, "Insufficient allowance");
-    allowance[from][msg.sender] -= amount;
-    _transfer(from, to, amount);
-    return true;
-  }
-
-  // Internal transfer with tax
-  function _transfer(address from, address to, uint256 amount) internal {
-    require(from != address(0), "Invalid from");
-    require(to != address(0), "Invalid to");
-    require(balanceOf[from] >= amount, "Insufficient balance");
-
-    uint256 tax = (amount * taxRate) / 1000;
-    uint256 amountAfterTax = amount - tax;
-
-    balanceOf[from] -= amount;
-    balanceOf[to] += amountAfterTax;
-    if (tax > 0) {
-      balanceOf[taxRecipient] += tax;
-      emit Transfer(from, taxRecipient, tax);
+        emit TaxRecipientUpdated(address(0), _taxRecipient);
     }
-    emit Transfer(from, to, amountAfterTax);
-  }
 
-  // Tax management
-  function setTaxRate(uint256 newRate) public onlyOwner {
-    require(newRate <= 100, "Tax too high"); // Max 10%
-    emit TaxRateChanged(taxRate, newRate);
-    taxRate = newRate;
-  }
+    /**
+     * @dev Internal hook for applying transfer tax
+     * Overrides _update to intercept all transfers and apply tax
+     */
+    function _update(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20, ERC20Snapshot) whenNotPaused nonReentrant {
+        require(amount > 0, "Transfer amount must be greater than zero");
 
-  function setTaxRecipient(address newRecipient) public onlyOwner {
-    require(newRecipient != address(0), "Invalid recipient");
-    emit TaxRecipientChanged(taxRecipient, newRecipient);
-    taxRecipient = newRecipient;
-  }
+        // Skip tax for minting (from == address(0)) and burning (to == address(0))
+        if (from == address(0) || to == address(0)) {
+            super._update(from, to, amount);
+            return;
+        }
 
-  // Pause mechanism
-  function pause() public onlyOwner {
-    paused = true;
-    emit Paused(msg.sender);
-  }
+        // Calculate tax
+        uint256 taxAmount = (amount * taxRate) / 1000;
+        uint256 amountAfterTax = amount - taxAmount;
 
-  function unpause() public onlyOwner {
-    paused = false;
-    emit Unpaused(msg.sender);
-  }
+        // Transfer with tax: from -> to (amount - tax), from -> taxRecipient (tax)
+        super._update(from, taxRecipient, taxAmount);
+        super._update(from, to, amountAfterTax);
+    }
 
-  // Burn
-  function burn(uint256 amount) public {
-    require(balanceOf[msg.sender] >= amount, "Insufficient balance");
-    balanceOf[msg.sender] -= amount;
-    totalSupply -= amount;
-    emit Burned(msg.sender, amount);
-    emit Transfer(msg.sender, address(0), amount);
-  }
+    /**
+     * @dev Set transfer tax rate
+     * @param newRate New tax rate in basis points / 1000 (e.g., 50 = 5%)
+     */
+    function setTaxRate(uint256 newRate) external onlyOwner {
+        require(newRate <= MAX_TAX_RATE, "Tax rate exceeds maximum");
 
-  // Burn from (requires approval)
-  function burnFrom(address from, uint256 amount) public {
-    require(allowance[from][msg.sender] >= amount, "Insufficient allowance");
-    allowance[from][msg.sender] -= amount;
-    require(balanceOf[from] >= amount, "Insufficient balance");
-    balanceOf[from] -= amount;
-    totalSupply -= amount;
-    emit Burned(from, amount);
-    emit Transfer(from, address(0), amount);
-  }
+        uint256 oldRate = taxRate;
+        taxRate = newRate;
+
+        emit TaxRateUpdated(oldRate, newRate);
+    }
+
+    /**
+     * @dev Update tax recipient address
+     * @param newRecipient New address to receive tax proceeds
+     */
+    function setTaxRecipient(address newRecipient) external onlyOwner {
+        require(newRecipient != address(0), "Invalid tax recipient");
+
+        address oldRecipient = taxRecipient;
+        taxRecipient = newRecipient;
+
+        emit TaxRecipientUpdated(oldRecipient, newRecipient);
+    }
+
+    /**
+     * @dev Pause token transfers (emergency only)
+     */
+    function pause() external onlyOwner {
+        _pause();
+        emit TokensPaused();
+    }
+
+    /**
+     * @dev Unpause token transfers
+     */
+    function unpause() external onlyOwner {
+        _unpause();
+        emit TokensUnpaused();
+    }
+
+    /**
+     * @dev Create a snapshot of current token state for governance voting
+     * @return Current snapshot ID
+     */
+    function snapshot() external onlyOwner returns (uint256) {
+        return _snapshot();
+    }
+
+    /**
+     * @dev Get balance at a specific snapshot
+     * @param account Address to check balance for
+     * @param snapshotId Snapshot ID to query
+     * @return Balance at snapshot
+     */
+    function balanceOfAt(address account, uint256 snapshotId)
+        public
+        view
+        override
+        returns (uint256)
+    {
+        return super.balanceOfAt(account, snapshotId);
+    }
+
+    /**
+     * @dev Get total supply at a specific snapshot
+     * @param snapshotId Snapshot ID to query
+     * @return Total supply at snapshot
+     */
+    function totalSupplyAt(uint256 snapshotId) public view override returns (uint256) {
+        return super.totalSupplyAt(snapshotId);
+    }
+
+    /**
+     * @dev Override decimals to match ERC-20 standard for 18 decimals
+     */
+    function decimals() public pure override returns (uint8) {
+        return 18;
+    }
 }
