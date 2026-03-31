@@ -1,31 +1,59 @@
-import { FastifyInstance } from 'fastify';
+import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 
 interface PublicMeme {
   id: string;
   title: string;
   imageUrl: string;
   creator: string;
+  creatorName: string;
   votes: number;
   createdAt: string;
+  url: string;
 }
 
-interface LeaderboardEntry {
+interface LeaderboardCreator {
   rank: number;
-  creator: string;
+  address: string;
+  name: string;
+  memeCount: number;
   totalVotes: number;
-  memesCount: number;
-  earnings: string;
+  earningsUsd: number;
+}
+
+interface LeaderboardHolder {
+  rank: number;
+  address: string;
+  name: string;
+  balance: number;
+  percentage: number;
 }
 
 interface TokenStats {
-  price: string;
-  marketCap: string;
-  volume24h: string;
-  holders: number;
-  supply: string;
-  circulating: string;
-  change24h: string;
-  change7d: string;
+  token: {
+    name: string;
+    symbol: string;
+    address: string;
+    decimals: number;
+  };
+  price: {
+    usd: number;
+    change24h: number;
+    change7d: number;
+  };
+  supply: {
+    total: number;
+    circulating: number;
+    burned: number;
+  };
+  market: {
+    capUsd: number;
+    volume24h: number;
+    holders: number;
+  };
+  network: {
+    chain: string;
+    explorer: string;
+  };
 }
 
 interface PlatformStats {
@@ -34,53 +62,65 @@ interface PlatformStats {
   totalVotes: number;
   avgVotesPerMeme: number;
   memesCreatedToday: number;
+  totalOrders: number;
   contractAddress: string;
   deployedNetwork: string;
 }
 
 export async function publicRoutes(app: FastifyInstance) {
-  // GET /api/public/memes - Public meme gallery (paginated)
+  // GET /api/public/memes - Public meme gallery (paginated, sortable)
   app.get<{ Querystring: { page?: string; limit?: string; sort?: string } }>(
     '/memes',
-    async (request, reply) => {
+    async (request: FastifyRequest, reply: FastifyReply) => {
       try {
         const page = Math.max(1, parseInt(request.query.page || '1', 10));
-        const limit = Math.min(50, Math.max(1, parseInt(request.query.limit || '20', 10)));
-        const sort = request.query.sort || 'trending'; // trending, newest, highest-voted
+        const limit = Math.min(100, Math.max(1, parseInt(request.query.limit || '20', 10)));
+        const sort = (request.query.sort || 'trending') as string;
+
+        // Set cache headers for 1 minute
+        reply.header('Cache-Control', 'public, max-age=60');
 
         // Mock data - in production, fetch from database
         const mockMemes: PublicMeme[] = [
           {
             id: 'meme-001',
             title: 'When your portfolio is down but you HODL',
-            imageUrl: '/api/mock/meme1.png',
-            creator: 'CryptoApe420',
+            imageUrl: 'https://dshitxyz.vercel.app/meme1.png',
+            creator: '0xabc123def456',
+            creatorName: 'CryptoApe420',
             votes: 1248,
             createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+            url: 'https://dshitxyz.vercel.app/gallery/meme-001',
           },
           {
             id: 'meme-002',
             title: 'DSHIT goes brrrrr',
-            imageUrl: '/api/mock/meme2.png',
-            creator: 'MemeKing',
+            imageUrl: 'https://dshitxyz.vercel.app/meme2.png',
+            creator: '0xdef456ghi789',
+            creatorName: 'MemeKing',
             votes: 892,
             createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+            url: 'https://dshitxyz.vercel.app/gallery/meme-002',
           },
           {
             id: 'meme-003',
             title: 'POV: You bought at ATH',
-            imageUrl: '/api/mock/meme3.png',
-            creator: 'BagHolder',
+            imageUrl: 'https://dshitxyz.vercel.app/meme3.png',
+            creator: '0xghi789jkl012',
+            creatorName: 'BagHolder',
             votes: 654,
             createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+            url: 'https://dshitxyz.vercel.app/gallery/meme-003',
           },
           {
             id: 'meme-004',
             title: 'Governance proposals be like',
-            imageUrl: '/api/mock/meme4.png',
-            creator: 'DAODegen',
+            imageUrl: 'https://dshitxyz.vercel.app/meme4.png',
+            creator: '0xjkl012mno345',
+            creatorName: 'DAODegen',
             votes: 523,
             createdAt: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(),
+            url: 'https://dshitxyz.vercel.app/gallery/meme-004',
           },
         ];
 
@@ -88,7 +128,10 @@ export async function publicRoutes(app: FastifyInstance) {
         let sorted = [...mockMemes];
         if (sort === 'newest') {
           sorted.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-        } else if (sort === 'highest-voted') {
+        } else if (sort === 'votes') {
+          sorted.sort((a, b) => b.votes - a.votes);
+        } else {
+          // trending (default): sort by votes
           sorted.sort((a, b) => b.votes - a.votes);
         }
 
@@ -111,23 +154,43 @@ export async function publicRoutes(app: FastifyInstance) {
         });
       } catch (error) {
         app.log.error(error);
-        return reply.status(500).send({ message: 'Internal server error' });
+        return reply.status(500).send({ error: 'Internal server error' });
       }
     }
   );
 
   // GET /api/public/stats - Token & platform statistics
-  app.get('/stats', async (request, reply) => {
+  app.get('/stats', async (request: FastifyRequest, reply: FastifyReply) => {
     try {
+      // Set cache headers for 5 minutes
+      reply.header('Cache-Control', 'public, max-age=300');
+
       const tokenStats: TokenStats = {
-        price: '$0.0000042',
-        marketCap: '$4.2M',
-        volume24h: '$127K',
-        holders: 2847,
-        supply: '1,000,000,000',
-        circulating: '891,234,567',
-        change24h: '+12.5%',
-        change7d: '+47.3%',
+        token: {
+          name: 'DSHIT',
+          symbol: 'DSHIT',
+          address: '0x0000000000000000000000000000000000000000',
+          decimals: 18,
+        },
+        price: {
+          usd: 0.0000042,
+          change24h: 12.5,
+          change7d: 47.3,
+        },
+        supply: {
+          total: 1000000000,
+          circulating: 891234567,
+          burned: 50000000,
+        },
+        market: {
+          capUsd: 4200000,
+          volume24h: 127000,
+          holders: 2847,
+        },
+        network: {
+          chain: 'base',
+          explorer: 'https://basescan.org/token/0x0000000000000000000000000000000000000000',
+        },
       };
 
       const platformStats: PlatformStats = {
@@ -136,6 +199,7 @@ export async function publicRoutes(app: FastifyInstance) {
         totalVotes: 284739,
         avgVotesPerMeme: 34,
         memesCreatedToday: 128,
+        totalOrders: 2847,
         contractAddress: '0x0000000000000000000000000000000000000000',
         deployedNetwork: 'base-sepolia',
       };
@@ -147,78 +211,175 @@ export async function publicRoutes(app: FastifyInstance) {
       });
     } catch (error) {
       app.log.error(error);
-      return reply.status(500).send({ message: 'Internal server error' });
+      return reply.status(500).send({ error: 'Internal server error' });
     }
   });
 
-  // GET /api/public/leaderboard - Top creators and highest voted memes
-  app.get<{ Querystring: { type?: string; limit?: string } }>(
-    '/leaderboard',
-    async (request, reply) => {
+  // GET /api/public/leaderboard/creators - Top meme creators
+  app.get<{ Querystring: { limit?: string } }>(
+    '/leaderboard/creators',
+    async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const type = request.query.type || 'creators'; // creators or memes
-        const limit = Math.min(100, Math.max(1, parseInt(request.query.limit || '20', 10)));
+        const limit = Math.min(100, Math.max(1, parseInt(request.query.limit || '10', 10)));
 
-        const mockLeaderboard: LeaderboardEntry[] = [
+        // Set cache headers for 5 minutes
+        reply.header('Cache-Control', 'public, max-age=300');
+
+        const mockLeaderboard: LeaderboardCreator[] = [
           {
             rank: 1,
-            creator: 'MemeKingSupreme',
+            address: '0xabc123def456abc123def456abc123def456abc1',
+            name: 'MemeKingSupreme',
+            memeCount: 187,
             totalVotes: 18492,
-            memesCount: 187,
-            earnings: '12,485 DSHIT',
+            earningsUsd: 12485,
           },
           {
             rank: 2,
-            creator: 'CryptoArtisan',
+            address: '0xdef456ghi789def456ghi789def456ghi789def4',
+            name: 'CryptoArtisan',
+            memeCount: 142,
             totalVotes: 14723,
-            memesCount: 142,
-            earnings: '9,847 DSHIT',
+            earningsUsd: 9847,
           },
           {
             rank: 3,
-            creator: 'VaultDweller',
+            address: '0xghi789jkl012ghi789jkl012ghi789jkl012ghi7',
+            name: 'VaultDweller',
+            memeCount: 98,
             totalVotes: 12456,
-            memesCount: 98,
-            earnings: '8,304 DSHIT',
+            earningsUsd: 8304,
           },
           {
             rank: 4,
-            creator: 'ShitpostingLord',
+            address: '0xjkl012mno345jkl012mno345jkl012mno345jkl0',
+            name: 'ShitpostingLord',
+            memeCount: 156,
             totalVotes: 10234,
-            memesCount: 156,
-            earnings: '6,823 DSHIT',
+            earningsUsd: 6823,
           },
           {
             rank: 5,
-            creator: 'BullRunBoi',
+            address: '0xmno345pqr678mno345pqr678mno345pqr678mno3',
+            name: 'BullRunBoi',
+            memeCount: 67,
             totalVotes: 9187,
-            memesCount: 67,
-            earnings: '6,125 DSHIT',
+            earningsUsd: 6125,
           },
         ];
 
         const sliced = mockLeaderboard.slice(0, limit);
 
         return reply.send({
-          type,
           data: sliced,
           total: mockLeaderboard.length,
           timestamp: new Date().toISOString(),
         });
       } catch (error) {
         app.log.error(error);
-        return reply.status(500).send({ message: 'Internal server error' });
+        return reply.status(500).send({ error: 'Internal server error' });
       }
     }
   );
 
+  // GET /api/public/leaderboard/holders - Top token holders
+  app.get<{ Querystring: { limit?: string } }>(
+    '/leaderboard/holders',
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      try {
+        const limit = Math.min(100, Math.max(1, parseInt(request.query.limit || '10', 10)));
+
+        // Set cache headers for 5 minutes
+        reply.header('Cache-Control', 'public, max-age=300');
+
+        const mockHolders: LeaderboardHolder[] = [
+          {
+            rank: 1,
+            address: '0xpqr678stu901pqr678stu901pqr678stu901pqr6',
+            name: 'WhaleWallet1',
+            balance: 500000000,
+            percentage: 50.0,
+          },
+          {
+            rank: 2,
+            address: '0xstu901uvw234stu901uvw234stu901uvw234stu9',
+            name: 'WhaleWallet2',
+            balance: 200000000,
+            percentage: 20.0,
+          },
+          {
+            rank: 3,
+            address: '0xuvw234xyz567uvw234xyz567uvw234xyz567uvw2',
+            name: 'DegenStack1',
+            balance: 100000000,
+            percentage: 10.0,
+          },
+          {
+            rank: 4,
+            address: '0xxyz567abc890xyz567abc890xyz567abc890xyz5',
+            name: 'DegenStack2',
+            balance: 80000000,
+            percentage: 8.0,
+          },
+          {
+            rank: 5,
+            address: '0xabc890def123abc890def123abc890def123abc8',
+            name: 'DegenStack3',
+            balance: 70000000,
+            percentage: 7.0,
+          },
+        ];
+
+        const sliced = mockHolders.slice(0, limit);
+
+        return reply.send({
+          data: sliced,
+          total: mockHolders.length,
+          timestamp: new Date().toISOString(),
+        });
+      } catch (error) {
+        app.log.error(error);
+        return reply.status(500).send({ error: 'Internal server error' });
+      }
+    }
+  );
+
+  // GET /api/public/leaderboard - Combined leaderboard (creators by default)
+  app.get<{ Querystring: { type?: string; limit?: string } }>(
+    '/leaderboard',
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const type = request.query.type || 'creators';
+      const limit = request.query.limit;
+
+      if (type === 'holders') {
+        return app.inject({
+          method: 'GET',
+          url: `/api/public/leaderboard/holders?limit=${limit}`,
+        });
+      }
+
+      return app.inject({
+        method: 'GET',
+        url: `/api/public/leaderboard/creators?limit=${limit}`,
+      });
+    }
+  );
+
   // GET /api/public/health - Public health check (no auth required)
-  app.get('/health', async (request, reply) => {
+  app.get('/health', async (request: FastifyRequest, reply: FastifyReply) => {
+    reply.header('Cache-Control', 'public, max-age=30');
     return reply.send({
       status: 'healthy',
       api: 'dshit.xyz',
       version: '0.1.0',
       network: 'base-sepolia',
+      endpoints: {
+        memes: '/api/public/memes',
+        stats: '/api/public/stats',
+        leaderboard: '/api/public/leaderboard',
+        creators: '/api/public/leaderboard/creators',
+        holders: '/api/public/leaderboard/holders',
+      },
       timestamp: new Date().toISOString(),
     });
   });
