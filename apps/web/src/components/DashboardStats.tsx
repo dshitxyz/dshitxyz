@@ -1,29 +1,68 @@
 'use client';
 
 import { StatBox } from '@dshit/ui';
+import { useEffect, useState } from 'react';
+
+interface DashboardStatsData {
+  totalValueDumped: string;
+  weeklyChange: string;
+  activeUsers: string;
+  activeToday: string;
+  totalMinted: string;
+  mintedToday: string;
+  auditsPasssed: number;
+}
 
 export const DashboardStats = () => {
+  const [data, setData] = useState<DashboardStatsData | null>(null);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/stats/dashboard');
+        if (response.ok) {
+          const stats = await response.json();
+          setData(stats);
+        }
+      } catch (error) {
+        console.error('Failed to fetch dashboard stats:', error);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  const displayData = data || {
+    totalValueDumped: '$4.2B',
+    weeklyChange: '+$145M this week',
+    activeUsers: '847K',
+    activeToday: '+23K active today',
+    totalMinted: '69M',
+    mintedToday: '+2.1M since yesterday',
+    auditsPasssed: 0,
+  };
+
   const stats = [
     {
-      number: '$4.2B',
+      number: displayData.totalValueDumped,
       label: 'Total Value Dumped',
-      subLabel: '+$145M this week',
+      subLabel: displayData.weeklyChange,
       accentColor: 'yellow' as const,
     },
     {
-      number: '847K',
+      number: displayData.activeUsers,
       label: 'Degens in the Bowl',
-      subLabel: '+23K active today',
+      subLabel: displayData.activeToday,
       accentColor: 'red' as const,
     },
     {
-      number: '69M',
+      number: displayData.totalMinted,
       label: 'Turds Minted',
-      subLabel: '+2.1M since yesterday',
+      subLabel: displayData.mintedToday,
       accentColor: 'green' as const,
     },
     {
-      number: '0',
+      number: displayData.auditsPasssed.toString(),
       label: 'Audits Passed',
       subLabel: 'We move fast',
       accentColor: 'purple' as const,
