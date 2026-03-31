@@ -1,0 +1,12 @@
+{
+  "name": "@dshit/config",
+  "version": "1.0.0",
+  "description": "Shared configuration for dshit.xyz monorepo",
+  "private": true,
+  "main": "index.js",
+  "files": [
+    "tsconfig",
+    "eslint",
+    "prettier"
+  ]
+}
