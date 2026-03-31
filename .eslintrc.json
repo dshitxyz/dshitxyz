@@ -1,0 +1,19 @@
+{
+  "extends": ["eslint:recommended", "next"],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true,
+    "jest": true
+  },
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-unused-vars": "off",
+    "@next/next/no-html-link-for-pages": "off"
+  },
+  "ignorePatterns": ["node_modules", "dist", "build", ".next", "coverage"]
+}
