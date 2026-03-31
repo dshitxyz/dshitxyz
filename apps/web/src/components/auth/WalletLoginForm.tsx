@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export function WalletLoginForm() {
   const { address, isConnected } = useAccount();
-  const { signMessage, isPending } = useSignMessage();
+  const { signMessageAsync } = useSignMessage();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,42 +26,34 @@ export function WalletLoginForm() {
         const message = `Sign in to dshit.xyz\n\nAddress: ${address}\nTimestamp: ${timestamp}`;
 
         // Request signature
-        signMessage(
-          { message },
-          {
-            onSuccess: async (signature) => {
-              // Verify signature on backend
-              const response = await fetch('/api/auth/verify', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  address,
-                  signature,
-                  message,
-                  timestamp,
-                }),
-              });
+        const signature = await signMessageAsync({ message });
 
-              if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message || 'Authentication failed');
-              }
+        // Verify signature on backend
+        const response = await fetch('/api/auth/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            address,
+            signature,
+            message,
+            timestamp,
+          }),
+        });
 
-              const data = await response.json();
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Authentication failed');
+        }
 
-              // Store auth token
-              if (data.token) {
-                localStorage.setItem('auth_token', data.token);
-              }
+        const data = await response.json();
 
-              // Redirect to dashboard
-              router.push('/dashboard');
-            },
-            onError: (error) => {
-              setError(error.message || 'Failed to sign message');
-            },
-          }
-        );
+        // Store auth token
+        if (data.token) {
+          localStorage.setItem('auth_token', data.token);
+        }
+
+        // Redirect to dashboard
+        router.push('/dashboard');
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
@@ -70,7 +62,7 @@ export function WalletLoginForm() {
     };
 
     handleSignIn();
-  }, [isConnected, address, signMessage, router]);
+  }, [isConnected, address, signMessageAsync, router]);
 
   if (!isConnected) {
     return (
@@ -83,7 +75,7 @@ export function WalletLoginForm() {
     );
   }
 
-  if (isLoading || isPending) {
+  if (isLoading) {
     return (
       <div className="text-center">
         <div className="inline-block animate-spin mb-4">
