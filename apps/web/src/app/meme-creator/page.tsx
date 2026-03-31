@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './meme-creator.module.css';
 
 interface MemeTemplate {
@@ -162,7 +162,7 @@ export default function MemeCreatorPage() {
   };
 
   // Draw whenever state changes
-  React.useEffect(() => {
+  useEffect(() => {
     drawMeme();
   }, [selectedTemplate, topText, bottomText, fontSize]);
 
