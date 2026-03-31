@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brutalist Borders */
+.brutalist-border {
+  @apply border-4 border-shit-yellow shadow-[8px_8px_0px_#8B4513] transition-all duration-200;
+}
+
+.brutalist-border:hover {
+  @apply -translate-x-1 -translate-y-1 shadow-[12px_12px_0px_#8B4513];
+}
+
+/* Glitch Effects */
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: rect(20px, 9999px, 15px, 0);
+  }
+  100% {
+    clip-path: rect(85px, 9999px, 100px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: rect(120px, 9999px, 10px, 0);
+  }
+  100% {
+    clip-path: rect(5px, 9999px, 60px, 0);
+  }
+}
+
+.glitch-text {
+  @apply relative animate-shit-glitch;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+.glitch-text::before {
+  @apply -left-0.5 text-shadow-[-1px_0_#FF0000];
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  @apply -left-1 text-shadow-[-1px_0_#BF00FF];
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+/* Distortion Effects */
+.shit-distort {
+  @apply contrast-150 saturate-120 hue-rotate-[-10deg] -rotate-1 -skew-x-1;
+}
+
+/* Raw Gradients */
+.shit-gradient {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #3d3d3d 100%);
+}
+
+/* Industrial Patterns */
+.industrial-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(139, 69, 19, 0.1) 10px,
+    rgba(139, 69, 19, 0.1) 20px
+  );
+}
+
+/* Warning Stripes */
+.warning-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #f4d03f,
+    #f4d03f 10px,
+    #3d3d3d 10px,
+    #3d3d3d 20px
+  );
+}
+
+/* Crude Borders */
+.crude-border {
+  @apply border-3 border-text-dim rounded-sm shadow-[4px_4px_0px_#8B4513];
+}
+
+/* Dirty Edges */
+.dirty-edge {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0% 100%
+  );
+}
+
+/* Worn Effects */
+.worn-effect {
+  @apply grayscale-30 contrast-110 opacity-95;
+}
+
+/* Raw Buttons */
+.shit-button {
+  @apply bg-shit-yellow text-bg-raw border-3 border-shit-brown px-8 py-4 font-display text-xl uppercase cursor-pointer shadow-[6px_6px_0px_#8B4513] transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_#8B4513];
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

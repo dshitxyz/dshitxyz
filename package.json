@@ -1,0 +1,30 @@
+{
+  "name": "@dshitxyz/root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "dshit.xyz - Decentralized Meme Warfare & Political Retribution Protocol",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r --parallel run build",
+    "test": "pnpm -r --parallel run test",
+    "test:watch": "pnpm -r --parallel run test:watch",
+    "lint": "pnpm -r --parallel run lint",
+    "type-check": "pnpm -r --parallel run type-check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2"
+  },
+  "packageManager": "pnpm@9.0.6"
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "@dshitxyz/config/tsconfig",
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

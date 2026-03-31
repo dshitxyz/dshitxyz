@@ -1,0 +1,26 @@
+{
+  "name": "@dshitxyz/config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared TypeScript, ESLint, and Prettier configuration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'No tests yet'",
+    "test:watch": "echo 'No tests yet'",
+    "lint": "echo 'No linting for config package'",
+    "type-check": "echo 'No type checking for config package'",
+    "build": "echo 'Config package is pre-built'"
+  },
+  "exports": {
+    "./tsconfig": "./tsconfig.json",
+    "./eslint-react": "./eslint.react.js",
+    "./eslint-node": "./eslint.node.js",
+    "./prettier": "./prettier.config.js"
+  },
+  "files": [
+    "tsconfig.json",
+    "eslint.react.js",
+    "eslint.node.js",
+    "prettier.config.js"
+  ]
+}

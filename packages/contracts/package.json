@@ -1,0 +1,33 @@
+{
+  "name": "@dshitxyz/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Smart contracts for dshit.xyz (DSHIT token, governance, etc)",
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:watch": "hardhat test --watch",
+    "coverage": "hardhat coverage",
+    "deploy": "hardhat run scripts/deploy.ts",
+    "verify": "hardhat verify",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "build": "hardhat compile && tsc"
+  },
+  "devDependencies": {
+    "@dshitxyz/config": "workspace:*",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/node": "^20.10.5",
+    "eslint": "^8.56.0",
+    "hardhat": "^2.19.4",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.5",
+    "typechain": "^8.3.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  }
+}
