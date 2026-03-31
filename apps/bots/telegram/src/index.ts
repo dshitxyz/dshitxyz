@@ -1,7 +1,16 @@
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
 import * as dotenv from 'dotenv';
-import axios from 'axios';
+
+// Import commands
+import { priceCommand } from './commands/price';
+import { statsCommand } from './commands/stats';
+import { leaderboardCommand } from './commands/leaderboard';
+import { memeCommand, shopCommand, dashboardCommand, galleryCommand } from './commands/links';
+import { setAlertCommand, alertsCommand, removeAlertCommand } from './commands/alerts';
+
+// Import utilities
+import { logBotStatus, logCommandExecution } from './utils/errorHandler';
 
 dotenv.config();
 
@@ -14,10 +23,15 @@ if (!BOT_TOKEN) {
 
 const bot = new Telegraf(BOT_TOKEN);
 
-// Bot handlers
+/**
+ * Start command - Welcome message
+ */
 bot.start((ctx) => {
-  ctx.reply(
-    `👋 Welcome to dshit.xyz Telegram Bot!
+  try {
+    logCommandExecution('start', ctx.from?.id);
+
+    ctx.reply(
+      `👋 Welcome to dshit.xyz Telegram Bot!
 
 I can help you with:
 • 📊 /price - Get DSHIT token price
@@ -25,219 +39,141 @@ I can help you with:
 • 🏆 /leaderboard - Top creators
 • 🎨 /meme - Create a meme (link to web app)
 • 📦 /shop - Browse products
-• 🔔 /alerts - Set price alerts (coming soon)
+• 🔔 /set_alert - Set price alerts
+• 📋 /alerts - View your alerts
+• 🎨 /gallery - View community memes
+• 📊 /dashboard - Your dashboard
 
 Type /help for more commands.`
-  );
+    );
+  } catch (error) {
+    ctx.reply('❌ Error. Please try again.');
+  }
 });
 
+/**
+ * Help command - Command reference
+ */
 bot.help((ctx) => {
-  ctx.reply(
-    `🚀 **dshit.xyz Bot Commands**
+  try {
+    logCommandExecution('help', ctx.from?.id);
 
-**Information:**
+    ctx.replyWithMarkdown(
+      `🚀 **dshit.xyz Bot Commands**
+
+**📊 Information:**
 /price - Current DSHIT token price
 /stats - Platform statistics (memes, creators, votes)
 /leaderboard - Top 5 creators by votes
 
-**Actions:**
+**🎯 Actions:**
 /meme - Get link to meme creator
 /shop - Get link to product shop
-/dashboard - Get link to user dashboard
+/dashboard - Get link to your dashboard
+/gallery - Browse community memes
 
-**Alerts (Coming Soon):**
-/alerts - Configure price alerts
-/set_alert - Set custom alert price
+**🔔 Price Alerts:**
+/set_alert <price> - Set price alert (e.g., /set_alert 0.50)
+/alerts - View your current alerts
+/remove_alert <id> - Remove an alert
 
-**Support:**
+**🆘 Support:**
 /help - Show this help message
-/feedback - Send feedback to team
+/feedback - Send feedback
 
 Use /start to return to main menu.`
-  );
-});
-
-// Price command - fetch from API
-bot.command('price', async (ctx) => {
-  try {
-    ctx.sendChatAction('typing');
-
-    const response = await axios.get(`${API_BASE_URL}/api/public/stats`);
-    const { token } = response.data;
-
-    const message = `
-💰 **DSHIT Token Price**
-
-Price: ${token.price}
-Market Cap: ${token.marketCap}
-24h Volume: ${token.volume24h}
-24h Change: ${token.change24h}
-7d Change: ${token.change7d}
-
-Holders: ${token.holders.toLocaleString()}
-Supply: ${token.supply}
-Circulating: ${token.circulating}
-
-[Buy on Uniswap](https://uniswap.exchange) | [View Chart](https://dexscreener.com)
-    `.trim();
-
-    ctx.replyWithMarkdown(message);
+    );
   } catch (error) {
-    ctx.reply('❌ Error fetching price data. Please try again later.');
-    console.error('Price fetch error:', error);
+    ctx.reply('❌ Error displaying help. Please try again.');
   }
 });
 
-// Stats command
-bot.command('stats', async (ctx) => {
-  try {
-    ctx.sendChatAction('typing');
+// Register command handlers
+bot.command('price', priceCommand);
+bot.command('stats', statsCommand);
+bot.command('leaderboard', leaderboardCommand);
+bot.command('meme', memeCommand);
+bot.command('shop', shopCommand);
+bot.command('dashboard', dashboardCommand);
+bot.command('gallery', galleryCommand);
+bot.command('set_alert', setAlertCommand);
+bot.command('alerts', alertsCommand);
+bot.command('remove_alert', removeAlertCommand);
 
-    const response = await axios.get(`${API_BASE_URL}/api/public/stats`);
-    const { platform } = response.data;
-
-    const message = `
-📊 **dshit.xyz Platform Stats**
-
-Total Memes: ${platform.totalMemes.toLocaleString()}
-Active Creators: ${platform.totalCreators.toLocaleString()}
-Total Votes: ${platform.totalVotes.toLocaleString()}
-Avg Votes/Meme: ${platform.avgVotesPerMeme}
-Memes Today: ${platform.memesCreatedToday}
-
-Network: ${platform.deployedNetwork}
-Contract: \`${platform.contractAddress.substring(0, 6)}...${platform.contractAddress.substring(-4)}\`
-
-[View Dashboard](https://dshitxyz.vercel.app/dashboard)
-    `.trim();
-
-    ctx.replyWithMarkdown(message);
-  } catch (error) {
-    ctx.reply('❌ Error fetching stats. Please try again later.');
-    console.error('Stats fetch error:', error);
-  }
-});
-
-// Leaderboard command
-bot.command('leaderboard', async (ctx) => {
-  try {
-    ctx.sendChatAction('typing');
-
-    const response = await axios.get(`${API_BASE_URL}/api/public/leaderboard?limit=5&type=creators`);
-    const { data } = response.data;
-
-    let message = '🏆 **Top 5 Meme Creators**\n\n';
-
-    data.forEach((entry: any, index: number) => {
-      const medal = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'][index];
-      message += `${medal} **${entry.creator}**
-   Votes: ${entry.totalVotes.toLocaleString()}
-   Memes: ${entry.memesCount}
-   Earnings: ${entry.earnings}\n\n`;
-    });
-
-    message += '[Full Leaderboard](https://dshitxyz.vercel.app/gallery)';
-
-    ctx.replyWithMarkdown(message);
-  } catch (error) {
-    ctx.reply('❌ Error fetching leaderboard. Please try again later.');
-    console.error('Leaderboard fetch error:', error);
-  }
-});
-
-// Meme creation link
-bot.command('meme', (ctx) => {
-  ctx.replyWithMarkdown(
-    `🎨 **Create a Meme**
-
-Use our web app to create and share memes with the community!
-
-[Open Meme Creator](https://dshitxyz.vercel.app/meme-creator)
-
-Features:
-• Select from templates
-• Add custom text
-• Upload custom images
-• Download as PNG/GIF
-• Share on social media`
-  );
-});
-
-// Shop link
-bot.command('shop', (ctx) => {
-  ctx.replyWithMarkdown(
-    `🛍 **Shop Products**
-
-Browse and purchase products with DSHIT tokens!
-
-[Open Shop](https://dshitxyz.vercel.app/products)
-
-Features:
-• Browse product catalog
-• Add to cart
-• Checkout with DSHIT
-• Track orders`
-  );
-});
-
-// Dashboard link
-bot.command('dashboard', (ctx) => {
-  ctx.replyWithMarkdown(
-    `📊 **Your Dashboard**
-
-Track your activity, orders, and earnings.
-
-[Open Dashboard](https://dshitxyz.vercel.app/dashboard)
-
-View:
-• Your profile
-• DSHIT balance
-• Order history
-• Created memes
-• Earnings`
-  );
-});
-
-// Feedback command
+/**
+ * Feedback command
+ */
 bot.command('feedback', (ctx) => {
-  ctx.reply(
-    'Thanks for your interest! Feedback functionality coming soon. ' +
-      'For now, please reach out on Discord or Twitter.'
-  );
-});
+  try {
+    logCommandExecution('feedback', ctx.from?.id);
 
-// Text message handler
-bot.on(message('text'), (ctx) => {
-  const text = ctx.message.text.toLowerCase();
-
-  if (text.includes('price')) {
-    return ctx.scene.enter('price_scene') || ctx.reply('Use /price command');
+    ctx.reply(
+      'Thanks for your interest! Feedback functionality coming soon. ' +
+        'For now, please reach out on Discord or Twitter.'
+    );
+  } catch (error) {
+    ctx.reply('❌ Error. Please try again.');
   }
-
-  // Default response
-  ctx.reply(
-    "I didn't understand that. Use /help to see available commands or " +
-      "/start to return to the main menu."
-  );
 });
 
-// Error handling
+/**
+ * Text message handler
+ */
+bot.on(message('text'), (ctx) => {
+  try {
+    const text = ctx.message.text.toLowerCase();
+
+    // Suggest relevant commands based on message content
+    if (text.includes('price')) {
+      ctx.reply('Use /price to get the current token price');
+      return;
+    }
+
+    if (text.includes('alert')) {
+      ctx.reply('Use /set_alert <price> to create a price alert');
+      return;
+    }
+
+    if (text.includes('meme')) {
+      ctx.reply('Use /meme to open the meme creator');
+      return;
+    }
+
+    // Default response
+    ctx.reply(
+      "I didn't understand that. Use /help to see available commands or /start to return to the main menu."
+    );
+  } catch (error) {
+    ctx.reply('❌ Error processing your message. Please try again.');
+  }
+});
+
+/**
+ * Error handling
+ */
 bot.catch((err) => {
-  console.error('Bot error:', err);
+  console.error('[ERROR] Bot error:', err);
 });
 
-// Start the bot
+/**
+ * Start the bot
+ */
 const startBot = async () => {
   try {
     await bot.launch();
-    console.log('🚀 Telegram bot started successfully');
-    console.log('API Base URL:', API_BASE_URL);
+    logBotStatus('started', `API Base URL: ${API_BASE_URL}`);
 
     // Handle graceful shutdown
-    process.once('SIGINT', () => bot.stop('SIGINT'));
-    process.once('SIGTERM', () => bot.stop('SIGTERM'));
+    process.once('SIGINT', () => {
+      logBotStatus('stopped', 'SIGINT');
+      bot.stop('SIGINT');
+    });
+    process.once('SIGTERM', () => {
+      logBotStatus('stopped', 'SIGTERM');
+      bot.stop('SIGTERM');
+    });
   } catch (error) {
-    console.error('Failed to start bot:', error);
+    console.error('[FATAL] Failed to start bot:', error);
     process.exit(1);
   }
 };
