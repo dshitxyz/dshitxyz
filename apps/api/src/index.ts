@@ -5,6 +5,8 @@ import jwt from '@fastify/jwt';
 import { authRoutes } from '@/routes/auth';
 import { userRoutes } from '@/routes/users';
 import { statsRoutes } from '@/routes/stats';
+import { checkoutRoutes } from '@/routes/checkout';
+import { memesRoutes } from '@/routes/memes';
 
 const app = Fastify({
   logger: true,
@@ -29,6 +31,8 @@ app.get('/health', async () => ({
 app.register(authRoutes, { prefix: '/api/auth' });
 app.register(userRoutes, { prefix: '/api/users' });
 app.register(statsRoutes, { prefix: '/api/stats' });
+app.register(checkoutRoutes, { prefix: '/api' });
+app.register(memesRoutes, { prefix: '/api' });
 
 // Start server
 const start = async () => {
