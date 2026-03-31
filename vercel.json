@@ -8,12 +8,6 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "functions": {
-    "api/**: {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
   "headers": [
     {
       "source": "/api/:path*",
@@ -40,12 +34,6 @@
           "value": "1; mode=block"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
     }
   ]
 }
