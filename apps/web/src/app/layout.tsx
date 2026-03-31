@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { InstallPrompt } from '@/components/InstallPrompt';
 
 export const metadata: Metadata = {
   title: 'dshit.xyz - Meme Commerce & Community',
@@ -70,6 +71,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <InstallPrompt />
         <ServiceWorkerRegistration />
       </body>
     </html>
