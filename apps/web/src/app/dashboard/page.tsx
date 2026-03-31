@@ -8,6 +8,7 @@ import { DashboardStats } from '@/components/DashboardStats';
 import { DashboardDrops } from '@/components/DashboardDrops';
 import { FlushMeter } from '@/components/FlushMeter';
 import { Newsletter } from '@/components/Newsletter';
+import { Mascot } from '@dshitxyz/ui';
 
 export default function DashboardPage() {
   const { address, isConnected } = useAccount();
@@ -30,6 +31,17 @@ export default function DashboardPage() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
+        {/* Mascot Hero */}
+        <div className="text-center mb-12">
+          <Mascot size="md" animated />
+          <h1 className="text-5xl font-bold font-display text-shit-yellow mt-4 mb-2">
+            PROTOCOL DASHBOARD
+          </h1>
+          <p className="text-gray-400 font-body">
+            if it stinks, it ships. • Powered by the dump
+          </p>
+        </div>
+
         {/* Dashboard Stats Section */}
         <DashboardStats />
 

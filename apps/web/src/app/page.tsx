@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Mascot } from '@dshitxyz/ui';
 
 export default function Home() {
   return (
@@ -11,7 +12,12 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="text-center max-w-2xl">
+      <section className="text-center max-w-4xl">
+        {/* Mascot */}
+        <div className="mb-8 flex justify-center">
+          <Mascot size="lg" animated />
+        </div>
+
         <h2 className="text-6xl md:text-8xl font-bold font-display text-shit-yellow mb-4 glitch-text">
           DELIVERING HONEST FEEDBACK SINCE 2026
         </h2>
