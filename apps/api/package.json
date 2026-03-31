@@ -1,6 +1,6 @@
 {
   "name": "@dshit/api",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "main": "src/index.ts",
   "type": "module",
