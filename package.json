@@ -1,0 +1,37 @@
+{
+  "name": "dshitxyz",
+  "version": "0.0.1",
+  "description": "dshit.xyz - Satirical meme coin protocol",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter ./apps/web dev & pnpm --filter ./apps/api dev",
+    "dev:web": "pnpm --filter ./apps/web dev",
+    "dev:api": "pnpm --filter ./apps/api dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "test:watch": "pnpm -r test:watch",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format",
+    "type-check": "pnpm -r type-check",
+    "clean": "pnpm -r clean && pnpm store prune",
+    "ci": "pnpm install --frozen-lockfile && pnpm lint && pnpm type-check && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.55.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0"
+  }
+}

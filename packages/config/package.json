@@ -1,0 +1,17 @@
+{
+  "name": "@dshitxyz/config",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tsconfig": "./tsconfig.json",
+    "./eslint": "./eslint.config.js"
+  },
+  "scripts": {
+    "format": "prettier --write . --ignore-path ../../.gitignore"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0"
+  }
+}
