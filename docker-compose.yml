@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: dshit_postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:-dshit}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-dshit_dev_password}
+      POSTGRES_DB: ${DB_NAME:-dshit}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-dshit}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dshit_network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: dshit_api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: ${API_PORT:-3001}
+      HOST: 0.0.0.0
+      DATABASE_URL: postgresql://${DB_USER:-dshit}:${DB_PASSWORD:-dshit_dev_password}@postgres:5432/${DB_NAME:-dshit}
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-change-in-production}
+      FRONTEND_URL: http://localhost:3000
+    ports:
+      - "${API_PORT:-3001}:3001"
+    volumes:
+      - ./apps/api:/app/apps/api
+      - /app/node_modules
+      - /app/apps/api/node_modules
+    networks:
+      - dshit_network
+    command: pnpm -F @dshit/api dev
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  dshit_network:
+    driver: bridge
