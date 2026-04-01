@@ -3,29 +3,28 @@
 import React from 'react';
 import '@rainbow-me/rainbowkit/styles.css';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { WagmiConfig, createConfig, configureChains } from 'wagmi';
+import { WagmiProvider, createConfig, http } from 'wagmi';
 import { base, baseSepolia } from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
-const chains = [base, baseSepolia];
-
-const { publicClient, webSocketPublicClient } = configureChains(chains, [publicProvider()]);
+const chains = [base, baseSepolia] as const;
 
 const config = createConfig({
-  autoConnect: true,
-  publicClient,
-  webSocketPublicClient,
+  chains,
+  transports: {
+    [base.id]: http(),
+    [baseSepolia.id]: http(),
+  },
 });
 
 const queryClient = new QueryClient();
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <WagmiConfig config={config}>
+    <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
+        <RainbowKitProvider>{children}</RainbowKitProvider>
       </QueryClientProvider>
-    </WagmiConfig>
+    </WagmiProvider>
   );
 }
