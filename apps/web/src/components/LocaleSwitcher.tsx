@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale, usePathname, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -13,16 +13,24 @@ const locales = [
 
 export function LocaleSwitcher() {
   const locale = useLocale();
+  const pathname = usePathname();
   const t = useTranslations('common');
   const [isOpen, setIsOpen] = useState(false);
 
   const currentLabel = locales.find((l) => l.code === locale)?.label || 'English';
 
+  // Get the path without locale prefix to allow switching languages
+  // pathnam comes as /path (without locale prefix when used inside locale context)
+  const handleLocaleSwitch = (newLocale: string) => {
+    // Reconstruct URL with new locale
+    return `/${newLocale}${pathname}`;
+  };
+
   return (
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white hover:text-[#F4D03F] transition-colors"
         aria-label={t('language')}
       >
         <svg
@@ -55,15 +63,15 @@ export function LocaleSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-[#2D2D2D] rounded-lg shadow-lg border-2 border-[#F4D03F] z-50">
           {locales.map((l) => (
             <Link
               key={l.code}
-              href={`/${l.code}`}
+              href={handleLocaleSwitch(l.code)}
               className={`block px-4 py-2 text-sm font-medium transition-colors ${
                 l.code === locale
-                  ? 'bg-yellow-100 text-yellow-900'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-[#F4D03F] text-[#1A1A1A]'
+                  : 'text-white hover:bg-[#3D3D3D]'
               }`}
               onClick={() => setIsOpen(false)}
             >
