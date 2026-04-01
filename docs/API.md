@@ -514,6 +514,102 @@ export default function Gallery() {
 
 ---
 
+### 7. Get Governance Proposals
+
+Get active governance proposals and voting status.
+
+**Endpoint:** `GET /api/public/governance-proposals`
+
+**Query Parameters:**
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `status` | string | active | `active`, `closed`, `passed`, `failed` |
+| `sort` | string | deadline | `deadline`, `votes`, `newest` |
+| `limit` | integer | 20 | Number of proposals to return |
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": "prop-001",
+      "title": "Increase meme contest reward pool",
+      "description": "Proposal to increase weekly contest rewards from 50k to 75k DSHIT",
+      "status": "active",
+      "votes": {
+        "for": 5240,
+        "against": 320,
+        "abstain": 45
+      },
+      "votingPower": {
+        "for": 8750000,
+        "against": 450000
+      },
+      "deadline": "2026-03-28T10:00:00Z",
+      "proposer": "0xabc123...",
+      "proposerName": "GovernanceLeader"
+    }
+  ],
+  "timestamp": "2026-03-31T12:05:00Z"
+}
+```
+
+---
+
+### 8. Get User Governance Status
+
+Get voting power and participation data for a wallet.
+
+**Endpoint:** `GET /api/public/governance-status/:walletAddress`
+
+**Response:**
+
+```json
+{
+  "walletAddress": "0x...",
+  "dshitBalance": "50000",
+  "stakedAmount": "50000",
+  "votingPower": "75000",
+  "multiplier": 1.5,
+  "lockPeriod": "90 days",
+  "participationScore": 850,
+  "reputationScore": 2200,
+  "eligibleTier": "Whale",
+  "votes": [
+    {
+      "proposalId": "prop-001",
+      "vote": "for",
+      "votingPower": 75000
+    }
+  ]
+}
+```
+
+---
+
+## Bot Integration Endpoints
+
+### Telegram Bot Endpoints
+
+Used by `/apps/bots/telegram` for real-time data:
+
+- `GET /api/public/token-stats` - Current price data
+- `GET /api/public/governance-proposals` - Active proposals
+- `GET /api/public/governance-status/:address` - Voting power
+- `POST /api/memes` - Submit meme (authenticated)
+
+### Discord Bot Endpoints
+
+Used by `/apps/bots/discord` for Discord integration:
+
+- `GET /api/public/leaderboard/creators` - Top creators
+- `GET /api/public/governance-proposals` - Active proposals
+- `POST /api/users/verify` - Wallet verification (authenticated)
+
+---
+
 ## Webhooks
 
 **Coming Soon** - Subscribe to real-time events:
@@ -521,6 +617,8 @@ export default function Gallery() {
 - Leaderboard changes
 - Token price alerts
 - Order confirmations
+- Governance proposal created
+- Vote cast
 
 ---
 

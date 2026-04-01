@@ -1,63 +1,45 @@
-import { CommandInteraction, EmbedBuilder } from "discord.js";
-import { verifyTokenHolder } from "../utils/verification.js";
+import type { CommandInteraction } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
-export async function verifyCommand(
-  interaction: CommandInteraction
-): Promise<void> {
+export async function handleVerify(interaction: CommandInteraction): Promise<void> {
+  if (!interaction.isChatInputCommand()) return;
+
   try {
-    const userId = interaction.user.id;
+    const walletAddress = interaction.options.getString('wallet');
+    if (!walletAddress) {
+      await interaction.reply({
+        content: '❌ Please provide a valid wallet address.',
+        ephemeral: true
+      });
+      return;
+    }
 
-    // Get user's wallet from database or ask them to connect
+    // In a real implementation, we would:
+    // 1. Generate a message for signing
+    // 2. Ask user to sign it
+    // 3. Verify the signature
+    // 4. Assign roles based on DSHIT balance
+
     const embed = new EmbedBuilder()
-      .setColor(0xf4d03f)
-      .setTitle("🔐 Token Holder Verification")
-      .setDescription(
-        "To verify your token holdings and get access to exclusive roles:"
-      )
+      .setColor(0xF4D03F)
+      .setTitle('✅ Verification Initiated')
+      .setDescription('Please sign the verification message in your wallet to confirm ownership.')
       .addFields(
-        {
-          name: "Step 1",
-          value:
-            "Visit [dshit.xyz](https://dshitxyz.vercel.app) and connect your wallet",
-        },
-        {
-          name: "Step 2",
-          value: "Go to your dashboard and link your Discord account",
-        },
-        {
-          name: "Step 3",
-          value:
-            "Return here and we'll automatically assign your role based on holdings",
-        }
+        { name: 'Wallet', value: walletAddress, inline: true },
+        { name: 'Status', value: 'Waiting for signature...', inline: true },
+        { name: 'Roles to Assign', value: 'Based on your $DSHIT balance', inline: false }
       )
-      .addFields({
-        name: "Tier Requirements",
-        value: `
-🐻 Degen: 1,000+ DSHIT
-🦁 Whale: 100,000+ DSHIT
-👑 Mega: 1,000,000+ DSHIT
-        `.trim(),
-      })
-      .setFooter({
-        text: "dshit.xyz • Verification is instant and secure",
-      })
-      .setTimestamp();
+      .setFooter({ text: 'This verification is secure and only proves wallet ownership.' });
 
-    await interaction.editReply({ embeds: [embed] });
-
-    // Log verification attempt
-    console.log(
-      `Verification attempt from user ${userId} in guild ${interaction.guildId}`
-    );
+    await interaction.reply({
+      embeds: [embed],
+      ephemeral: true
+    });
   } catch (error) {
-    console.error("Verify command error:", error);
-
-    const embed = new EmbedBuilder()
-      .setColor(0xff0000)
-      .setTitle("❌ Verification Error")
-      .setDescription("Could not process verification. Please try again later.")
-      .setFooter({ text: "dshit.xyz" });
-
-    await interaction.editReply({ embeds: [embed] });
+    console.error('Verify command error:', error);
+    await interaction.reply({
+      content: '❌ An error occurred during verification.',
+      ephemeral: true
+    });
   }
 }

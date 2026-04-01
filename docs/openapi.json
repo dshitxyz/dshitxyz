@@ -1,0 +1,217 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DSHIT Public API",
+    "version": "1.0.0",
+    "description": "Public API for dshit.xyz - Meme platform with token rewards",
+    "contact": {
+      "name": "API Support",
+      "url": "https://discord.gg/dshit",
+      "email": "api@dshit.xyz"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.dshitxyz.vercel.app",
+      "description": "Production Server"
+    },
+    {
+      "url": "http://localhost:3001",
+      "description": "Development Server"
+    }
+  ],
+  "paths": {
+    "/api/public/memes": {
+      "get": {
+        "summary": "Get Meme Gallery",
+        "description": "Retrieve paginated list of community memes",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "type": "integer", "default": 20, "maximum": 100 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": { "type": "string", "enum": ["trending", "newest", "votes"], "default": "trending" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { "type": "array" },
+                    "pagination": { "type": "object" },
+                    "timestamp": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate Limit Exceeded"
+          }
+        }
+      }
+    },
+    "/api/public/stats": {
+      "get": {
+        "summary": "Get Token Statistics",
+        "description": "Retrieve real-time $DSHIT token and platform statistics",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "object" },
+                    "price": { "type": "object" },
+                    "supply": { "type": "object" },
+                    "market": { "type": "object" },
+                    "timestamp": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/leaderboard/creators": {
+      "get": {
+        "summary": "Get Top Meme Creators",
+        "description": "Get leaderboard of top meme creators by earnings",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "type": "integer", "default": 10, "maximum": 100 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/public/leaderboard/holders": {
+      "get": {
+        "summary": "Get Top Token Holders",
+        "description": "Get leaderboard of largest $DSHIT token holders",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "type": "integer", "default": 10, "maximum": 100 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/public/governance-proposals": {
+      "get": {
+        "summary": "Get Governance Proposals",
+        "description": "Get active governance proposals",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": { "type": "string", "enum": ["active", "closed", "passed", "failed"], "default": "active" }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": { "type": "string", "enum": ["deadline", "votes", "newest"], "default": "deadline" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "type": "integer", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/public/governance-status/{walletAddress}": {
+      "get": {
+        "summary": "Get User Governance Status",
+        "description": "Get voting power and participation for a wallet",
+        "parameters": [
+          {
+            "name": "walletAddress",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Address not found"
+          }
+        }
+      }
+    },
+    "/api/public/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Verify API availability",
+        "responses": {
+          "200": {
+            "description": "API is healthy"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Meme": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "imageUrl": { "type": "string" },
+          "creator": { "type": "string" },
+          "votes": { "type": "integer" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "TokenStats": {
+        "type": "object",
+        "properties": {
+          "token": { "type": "object" },
+          "price": { "type": "object" },
+          "supply": { "type": "object" },
+          "market": { "type": "object" }
+        }
+      }
+    }
+  }
+}

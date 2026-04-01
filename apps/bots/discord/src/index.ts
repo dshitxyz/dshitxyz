@@ -1,155 +1,151 @@
-import {
-  Client,
-  GatewayIntentBits,
-  ChannelType,
-  EmbedBuilder,
-  SlashCommandBuilder,
-  CommandInteraction,
-  REST,
-  Routes,
-} from "discord.js";
-import "dotenv/config";
-import { priceCommand } from "./commands/price.js";
-import { memesCommand } from "./commands/memes.js";
-import { statsCommand } from "./commands/stats.js";
-import { leaderboardCommand } from "./commands/leaderboard.js";
-import { verifyCommand } from "./commands/verify.js";
+import { Client, GatewayIntentBits, Collection, REST, Routes, SlashCommandBuilder } from 'discord.js';
+import { handleVerify } from './commands/verify.js';
+import { handleContests } from './commands/contests.js';
+import { handleGovote } from './commands/govote.js';
 
-const TOKEN = process.env.DISCORD_TOKEN;
-const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-const GUILD_ID = process.env.DISCORD_GUILD_ID;
+const token = process.env.DISCORD_TOKEN;
+const clientId = process.env.DISCORD_CLIENT_ID;
 
-if (!TOKEN || !CLIENT_ID || !GUILD_ID) {
-  console.error(
-    "Missing required environment variables: DISCORD_TOKEN, DISCORD_CLIENT_ID, DISCORD_GUILD_ID"
-  );
-  process.exit(1);
+if (!token || !clientId) {
+  throw new Error('DISCORD_TOKEN and DISCORD_CLIENT_ID environment variables are required');
 }
 
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-  ],
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent
+  ]
 });
 
-// Register command handlers
-const commands: Record<
-  string,
-  (interaction: CommandInteraction) => Promise<void>
-> = {
-  price: priceCommand,
-  memes: memesCommand,
-  stats: statsCommand,
-  leaderboard: leaderboardCommand,
-  verify: verifyCommand,
-};
+// Store commands in a Collection
+const commands = new Collection();
 
-client.once("ready", async () => {
-  console.log(`✅ Discord bot logged in as ${client.user?.tag}`);
+// Define slash commands
+const slashCommands = [
+  new SlashCommandBuilder()
+    .setName('verify')
+    .setDescription('Verify your wallet and get roles based on your $DSHIT balance')
+    .addStringOption(option =>
+      option
+        .setName('wallet')
+        .setDescription('Your Ethereum wallet address')
+        .setRequired(true)
+    ),
 
-  // Register slash commands
-  const rest = new REST({ version: "10" }).setToken(TOKEN);
+  new SlashCommandBuilder()
+    .setName('contests')
+    .setDescription('View meme contests and leaderboard')
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('current')
+        .setDescription('View the current meme contest')
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('leaderboard')
+        .setDescription('View the top meme creators')
+    ),
+
+  new SlashCommandBuilder()
+    .setName('govote')
+    .setDescription('Check governance proposals and voting power')
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('active')
+        .setDescription('View active governance proposals')
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('voting-power')
+        .setDescription('Check your voting power')
+        .addStringOption(option =>
+          option
+            .setName('wallet')
+            .setDescription('Your Ethereum wallet address')
+            .setRequired(true)
+        )
+    )
+];
+
+// Register commands with Discord
+async function registerCommands(): Promise<void> {
+  const rest = new REST({ version: '10' }).setToken(token);
 
   try {
-    console.log("🔄 Registering slash commands...");
-
-    const slashCommands = [
-      new SlashCommandBuilder()
-        .setName("price")
-        .setDescription("Get current DSHIT token price"),
-
-      new SlashCommandBuilder()
-        .setName("memes")
-        .setDescription("Show memes from the gallery")
-        .addStringOption((option) =>
-          option
-            .setName("sort")
-            .setDescription("Sort by trending, newest, or highest-voted")
-            .setChoices(
-              { name: "Trending", value: "trending" },
-              { name: "Newest", value: "newest" },
-              { name: "Highest Voted", value: "voted" }
-            )
-            .setRequired(false)
-        ),
-
-      new SlashCommandBuilder()
-        .setName("stats")
-        .setDescription("Show platform statistics and metrics"),
-
-      new SlashCommandBuilder()
-        .setName("leaderboard")
-        .setDescription("Show top creators and holders")
-        .addStringOption((option) =>
-          option
-            .setName("type")
-            .setDescription("Leaderboard type")
-            .setChoices(
-              { name: "Creators", value: "creators" },
-              { name: "Holders", value: "holders" }
-            )
-            .setRequired(false)
-        ),
-
-      new SlashCommandBuilder()
-        .setName("verify")
-        .setDescription(
-          "Verify your wallet and get token holder role"
-        ),
-    ];
-
+    console.log('Registering slash commands...');
     await rest.put(
-      Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
-      { body: slashCommands }
+      Routes.applicationCommands(clientId),
+      { body: slashCommands.map(cmd => cmd.toJSON()) }
     );
-
-    console.log("✅ Slash commands registered successfully");
+    console.log('✅ Slash commands registered successfully');
   } catch (error) {
-    console.error("❌ Failed to register slash commands:", error);
+    console.error('Failed to register commands:', error);
+    process.exit(1);
   }
+}
+
+// Handle ready event
+client.once('ready', () => {
+  console.log(`✅ Discord bot logged in as ${client.user?.tag}`);
 });
 
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) return;
+// Handle interactions (slash commands)
+client.on('interactionCreate', async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
 
   try {
-    await interaction.deferReply({ ephemeral: false });
-
-    const commandHandler = commands[interaction.commandName];
-    if (commandHandler) {
-      await commandHandler(interaction);
-    } else {
-      await interaction.editReply(
-        "❌ Command not found. Please try again."
-      );
+    switch (interaction.commandName) {
+      case 'verify':
+        await handleVerify(interaction);
+        break;
+      case 'contests':
+        await handleContests(interaction);
+        break;
+      case 'govote':
+        await handleGovote(interaction);
+        break;
+      default:
+        await interaction.reply({
+          content: '❌ Unknown command',
+          ephemeral: true
+        });
     }
   } catch (error) {
-    console.error(`❌ Error handling command ${interaction.commandName}:`, error);
-
-    try {
-      await interaction.editReply({
-        content: "❌ An error occurred while executing this command.",
+    console.error('Command execution error:', error);
+    if (interaction.replied || interaction.deferred) {
+      await interaction.followUp({
+        content: '❌ An error occurred while executing this command.',
+        ephemeral: true
       });
-    } catch {
-      console.error("Failed to send error message");
+    } else {
+      await interaction.reply({
+        content: '❌ An error occurred while executing this command.',
+        ephemeral: true
+      });
     }
   }
 });
 
-client.on("error", (error) => {
-  console.error("❌ Discord client error:", error);
+// Error handling
+client.on('error', (error) => {
+  console.error('Client error:', error);
 });
 
-process.on("unhandledRejection", (error) => {
-  console.error("❌ Unhandled promise rejection:", error);
+process.on('unhandledRejection', (error) => {
+  console.error('Unhandled rejection:', error);
 });
 
-client.login(TOKEN).catch((error) => {
-  console.error("❌ Failed to login:", error);
-  process.exit(1);
-});
+// Login and register commands
+(async () => {
+  try {
+    await registerCommands();
+    await client.login(token);
+  } catch (error) {
+    console.error('Failed to start bot:', error);
+    process.exit(1);
+  }
+})();
 
-console.log("🚀 Discord bot starting...");
+export default client;
