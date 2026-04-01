@@ -1,3 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Permanent+Marker&display=swap');
+
+:root {
+  /* Primary Colors - Shitty Yellow */
+  --shit-yellow: #F4D03F;
+  --shit-yellow-dark: #D4AC0D;
+
+  /* Secondary Colors - Poop Brown */
+  --shit-brown: #8B4513;
+  --shit-brown-light: #A0522D;
+  --shit-dark: #3D1A00;
+
+  /* Accent Colors */
+  --glitch-red: #FF0000;
+  --glitch-red-dark: #CC0000;
+  --toxic-green: #39FF14;
+  --cyber-purple: #BF00FF;
+  --industrial-orange: #FF6600;
+
+  /* Background Colors */
+  --bg-raw: #1A1A1A;
+  --bg-dirty: #2D2D2D;
+  --bg-waste: #3D3D3D;
+  --bg-base: #0a0500;
+
+  /* Text Colors */
+  --text-shit: #FFFFFF;
+  --text-dim: #CCCCCC;
+  --dirty-white: #E5E5E5;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Mono', monospace;
+  --font-accent: 'Permanent Marker', cursive;
+
+  /* Font Sizes */
+  --text-h1: clamp(3rem, 8vw, 8rem);
+  --text-h2: clamp(2rem, 6vw, 4rem);
+  --text-h3: clamp(1.5rem, 4vw, 3rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-tiny: 0.6rem;
+
+  /* Font Weights */
+  --font-bold: 700;
+  --font-normal: 400;
+  --font-light: 300;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Mobile Breakpoint */
+  --breakpoint-mobile: 700px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,19 +68,16 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f4d03f;
-  color: #1a1a1a;
+  color: var(--text-shit);
+  background: linear-gradient(135deg, var(--bg-raw) 0%, var(--bg-dirty) 50%, var(--bg-waste) 100%);
+  min-height: 100vh;
 }
 
 body {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #3d3d3d 100%);
-  color: #ffffff;
-  min-height: 100vh;
+  color: var(--text-shit);
 }
 
 main {
@@ -29,28 +86,35 @@ main {
 }
 
 h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #f4d03f;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: var(--text-h1);
+  font-weight: var(--font-bold);
+  font-family: var(--font-display);
+  margin-bottom: var(--spacing-md);
+  color: var(--shit-yellow);
+  text-shadow: 4px 4px 0px var(--shit-brown);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 h2 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-  color: #f4d03f;
+  font-size: var(--text-h2);
+  font-family: var(--font-display);
+  margin-bottom: var(--spacing-md);
+  color: var(--shit-yellow);
+  text-transform: uppercase;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: var(--text-h3);
   margin-bottom: 0.75rem;
-  color: #f4d03f;
+  color: var(--shit-yellow);
+  text-transform: uppercase;
 }
 
 p {
   line-height: 1.6;
   margin-bottom: 0.75rem;
+  font-size: var(--text-body);
 }
 
 ul {
@@ -63,25 +127,236 @@ li {
 }
 
 a {
-  color: #39ff14;
+  color: var(--toxic-green);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
+  font-weight: var(--font-bold);
 }
 
 a:hover {
-  color: #f4d03f;
-  text-decoration: underline;
+  color: var(--shit-yellow);
 }
 
 section {
   background: rgba(139, 69, 19, 0.1);
-  border: 3px solid #8b4513;
-  padding: 1.5rem;
+  border: 3px solid var(--shit-brown);
   border-radius: 0;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 }
 
 footer {
   text-align: center;
-  font-size: 0.875rem;
+  font-size: var(--text-small);
   opacity: 0.7;
+  border-top: 2px solid var(--shit-brown);
+  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes shit-glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes shit-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes shit-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: rect(20px, 9999px, 15px, 0); }
+  100% { clip-path: rect(85px, 9999px, 100px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: rect(120px, 9999px, 10px, 0); }
+  100% { clip-path: rect(5px, 9999px, 60px, 0); }
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+
+.glitch-text {
+  position: relative;
+  animation: shit-glitch 0.3s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 var(--glitch-red);
+  clip-path: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -1px 0 var(--cyber-purple);
+  clip-path: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.live-pill {
+  animation: blink 1.2s step-end infinite;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--glitch-red);
+  color: var(--text-shit);
+  border-radius: 9999px;
+  font-size: var(--text-tiny);
+  font-weight: var(--font-bold);
+  margin-left: 0.5rem;
+}
+
+.shit-shake {
+  animation: shit-shake 0.5s;
+}
+
+.shit-pulse {
+  animation: shit-pulse 0.2s infinite;
+}
+
+.brutalist-border {
+  border: 4px solid var(--shit-yellow);
+  box-shadow: 8px 8px 0px var(--shit-brown);
+  transition: all 0.2s ease;
+}
+
+.brutalist-border:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px var(--shit-brown);
+}
+
+.crude-border {
+  border: 3px solid var(--text-dim);
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px var(--shit-brown);
+}
+
+.dirty-edge {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0% 100%
+  );
+}
+
+.worn-effect {
+  filter: grayscale(0.3) contrast(1.1);
+  opacity: 0.95;
+}
+
+.industrial-pattern {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(139, 69, 19, 0.1) 10px,
+      rgba(139, 69, 19, 0.1) 20px
+    );
+}
+
+.warning-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--shit-yellow),
+    var(--shit-yellow) 10px,
+    var(--bg-waste) 10px,
+    var(--bg-waste) 20px
+  );
+}
+
+.shit-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--bg-raw) 0%,
+    var(--bg-dirty) 50%,
+    var(--bg-waste) 100%
+  );
+}
+
+.shit-button {
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+  border: 3px solid var(--shit-brown);
+  padding: 1rem 2rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 6px 6px 0px var(--shit-brown);
+  transition: all 0.2s ease;
+}
+
+.shit-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--shit-brown);
+  background: var(--shit-yellow-dark);
+}
+
+.shit-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--shit-brown);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    text-shadow: 2px 2px 0px var(--shit-brown);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  section {
+    padding: var(--spacing-md);
+    border-width: 2px;
+  }
+
+  .shit-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
 }
