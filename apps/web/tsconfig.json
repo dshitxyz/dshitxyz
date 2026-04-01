@@ -20,6 +20,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@dshit/ui": [
+        "../../packages/ui/src/index.ts"
       ]
     },
     "incremental": true,

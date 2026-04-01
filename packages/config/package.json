@@ -6,7 +6,11 @@
   "main": "index.js",
   "files": [
     "tsconfig",
+    "tsconfig.json",
     "eslint",
     "prettier"
-  ]
+  ],
+  "exports": {
+    "./tsconfig.json": "./tsconfig.json"
+  }
 }

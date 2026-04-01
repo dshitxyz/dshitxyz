@@ -22,7 +22,17 @@ export function LocaleSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors border border-gray-600 rounded hover:border-gray-400"
+        style={{
+          color: 'var(--text-shit, #FFFFFF)',
+          borderColor: 'var(--shit-brown, #8B4513)',
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.borderColor = 'var(--shit-yellow, #F4D03F)';
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.borderColor = 'var(--shit-brown, #8B4513)';
+        }}
         aria-label={t('language')}
       >
         <svg
@@ -55,16 +65,33 @@ export function LocaleSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+        <div
+          className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg border z-50"
+          style={{
+            backgroundColor: 'var(--bg-dirty, #2D2D2D)',
+            borderColor: 'var(--shit-yellow, #F4D03F)',
+          }}
+        >
           {locales.map((l) => (
             <Link
               key={l.code}
               href={`/${l.code}`}
-              className={`block px-4 py-2 text-sm font-medium transition-colors ${
-                l.code === locale
-                  ? 'bg-yellow-100 text-yellow-900'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
+              className="block px-4 py-2 text-sm font-medium transition-colors border-b last:border-b-0"
+              style={{
+                backgroundColor: l.code === locale ? 'var(--shit-yellow, #F4D03F)' : 'transparent',
+                color: l.code === locale ? 'var(--bg-raw, #1A1A1A)' : 'var(--text-shit, #FFFFFF)',
+                borderColor: 'var(--shit-brown, #8B4513)',
+              }}
+              onMouseEnter={(e) => {
+                if (l.code !== locale) {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--bg-waste, #3D3D3D)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (l.code !== locale) {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
+                }
+              }}
               onClick={() => setIsOpen(false)}
             >
               {l.label}

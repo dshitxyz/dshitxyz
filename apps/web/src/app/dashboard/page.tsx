@@ -8,7 +8,7 @@ import { DashboardStats } from '@/components/DashboardStats';
 import { DashboardDrops } from '@/components/DashboardDrops';
 import { FlushMeter } from '@/components/FlushMeter';
 import { Newsletter } from '@/components/Newsletter';
-import { Mascot } from '@dshitxyz/ui';
+import { Mascot } from '@dshit/ui';
 
 export default function DashboardPage() {
   const { address, isConnected } = useAccount();
