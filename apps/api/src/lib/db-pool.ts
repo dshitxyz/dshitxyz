@@ -30,9 +30,6 @@ const poolConfig: PoolConfig = {
   connectionTimeoutMillis: parseInt(process.env.DB_CONNECTION_TIMEOUT || '2000'), // 2 seconds
   statement_timeout: parseInt(process.env.DB_STATEMENT_TIMEOUT || '30000'), // 30 seconds
 
-  // Connection validation
-  connectionValidationQuery: 'SELECT NOW();',
-
   // SSL configuration (for production)
   ...(process.env.NODE_ENV === 'production' && {
     ssl: {

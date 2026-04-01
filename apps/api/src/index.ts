@@ -10,6 +10,7 @@ import { checkoutRoutes } from '@/routes/checkout';
 import { publicRoutes } from '@/routes/public';
 import { analyticsRoutes } from '@/routes/analytics';
 import { publicApiLimiter, getClientIp } from '@/lib/rateLimiter';
+import { partnershipsRoutes } from '@/routes/partnerships';
 
 const app = Fastify({
   logger: true,
@@ -61,6 +62,7 @@ app.register(memesRoutes, { prefix: '/api' });
 app.register(checkoutRoutes, { prefix: '/api' });
 app.register(publicRoutes, { prefix: '/api/public' });
 app.register(analyticsRoutes, { prefix: '/api/analytics' });
+app.register(partnershipsRoutes, { prefix: '/api/partnerships' });
 
 // Start server
 const start = async () => {
