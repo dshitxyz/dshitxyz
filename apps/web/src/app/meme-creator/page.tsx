@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { Footer } from '@/components/Footer';
 import styles from './meme-creator.module.css';
 
 interface MemeTemplate {
@@ -321,6 +322,7 @@ export default function MemeCreatorPage() {
           </p>
         </footer>
       </div>
+      <Footer />
     </div>
   );
 }

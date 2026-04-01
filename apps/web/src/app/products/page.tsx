@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { useCart } from '@/hooks/useCart';
+import { Footer } from '@/components/Footer';
 import styles from './products.module.css';
 
 interface Product {
@@ -186,6 +187,7 @@ export default function ProductsPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

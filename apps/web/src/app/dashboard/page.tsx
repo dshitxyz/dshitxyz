@@ -9,6 +9,7 @@ import { DashboardDrops } from '@/components/DashboardDrops';
 import { FlushMeter } from '@/components/FlushMeter';
 import { Newsletter } from '@/components/Newsletter';
 import { Mascot } from '@dshit/ui';
+import { Footer } from '@/components/Footer';
 
 export default function DashboardPage() {
   const { address, isConnected } = useAccount();
@@ -92,6 +93,7 @@ export default function DashboardPage() {
         </section>
       </div>
     </main>
+    <Footer />
     </>
   );
 }

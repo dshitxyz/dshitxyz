@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Footer } from '@/components/Footer';
 
 export default function GalleryPage() {
   return (
@@ -31,6 +32,7 @@ export default function GalleryPage() {
           </Link>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

@@ -74,10 +74,10 @@ importers:
     dependencies:
       '@rainbow-me/rainbowkit':
         specifier: ^2.2.10
-        version: 2.2.10(@tanstack/react-query@5.96.0(react@18.3.1))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))(wagmi@3.6.0(@tanstack/query-core@5.96.0)(@tanstack/react-query@5.96.0(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))
+        version: 2.2.10(@tanstack/react-query@5.96.1(react@18.3.1))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))(wagmi@3.6.0(@tanstack/query-core@5.96.1)(@tanstack/react-query@5.96.1(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))
       '@tanstack/react-query':
         specifier: ^5.96.0
-        version: 5.96.0(react@18.3.1)
+        version: 5.96.1(react@18.3.1)
       next:
         specifier: ^14.0.0
         version: 14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -95,7 +95,7 @@ importers:
         version: 4.2.2
       wagmi:
         specifier: ^3.6.0
-        version: 3.6.0(@tanstack/query-core@5.96.0)(@tanstack/react-query@5.96.0(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
+        version: 3.6.0(@tanstack/query-core@5.96.1)(@tanstack/react-query@5.96.1(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -1589,11 +1589,11 @@ packages:
   '@swc/types@0.1.26':
     resolution: {integrity: sha512-lyMwd7WGgG79RS7EERZV3T8wMdmPq3xwyg+1nmAM64kIhx5yl+juO2PYIHb7vTiPgPCj8LYjsNV2T5wiQHUEaw==}
 
-  '@tanstack/query-core@5.96.0':
-    resolution: {integrity: sha512-sfO3uQeol1BU7cRP6NYY7nAiX3GiNY20lI/dtSbKLwcIkYw/X+w/tEsQAkc544AfIhBX/IvH/QYtPHrPhyAKGw==}
+  '@tanstack/query-core@5.96.1':
+    resolution: {integrity: sha512-u1yBgtavSy+N8wgtW3PiER6UpxcplMje65yXnnVgiHTqiMwLlxiw4WvQDrXyn+UD6lnn8kHaxmerJUzQcV/MMg==}
 
-  '@tanstack/react-query@5.96.0':
-    resolution: {integrity: sha512-6qbjdm1K5kizVKv9TNqhIN3doq2anRhdF2XaFMFSn4m8L22S69RV+FilvlyVT4RoJyMxtPU5rs4RpdFa/PEC7A==}
+  '@tanstack/react-query@5.96.1':
+    resolution: {integrity: sha512-2X7KYK5KKWUKGeWCVcqxXAkYefJtrKB7tSKWgeG++b0H6BRHxQaLSSi8AxcgjmUnnosHuh9WsFZqvE16P1WCzA==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -2215,8 +2215,8 @@ packages:
     resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
     engines: {node: '>=14.16'}
 
-  caniuse-lite@1.0.30001782:
-    resolution: {integrity: sha512-dZcaJLJeDMh4rELYFw1tvSn1bhZWYFOt468FcbHHxx/Z/dFidd1I6ciyFdi3iwfQCyOjqo9upF6lGQYtMiJWxw==}
+  caniuse-lite@1.0.30001784:
+    resolution: {integrity: sha512-WU346nBTklUV9YfUl60fqRbU5ZqyXlqvo1SgigE1OAXK5bFL8LL9q1K7aap3N739l4BvNqnkm3YrGHiY9sfUQw==}
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -2595,8 +2595,8 @@ packages:
   ecdsa-sig-formatter@1.0.11:
     resolution: {integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==}
 
-  electron-to-chromium@1.5.329:
-    resolution: {integrity: sha512-/4t+AS1l4S3ZC0Ja7PHFIWeBIxGA3QGqV8/yKsP36v7NcyUCl+bIcmw6s5zVuMIECWwBrAK/6QLzTmbJChBboQ==}
+  electron-to-chromium@1.5.330:
+    resolution: {integrity: sha512-jFNydB5kFtYUobh4IkWUnXeyDbjf/r9gcUEXe1xcrcUxIGfTdzPXA+ld6zBRbwvgIGVzDll/LTIiDztEtckSnA==}
 
   elliptic@6.6.1:
     resolution: {integrity: sha512-RaddvvMatK2LJHqFJ+YA4WysVN5Ita9E35botqIYspQ4TkRAlCicdzKOjlyv/1Za5RyTNn7di//eEV0uTAfe3g==}
@@ -3541,8 +3541,8 @@ packages:
   lodash.truncate@4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
 
-  lodash@4.17.23:
-    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
+  lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
@@ -6158,9 +6158,9 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@rainbow-me/rainbowkit@2.2.10(@tanstack/react-query@5.96.0(react@18.3.1))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))(wagmi@3.6.0(@tanstack/query-core@5.96.0)(@tanstack/react-query@5.96.0(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))':
+  '@rainbow-me/rainbowkit@2.2.10(@tanstack/react-query@5.96.1(react@18.3.1))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))(wagmi@3.6.0(@tanstack/query-core@5.96.1)(@tanstack/react-query@5.96.1(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))':
     dependencies:
-      '@tanstack/react-query': 5.96.0(react@18.3.1)
+      '@tanstack/react-query': 5.96.1(react@18.3.1)
       '@vanilla-extract/css': 1.17.3
       '@vanilla-extract/dynamic': 2.1.4
       '@vanilla-extract/sprinkles': 1.6.4(@vanilla-extract/css@1.17.3)
@@ -6171,7 +6171,7 @@ snapshots:
       react-remove-scroll: 2.6.2(@types/react@18.3.28)(react@18.3.1)
       ua-parser-js: 1.0.41
       viem: 2.47.6(typescript@5.9.3)(zod@3.25.76)
-      wagmi: 3.6.0(@tanstack/query-core@5.96.0)(@tanstack/react-query@5.96.0(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
+      wagmi: 3.6.0(@tanstack/query-core@5.96.1)(@tanstack/react-query@5.96.1(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
     transitivePeerDependencies:
       - '@types/react'
       - babel-plugin-macros
@@ -6346,11 +6346,11 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@tanstack/query-core@5.96.0': {}
+  '@tanstack/query-core@5.96.1': {}
 
-  '@tanstack/react-query@5.96.0(react@18.3.1)':
+  '@tanstack/react-query@5.96.1(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.96.0
+      '@tanstack/query-core': 5.96.1
       react: 18.3.1
 
   '@tsconfig/node10@1.0.12': {}
@@ -6369,7 +6369,7 @@ snapshots:
   '@typechain/ethers-v6@0.5.1(ethers@6.16.0)(typechain@8.3.2(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:
       ethers: 6.16.0
-      lodash: 4.17.23
+      lodash: 4.17.21
       ts-essentials: 7.0.3(typescript@5.9.3)
       typechain: 8.3.2(typescript@5.9.3)
       typescript: 5.9.3
@@ -6586,21 +6586,21 @@ snapshots:
     dependencies:
       '@vanilla-extract/css': 1.17.3
 
-  '@wagmi/connectors@8.0.0(@wagmi/core@3.4.1(@tanstack/query-core@5.96.0)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))':
+  '@wagmi/connectors@8.0.0(@wagmi/core@3.4.1(@tanstack/query-core@5.96.1)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))':
     dependencies:
-      '@wagmi/core': 3.4.1(@tanstack/query-core@5.96.0)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
+      '@wagmi/core': 3.4.1(@tanstack/query-core@5.96.1)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
       viem: 2.47.6(typescript@5.9.3)(zod@3.25.76)
     optionalDependencies:
       typescript: 5.9.3
 
-  '@wagmi/core@3.4.1(@tanstack/query-core@5.96.0)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))':
+  '@wagmi/core@3.4.1(@tanstack/query-core@5.96.1)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))':
     dependencies:
       eventemitter3: 5.0.1
       mipd: 0.0.7(typescript@5.9.3)
       viem: 2.47.6(typescript@5.9.3)(zod@3.25.76)
       zustand: 5.0.0(@types/react@18.3.28)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1))
     optionalDependencies:
-      '@tanstack/query-core': 5.96.0
+      '@tanstack/query-core': 5.96.1
       ox: 0.14.7(typescript@5.9.3)(zod@3.25.76)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -6872,8 +6872,8 @@ snapshots:
   browserslist@4.28.2:
     dependencies:
       baseline-browser-mapping: 2.10.13
-      caniuse-lite: 1.0.30001782
-      electron-to-chromium: 1.5.329
+      caniuse-lite: 1.0.30001784
+      electron-to-chromium: 1.5.330
       node-releases: 2.0.36
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
@@ -6928,7 +6928,7 @@ snapshots:
 
   camelcase@7.0.1: {}
 
-  caniuse-lite@1.0.30001782: {}
+  caniuse-lite@1.0.30001784: {}
 
   caseless@0.12.0: {}
 
@@ -7243,7 +7243,7 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  electron-to-chromium@1.5.329: {}
+  electron-to-chromium@1.5.330: {}
 
   elliptic@6.6.1:
     dependencies:
@@ -7444,7 +7444,7 @@ snapshots:
       ethereum-cryptography: 1.2.0
       ethers: 5.8.0
       fs-readdir-recursive: 1.1.0
-      lodash: 4.17.23
+      lodash: 4.17.21
       markdown-table: 1.1.3
       mocha: 10.8.2
       req-cwd: 2.0.0
@@ -7976,7 +7976,7 @@ snapshots:
       io-ts: 1.10.4
       json-stream-stringify: 3.1.6
       keccak: 3.0.4
-      lodash: 4.17.23
+      lodash: 4.17.21
       micro-eth-signer: 0.14.0
       mnemonist: 0.38.5
       mocha: 10.8.2
@@ -8648,7 +8648,7 @@ snapshots:
 
   lodash.truncate@4.4.2: {}
 
-  lodash@4.17.23: {}
+  lodash@4.17.21: {}
 
   log-symbols@4.1.0:
     dependencies:
@@ -8862,7 +8862,7 @@ snapshots:
       '@next/env': 14.2.35
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001782
+      caniuse-lite: 1.0.30001784
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.3.1
@@ -8890,7 +8890,7 @@ snapshots:
 
   node-emoji@1.11.0:
     dependencies:
-      lodash: 4.17.23
+      lodash: 4.17.21
 
   node-gyp-build@4.8.4: {}
 
@@ -9441,7 +9441,7 @@ snapshots:
       globby: 10.0.2
       hardhat: 2.28.6(ts-node@10.9.2(@swc/core@1.15.21)(@types/node@22.7.5)(typescript@5.9.3))(typescript@5.9.3)
       jsonschema: 1.5.0
-      lodash: 4.17.23
+      lodash: 4.17.21
       mocha: 10.8.2
       node-emoji: 1.11.0
       pify: 4.0.1
@@ -9754,7 +9754,7 @@ snapshots:
       fs-extra: 7.0.1
       glob: 7.1.7
       js-sha3: 0.8.0
-      lodash: 4.17.23
+      lodash: 4.17.21
       mkdirp: 1.0.4
       prettier: 2.8.8
       ts-command-line-args: 2.5.1
@@ -9884,11 +9884,11 @@ snapshots:
       - utf-8-validate
       - zod
 
-  wagmi@3.6.0(@tanstack/query-core@5.96.0)(@tanstack/react-query@5.96.0(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)):
+  wagmi@3.6.0(@tanstack/query-core@5.96.1)(@tanstack/react-query@5.96.1(react@18.3.1))(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)):
     dependencies:
-      '@tanstack/react-query': 5.96.0(react@18.3.1)
-      '@wagmi/connectors': 8.0.0(@wagmi/core@3.4.1(@tanstack/query-core@5.96.0)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
-      '@wagmi/core': 3.4.1(@tanstack/query-core@5.96.0)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
+      '@tanstack/react-query': 5.96.1(react@18.3.1)
+      '@wagmi/connectors': 8.0.0(@wagmi/core@3.4.1(@tanstack/query-core@5.96.1)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76)))(typescript@5.9.3)(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
+      '@wagmi/core': 3.4.1(@tanstack/query-core@5.96.1)(@types/react@18.3.28)(ox@0.14.7(typescript@5.9.3)(zod@3.25.76))(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.47.6(typescript@5.9.3)(zod@3.25.76))
       react: 18.3.1
       use-sync-external-store: 1.4.0(react@18.3.1)
       viem: 2.47.6(typescript@5.9.3)(zod@3.25.76)

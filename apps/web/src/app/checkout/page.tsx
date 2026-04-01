@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useCart } from '@/hooks/useCart';
+import { Footer } from '@/components/Footer';
 import styles from './checkout.module.css';
 
 interface OrderFormData {
@@ -449,6 +450,7 @@ export default function CheckoutPage() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
