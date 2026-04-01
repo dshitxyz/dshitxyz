@@ -89,12 +89,20 @@
     "goHome": "Go Home"
   },
   "footer": {
-    "about": "About",
+    "tagline": "Decentralized meme commerce powered by DSHIT token",
+    "links": "Links",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "gallery": "Gallery",
+    "creator": "Meme Creator",
+    "resources": "Resources",
+    "github": "GitHub",
+    "docs": "Documentation",
+    "contract": "Smart Contract",
+    "settings": "Settings",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "contact": "Contact",
-    "social": "Follow us",
-    "copyright": "© 2026 dshit.xyz. All rights reserved."
+    "rights": "All rights reserved."
   },
   "auth": {
     "signMessage": "Please sign this message to authenticate",

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { InstallPrompt } from '@/components/InstallPrompt';
+import { Providers } from '@/components/Providers';
+import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
   title: 'dshit.xyz - Meme Commerce & Community',
@@ -56,10 +58,10 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#F4D03F" />
@@ -70,8 +72,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body>
-        {children}
-        <InstallPrompt />
+        <Providers>
+          {children}
+          <InstallPrompt />
+        </Providers>
         <ServiceWorkerRegistration />
       </body>
     </html>
