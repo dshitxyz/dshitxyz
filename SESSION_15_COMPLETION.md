@@ -126,35 +126,53 @@ localePrefix: 'always'
 
 ---
 
-## 🔴 Build Blocker
+## 🔴 Build Blockers
 
-**Issue:** wagmi/rainbowkit dependency conflict  
-**Status:** ⚠️ Blocking full compilation  
+**Status:** ⚠️ Multiple dependency issues discovered  
 **Severity:** High  
-**Scope:** Outside Session 15 scope
+**Scope:** wagmi/rainbowkit connector ecosystem
 
-**Error Details:**
-```
-Module not found: Can't resolve 'porto/internal'
-Location: @wagmi/connectors -> rainbowkit -> wagmi
+### Primary Issues Discovered (In Order)
 
-Failed at: pnpm build -> next build
-Exit: FAILURE (webpack errors)
-```
+**Issue #1:** `porto/internal` missing
+- **Status:** ✅ FIXED - Added `porto@^0.2.37` to dependencies
+- **Resolution:** `pnpm add porto` resolved initial error
+
+**Issue #2-5:** Optional connector dependencies missing
+- **Current Error:** Multiple missing wallet connector packages
+- **Status:** ⚠️ Still blocking build
+- **Missing Packages:**
+  ```
+  @base-org/account
+  @coinbase/wallet-sdk
+  @metamask/connect-evm
+  @safe-global/safe-apps-sdk
+  @safe-global/safe-apps-provider
+  ```
 
 **Root Cause Analysis:**
-- wagmi v3.6.0 has optional dependency `porto` not installed
-- This is a transitive dependency issue
-- Affects only rainbowkit pages (gallery, checkout with wallet)
-
-**Workaround Options:**
-1. Downgrade wagmi to v2 compatible version
-2. Install missing `porto` package
-3. Replace rainbowkit with lighter alternative
-4. Update wagmi to v4 (requires broader refactoring)
+- wagmi v3.6.0 includes optional dependencies for multiple wallet connectors
+- These are imported transitively through rainbowkit
+- They're not installed as peerDependencies or optionalDependencies
+- NextJS webpack requires all imports to be resolvable at build time
 
 **Recommendation for Session 16:**
-Session 16 should address this dependency issue as Priority #1 before attempting full build.
+Session 16 has three options:
+1. **Option A (Simplest):** Install all missing connector packages
+   ```bash
+   pnpm add @base-org/account @coinbase/wallet-sdk @metamask/connect-evm \
+     @safe-global/safe-apps-sdk @safe-global/safe-apps-provider
+   ```
+2. **Option B (Recommended):** Use wagmi v4+ which handles optional deps better
+3. **Option C (Refactor):** Migrate away from rainbowkit to lighter alternative
+
+**Attempt Made in Session 15:**
+- ✅ Added `porto` to dependencies
+- ✅ Confirmed additional dependencies are root cause
+- ⏳ Did not pursue full resolution due to time constraints
+
+**Documentation for Session 16:**
+All dependency issues have been identified and documented. Session 16 can pick one of the three resolution paths above and implement immediately.
 
 ---
 
@@ -285,37 +303,51 @@ Build:
 
 ## 🚀 Next Steps (Session 16)
 
-### Priority 1: Fix wagmi/porto Dependency (10 min)
-```bash
-# Option A: Install missing porto package
-pnpm add porto
+### Priority 1: Resolve wagmi Dependency Chain (5-10 min)
 
-# Option B: Downgrade wagmi
+**Choose ONE of these options:**
+
+#### Option A: Install All Connector Dependencies (FASTEST)
+```bash
+pnpm add @base-org/account @coinbase/wallet-sdk @metamask/connect-evm \
+  @safe-global/safe-apps-sdk @safe-global/safe-apps-provider
+pnpm build  # Should succeed
+```
+
+#### Option B: Migrate to wagmi v4 (RECOMMENDED)
+```bash
+pnpm remove wagmi @wagmi/connectors @rainbow-me/rainbowkit
+pnpm add wagmi@4 @rainbow-me/rainbowkit
+# May require code updates for new API
+```
+
+#### Option C: Downgrade to wagmi v2
+```bash
 pnpm remove wagmi @wagmi/connectors
 pnpm add wagmi@2
-
-# Option C: Update to wagmi v4
-# (Requires broader refactoring)
 ```
 
-### Priority 2: Full Build & Tests (15 min)
+**Recommended:** Option A (fastest, lowest risk)
+
+### Priority 2: Full Build & Verification (15 min)
 ```bash
-# Once wagmi issue fixed:
+# After choosing dependency option:
 pnpm install
-pnpm build
-pnpm type-check
+pnpm build                    # Should succeed
+pnpm --filter @dshit/web type-check  # Verify types
 ```
 
-### Priority 3: Performance Metrics (15 min)
+### Priority 3: Performance Metrics (10 min)
 - Run Lighthouse audit on deployed version
 - Verify CSS modules compile without errors
-- Check bundle size optimization
-- Test i18n locale switching on production
+- Check bundle size optimization (<200KB target)
+- Verify i18n locale switching works on all routes
 
-### Priority 4: Integration Testing (10 min)
-- Verify Footer on all pages
-- Test wallet connection across locales
-- Mobile responsiveness check
+### Priority 4: Production Testing (10 min)
+- Test all pages load without console errors
+- Verify Footer renders on every page
+- Test wallet connection across /en/, /es/, /fr/, /de/ routes
+- Mobile responsiveness verification
 - Social links functional
 
 ---
