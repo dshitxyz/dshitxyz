@@ -1,18 +1,5 @@
 /* Alert Component Styles - DESIGN_SYSTEM.md aligned */
 
-:root {
-  --shit-yellow: #F4D03F;
-  --shit-brown: #8B4513;
-  --glitch-red: #FF0000;
-  --toxic-green: #39FF14;
-  --cyber-purple: #BF00FF;
-  --industrial-orange: #FF6600;
-  --bg-dirty: #2D2D2D;
-  --bg-waste: #3D3D3D;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Space Mono', monospace;
-}
-
 .alert {
   background-color: #1a0000;
   border-left: 6px solid var(--glitch-red);

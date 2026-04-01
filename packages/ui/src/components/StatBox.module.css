@@ -1,18 +1,5 @@
 /* StatBox Component Styles - DESIGN_SYSTEM.md aligned */
 
-:root {
-  --shit-yellow: #F4D03F;
-  --shit-brown: #8B4513;
-  --glitch-red: #FF0000;
-  --toxic-green: #39FF14;
-  --cyber-purple: #BF00FF;
-  --industrial-orange: #FF6600;
-  --bg-dirty: #2D2D2D;
-  --bg-waste: #3D3D3D;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Space Mono', monospace;
-}
-
 .statBox {
   padding: 26px 20px;
   border-right: 2px solid var(--bg-waste);
