@@ -3,12 +3,11 @@
 import { useAccount } from 'wagmi';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { Header } from '@/components/Header';
 import { DashboardStats } from '@/components/DashboardStats';
 import { DashboardDrops } from '@/components/DashboardDrops';
 import { FlushMeter } from '@/components/FlushMeter';
 import { Newsletter } from '@/components/Newsletter';
-import { Mascot } from '@dshitxyz/ui';
+import { Mascot } from '@dshit/ui';
 
 export default function DashboardPage() {
   const { address, isConnected } = useAccount();
@@ -25,9 +24,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -92,6 +89,5 @@ export default function DashboardPage() {
         </section>
       </div>
     </main>
-    </>
   );
 }

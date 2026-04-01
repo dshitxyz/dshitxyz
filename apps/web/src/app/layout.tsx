@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { InstallPrompt } from '@/components/InstallPrompt';
+import { Providers } from '@/components/Providers';
+import { Header } from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'dshit.xyz - Meme Commerce & Community',
@@ -70,11 +72,37 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body>
-        {children}
-        <InstallPrompt />
-        <ServiceWorkerRegistration />
+        <Providers>
+          <Header />
+          {children}
+          <InstallPrompt />
+          <ServiceWorkerRegistration />
+        </Providers>
       </body>
     </html>
+  );
+}
+
+function ServiceWorkerRegistration() {
+  return (
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/sw.js').then(
+                function(registration) {
+                  console.log('SW registered:', registration);
+                },
+                function(err) {
+                  console.log('SW registration failed:', err);
+                }
+              );
+            });
+          }
+        `,
+      }}
+    />
   );
 }
 

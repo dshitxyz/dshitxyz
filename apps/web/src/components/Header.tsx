@@ -6,6 +6,7 @@ import { useAccount } from 'wagmi';
 import { useRouter } from 'next/navigation';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAuth } from '@/hooks/useAuth';
+import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 
 export function Header() {
   const { isConnected } = useAccount();
@@ -31,7 +32,7 @@ export function Header() {
           {/* Navigation & Wallet */}
           <div className="flex items-center gap-4 md:gap-6">
             {/* Navigation Links */}
-            <nav className="hidden md:flex gap-6 text-gray-300 font-body text-sm">
+            <nav className="hidden md:flex gap-6 text-gray-300 font-body text-sm items-center">
               <Link href="/gallery" className="hover:text-shit-yellow transition-colors">
                 GALLERY
               </Link>
@@ -40,6 +41,9 @@ export function Header() {
                   DASHBOARD
                 </Link>
               )}
+              <div className="border-l border-gray-700 pl-6">
+                <LocaleSwitcher />
+              </div>
             </nav>
 
             {/* User Profile Section */}
