@@ -20,7 +20,10 @@
   },
   "header": {
     "title": "dshit.xyz",
-    "subtitle": "Decentralized Meme Commerce"
+    "subtitle": "Decentralized Meme Commerce",
+    "gallery": "Gallery",
+    "dashboard": "Dashboard",
+    "create": "Create"
   },
   "hero": {
     "title": "Welcome to dshit.xyz",
@@ -89,12 +92,22 @@
     "goHome": "Go Home"
   },
   "footer": {
-    "about": "About",
+    "about": "About Us",
+    "description": "The premier decentralized meme commerce platform on Base L2.",
+    "links": "Quick Links",
+    "language": "Language",
+    "home": "Home",
+    "gallery": "Gallery",
+    "dashboard": "Dashboard",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "contact": "Contact",
     "social": "Follow us",
+    "rights": "All rights reserved.",
     "copyright": "© 2026 dshit.xyz. All rights reserved."
+  },
+  "metadata": {
+    "description": "Decentralized meme commerce platform. Create, vote, and trade memes on Base L2."
   },
   "auth": {
     "signMessage": "Please sign this message to authenticate",

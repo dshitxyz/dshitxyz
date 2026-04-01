@@ -20,7 +20,10 @@
   },
   "header": {
     "title": "dshit.xyz",
-    "subtitle": "Comercio de Memes Descentralizado"
+    "subtitle": "Comercio de Memes Descentralizado",
+    "gallery": "Galería",
+    "dashboard": "Panel",
+    "create": "Crear"
   },
   "hero": {
     "title": "Bienvenido a dshit.xyz",
@@ -89,12 +92,22 @@
     "goHome": "Ir al Inicio"
   },
   "footer": {
-    "about": "Acerca de",
+    "about": "Sobre Nosotros",
+    "description": "La plataforma principal de comercio de memes descentralizada en Base L2.",
+    "links": "Enlaces Rápidos",
+    "language": "Idioma",
+    "home": "Inicio",
+    "gallery": "Galería",
+    "dashboard": "Panel",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
     "contact": "Contacto",
     "social": "Síguenos",
+    "rights": "Todos los derechos reservados.",
     "copyright": "© 2026 dshit.xyz. Todos los derechos reservados."
+  },
+  "metadata": {
+    "description": "Plataforma de comercio de memes descentralizada. Crea, vota y comercia memes en Base L2."
   },
   "auth": {
     "signMessage": "Por favor, firma este mensaje para autenticarte",

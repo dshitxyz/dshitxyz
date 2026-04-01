@@ -20,7 +20,10 @@
   },
   "header": {
     "title": "dshit.xyz",
-    "subtitle": "Commerce de Mèmes Décentralisé"
+    "subtitle": "Commerce de Mèmes Décentralisé",
+    "gallery": "Galerie",
+    "dashboard": "Tableau de Bord",
+    "create": "Créer"
   },
   "hero": {
     "title": "Bienvenue sur dshit.xyz",
@@ -94,7 +97,14 @@
     "terms": "Conditions d'Utilisation",
     "contact": "Contact",
     "social": "Nous Suivre",
-    "copyright": "© 2026 dshit.xyz. Tous droits réservés."
+    "copyright": "© 2026 dshit.xyz. Tous droits réservés.",
+    "description": "La plateforme principale de commerce de mèmes décentralisée sur Base L2.",
+    "links": "Liens Rapides",
+    "language": "Langue",
+    "home": "Accueil",
+    "gallery": "Galerie",
+    "dashboard": "Tableau de Bord",
+    "rights": "Tous droits réservés."
   },
   "auth": {
     "signMessage": "Veuillez signer ce message pour vous authentifier",
@@ -102,5 +112,8 @@
     "verifying": "Vérification en cours...",
     "success": "Authentification réussie!",
     "error": "L'authentification a échoué"
+  },
+  "metadata": {
+    "description": "Plateforme de commerce de mèmes décentralisée. Créez, votez et échangez des mèmes sur Base L2."
   }
 }

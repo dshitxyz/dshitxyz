@@ -20,7 +20,10 @@
   },
   "header": {
     "title": "dshit.xyz",
-    "subtitle": "Dezentralisierter Meme-Handel"
+    "subtitle": "Dezentralisierter Meme-Handel",
+    "gallery": "Galerie",
+    "dashboard": "Armaturenbrett",
+    "create": "Erstellen"
   },
   "hero": {
     "title": "Willkommen bei dshit.xyz",
@@ -94,7 +97,14 @@
     "terms": "Nutzungsbedingungen",
     "contact": "Kontakt",
     "social": "Folgen Sie Uns",
-    "copyright": "© 2026 dshit.xyz. Alle Rechte vorbehalten."
+    "copyright": "© 2026 dshit.xyz. Alle Rechte vorbehalten.",
+    "description": "Die führende dezentralisierte Meme-Commerce-Plattform auf Base L2.",
+    "links": "Schnelllinks",
+    "language": "Sprache",
+    "home": "Startseite",
+    "gallery": "Galerie",
+    "dashboard": "Armaturenbrett",
+    "rights": "Alle Rechte vorbehalten."
   },
   "auth": {
     "signMessage": "Bitte signiere diese Nachricht zur Authentifizierung",
@@ -102,5 +112,8 @@
     "verifying": "Wird überprüft...",
     "success": "Authentifizierung erfolgreich!",
     "error": "Authentifizierung fehlgeschlagen"
+  },
+  "metadata": {
+    "description": "Dezentralisierte Meme-Commerce-Plattform. Erstellen, bewerten und handeln Sie Memes auf Base L2."
   }
 }
