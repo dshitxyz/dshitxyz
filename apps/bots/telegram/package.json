@@ -11,13 +11,13 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "telegraf": "^4.14.0",
+    "axios": "^1.6.0",
     "dotenv": "^16.3.1",
-    "axios": "^1.6.0"
+    "telegraf": "^4.14.0"
   },
   "devDependencies": {
-    "@types/node": "^20.8.0",
-    "typescript": "^5.2.2",
-    "tsx": "^3.14.0"
+    "@types/node": "^20.19.39",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2"
   }
 }
