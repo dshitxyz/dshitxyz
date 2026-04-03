@@ -1,11 +1,16 @@
 {
   "name": "@dshit/config",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Shared configuration for dshit.xyz monorepo",
   "private": true,
+  "main": "index.js",
   "files": [
+    "tsconfig",
     "tsconfig.json",
-    "tsconfig.*.json",
-    "eslint-preset.js",
-    ".prettierrc.json"
-  ]
+    "eslint",
+    "prettier"
+  ],
+  "exports": {
+    "./tsconfig.json": "./tsconfig.json"
+  }
 }

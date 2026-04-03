@@ -1,6 +1,6 @@
 {
   "name": "@dshit/web",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,25 +10,21 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.2.10",
+    "@sentry/nextjs": "^8.0.0",
+    "@sentry/react": "^8.0.0",
+    "@tanstack/react-query": "^5.96.0",
+    "next": "^14.0.0",
+    "next-intl": "^4.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "next": "^14.0.0",
-    "@rainbow-me/rainbowkit": "^1.3.0",
-    "wagmi": "^1.4.0",
-    "viem": "^1.20.0",
-    "@hookform/resolvers": "^3.3.0",
-    "react-hook-form": "^7.48.0",
-    "zod": "^3.22.0",
-    "@dshit/ui": "workspace:*"
+    "tailwindcss": "^4.2.2",
+    "wagmi": "^2.9.0"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
+    "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "typescript": "^5.3.3",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.3.6",
-    "@dshit/config": "workspace:*"
+    "typescript": "^5.3.3"
   }
 }

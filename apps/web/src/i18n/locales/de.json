@@ -1,0 +1,106 @@
+{
+  "common": {
+    "language": "Sprache",
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "german": "Deutsch",
+    "home": "Startseite",
+    "dashboard": "Dashboard",
+    "gallery": "Galerie",
+    "products": "Produkte",
+    "memeCreator": "Meme-Generator",
+    "checkout": "Kasse",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "connectWallet": "Brieftasche Verbinden",
+    "disconnect": "Trennen",
+    "settings": "Einstellungen",
+    "about": "Über Uns"
+  },
+  "header": {
+    "title": "dshit.xyz",
+    "subtitle": "Dezentralisierter Meme-Handel"
+  },
+  "hero": {
+    "title": "Willkommen bei dshit.xyz",
+    "subtitle": "Die Zukunft des Meme-basierten Handels",
+    "cta": "Loslegen"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "balance": "Dein Guthaben",
+    "portfolio": "Portfolio",
+    "stats": "Statistiken",
+    "recentTransactions": "Letzte Transaktionen"
+  },
+  "gallery": {
+    "title": "Meme-Galerie",
+    "trending": "Trending",
+    "newest": "Neueste",
+    "mostViral": "Am Meisten Geteilt",
+    "empty": "Keine Memes gefunden",
+    "upvote": "Abstimmen",
+    "downvote": "Ablehnen",
+    "share": "Teilen"
+  },
+  "products": {
+    "title": "Produktkatalog",
+    "price": "Preis",
+    "addToCart": "In den Warenkorb",
+    "outOfStock": "Ausverkauft",
+    "description": "Beschreibung",
+    "quantity": "Menge"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "orderSummary": "Bestellübersicht",
+    "shippingAddress": "Lieferadresse",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "address": "Adresse",
+    "city": "Stadt",
+    "country": "Land",
+    "zipCode": "Postleitzahl",
+    "total": "Gesamt",
+    "placeOrder": "Bestellung Aufgeben",
+    "orderConfirmed": "Bestellung Bestätigt!",
+    "orderNumber": "Bestellnummer",
+    "estimatedDelivery": "Voraussichtliche Lieferung"
+  },
+  "memeCreator": {
+    "title": "Meme-Generator",
+    "selectTemplate": "Vorlage Auswählen",
+    "topText": "Oberer Text",
+    "bottomText": "Unterer Text",
+    "fontSize": "Schriftgröße",
+    "color": "Farbe",
+    "download": "Meme Herunterladen",
+    "share": "Auf Twitter Teilen",
+    "upload": "Benutzerdefiniertes Bild Hochladen"
+  },
+  "errors": {
+    "notFound": "Seite nicht gefunden",
+    "unauthorized": "Nicht autorisiert",
+    "forbidden": "Zugriff verboten",
+    "serverError": "Serverfehler",
+    "tryAgain": "Erneut Versuchen",
+    "goHome": "Zur Startseite"
+  },
+  "footer": {
+    "about": "Über Uns",
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt",
+    "social": "Folgen Sie Uns",
+    "copyright": "© 2026 dshit.xyz. Alle Rechte vorbehalten."
+  },
+  "auth": {
+    "signMessage": "Bitte signiere diese Nachricht zur Authentifizierung",
+    "signing": "Wird signiert...",
+    "verifying": "Wird überprüft...",
+    "success": "Authentifizierung erfolgreich!",
+    "error": "Authentifizierung fehlgeschlagen"
+  }
+}
