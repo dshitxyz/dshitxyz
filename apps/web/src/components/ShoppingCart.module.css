@@ -1,0 +1,309 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: 3px solid var(--shit-yellow);
+  padding: 2rem;
+  background: var(--bg-raw);
+  box-shadow: 8px 8px 0px var(--shit-brown);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 2px solid var(--shit-brown);
+  padding: 1.5rem;
+  background: var(--bg-dirty);
+}
+
+.item {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed var(--shit-brown);
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid var(--shit-brown);
+  flex-shrink: 0;
+}
+
+.itemContent {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.itemName {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  margin: 0 0 0.25rem 0;
+  text-transform: uppercase;
+}
+
+.itemDesc {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.itemActions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--shit-brown);
+  background: var(--bg-raw);
+}
+
+.qtyBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--shit-yellow);
+  border: none;
+  color: var(--bg-raw);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qtyBtn:hover {
+  background: var(--shit-yellow-dark);
+}
+
+.qtyBtn:active {
+  transform: scale(0.95);
+}
+
+.qtyInput {
+  width: 3rem;
+  padding: 0.25rem;
+  border: none;
+  border-left: 2px solid var(--shit-brown);
+  border-right: 2px solid var(--shit-brown);
+  background: var(--bg-raw);
+  color: var(--text-shit);
+  font-family: var(--font-body);
+  text-align: center;
+  font-size: 1rem;
+}
+
+.qtyInput:focus {
+  outline: none;
+  background: var(--bg-dirty);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  white-space: nowrap;
+  min-width: 100px;
+  text-align: right;
+}
+
+.removeBtn {
+  background: var(--glitch-red);
+  color: white;
+  border: 2px solid var(--glitch-red);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.removeBtn:hover {
+  background: transparent;
+  color: var(--glitch-red);
+  transform: translate(-2px, -2px);
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  border: 3px dashed var(--shit-brown);
+  background: var(--bg-dirty);
+}
+
+.emptyContent {
+  text-align: center;
+}
+
+.emptyContent h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--shit-yellow);
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.emptyContent p {
+  font-family: var(--font-body);
+  color: var(--text-dim);
+  margin: 0 0 1.5rem 0;
+}
+
+.continueButton {
+  display: inline-block;
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--shit-brown);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.continueButton:hover {
+  background: var(--shit-yellow-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 2px solid var(--shit-yellow);
+  padding: 1.5rem;
+  background: var(--bg-dirty);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-dim);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  padding-top: 1rem;
+  border-top: 2px solid var(--shit-brown);
+}
+
+.totalAmount {
+  font-size: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  flex: 1;
+  padding: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--shit-brown);
+  transition: all 0.2s ease;
+  text-align: center;
+  cursor: pointer;
+}
+
+.primaryBtn {
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+}
+
+.primaryBtn:hover {
+  background: var(--shit-yellow-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
+
+.secondaryBtn {
+  background: transparent;
+  color: var(--shit-yellow);
+}
+
+.secondaryBtn:hover {
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
+
+@media (max-width: 768px) {
+  .cart {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .items {
+    padding: 1rem;
+  }
+
+  .item {
+    flex-direction: column;
+  }
+
+  .itemContent {
+    flex-direction: column;
+  }
+
+  .itemActions {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

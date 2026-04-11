@@ -2,16 +2,17 @@
 
 import React from 'react';
 import '@rainbow-me/rainbowkit/styles.css';
-import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { WagmiProvider } from 'wagmi';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { WagmiProvider, createConfig, http } from 'wagmi';
 import { base, baseSepolia } from 'wagmi/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
-const config = getDefaultConfig({
-  appName: 'dshit.xyz',
-  projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID || 'default',
+const config = createConfig({
   chains: [base, baseSepolia],
-  ssr: true,
+  transports: {
+    [base.id]: http(),
+    [baseSepolia.id]: http(),
+  },
 });
 
 const queryClient = new QueryClient();

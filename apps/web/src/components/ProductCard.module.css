@@ -1,0 +1,156 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid var(--shit-brown);
+  background: var(--bg-raw);
+  box-shadow: 6px 6px 0px var(--shit-brown);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px var(--shit-brown);
+}
+
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--bg-dirty);
+  border-bottom: 3px solid var(--shit-brown);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 2px solid var(--shit-brown);
+}
+
+.price {
+  display: flex;
+  gap: 0.25rem;
+  align-items: baseline;
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+}
+
+.currency {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.button {
+  flex: 1;
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+  border: 2px solid var(--shit-brown);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--shit-yellow-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
+
+.button:active:not(:disabled) {
+  transform: translate(0, 0);
+}
+
+.button:disabled {
+  opacity: 0.8;
+  cursor: default;
+}
+
+.button.adding {
+  background: var(--toxic-green);
+  animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    box-shadow: 4px 4px 0px var(--shit-brown);
+  }
+
+  .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--shit-brown);
+  }
+
+  .name {
+    font-size: 1.125rem;
+  }
+
+  .amount {
+    font-size: 1.25rem;
+  }
+
+  .footer {
+    gap: 0.5rem;
+  }
+}

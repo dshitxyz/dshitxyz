@@ -1,19 +1,33 @@
 {
   "name": "@dshit/contracts",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "description": "DSHIT ERC-20 token and governance contracts",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "hardhat node",
+    "compile": "hardhat compile",
     "test": "hardhat test",
-    "build": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.ts",
-    "deploy:testnet": "hardhat run scripts/deploy.ts --network base-sepolia"
+    "test:coverage": "hardhat coverage",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "deploy:base": "hardhat run scripts/deploy.ts --network base",
+    "verify": "hardhat verify",
+    "typechain": "typechain --target ethers-v6 --out-dir typechain/ethers-v6 './artifacts/contracts/**/*.json'"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.6",
+    "ethers": "^6.11.0"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "@openzeppelin/contracts": "^5.0.0",
-    "@openzeppelin/hardhat-upgrades": "^2.0.0",
-    "hardhat": "^2.19.0",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.3.10",
+    "dotenv": "^16.4.0",
+    "hardhat": "^2.20.1",
+    "hardhat-deploy": "^0.12.2",
+    "solidity-coverage": "^0.8.5",
+    "typechain": "^8.3.2",
     "typescript": "^5.3.3"
   }
 }

@@ -1,0 +1,85 @@
+/* StatBox Component Styles - DESIGN_SYSTEM.md aligned */
+
+.statBox {
+  padding: 26px 20px;
+  border-right: 2px solid var(--bg-waste);
+  background-color: var(--bg-dirty);
+  position: relative;
+}
+
+.statBox:last-child {
+  border-right: none;
+}
+
+/* Accent bar at top */
+.accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.accentYellow {
+  background-color: var(--shit-yellow);
+}
+
+.accentRed {
+  background-color: var(--glitch-red);
+}
+
+.accentGreen {
+  background-color: var(--toxic-green);
+}
+
+.accentPurple {
+  background-color: var(--cyber-purple);
+}
+
+.accentOrange {
+  background-color: var(--industrial-orange);
+}
+
+.accentBrown {
+  background-color: var(--shit-brown);
+}
+
+/* Number - Large and bold */
+.number {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+/* Label - Small, muted text */
+.label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+/* Sub-label - Colored secondary stat */
+.subLabel {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  color: var(--toxic-green);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .statBox {
+    padding: 20px 16px;
+  }
+
+  .number {
+    font-size: 2rem;
+  }
+}

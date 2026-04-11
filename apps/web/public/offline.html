@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F4D03F" />
+  <title>Offline - dshit.xyz</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --shit-yellow: #F4D03F;
+      --shit-brown: #8B4513;
+      --glitch-red: #FF0000;
+      --bg-raw: #1A1A1A;
+      --bg-dirty: #2D2D2D;
+      --text-shit: #FFFFFF;
+      --text-dim: #CCCCCC;
+      --toxic-green: #39FF14;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--bg-raw);
+      color: var(--text-shit);
+      font-family: 'Space Mono', monospace;
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .offline-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--shit-yellow);
+      text-shadow: 3px 3px 0px var(--shit-brown);
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
+    .message {
+      background: var(--bg-dirty);
+      border: 3px solid var(--shit-yellow);
+      border-radius: 2px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 6px 6px 0px var(--shit-brown);
+    }
+
+    .message p {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .message p:last-child {
+      margin-bottom: 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background: var(--shit-yellow);
+      color: var(--bg-raw);
+      border: 3px solid var(--shit-brown);
+      padding: 12px 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 4px 4px 0px var(--shit-brown);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--shit-brown);
+    }
+
+    button:active {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0px var(--shit-brown);
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--glitch-red);
+      margin-right: 8px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .footer {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--shit-brown);
+    }
+
+    .footer a {
+      color: var(--shit-yellow);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: var(--toxic-green);
+      text-decoration: underline;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+        text-shadow: 2px 2px 0px var(--shit-brown);
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .message {
+        padding: 15px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      .actions {
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="offline-icon">🚀💨</div>
+
+    <h1>No Connection</h1>
+    <p class="subtitle">You're offline, dude</p>
+
+    <div class="message">
+      <p>
+        <span class="status-indicator"></span>
+        <strong>Network connection lost</strong>
+      </p>
+      <p>But don't worry! Some content may be cached and available offline.</p>
+      <p>Check your connection and try again to access the full experience.</p>
+    </div>
+
+    <div class="actions">
+      <button onclick="window.location.reload()">🔄 Retry</button>
+      <button onclick="window.history.back()">← Go Back</button>
+    </div>
+
+    <div class="footer">
+      <p>
+        dshit.xyz works best online. When you're back online, refresh to sync your memes!
+      </p>
+      <p style="margin-top: 10px;">
+        <a href="/">← Home</a> |
+        <a href="/gallery">Gallery</a> |
+        <a href="/products">Shop</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Listen for when connection is restored
+    window.addEventListener('online', function() {
+      // Auto-reload after connection restored
+      setTimeout(function() {
+        window.location.reload();
+      }, 1000);
+    });
+
+    // Warn if closing while offline
+    window.addEventListener('beforeunload', function(e) {
+      if (!navigator.onLine) {
+        // Some browsers don't allow custom messages anymore
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
