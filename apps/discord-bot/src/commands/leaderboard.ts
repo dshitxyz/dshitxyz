@@ -17,7 +17,7 @@ const command = new SlashCommandBuilder()
       )
   );
 
-export async function execute(interaction) {
+export async function execute(interaction: any) {
   try {
     await interaction.deferReply();
     const category = interaction.options.getString('category') || 'creators';
@@ -27,20 +27,20 @@ export async function execute(interaction) {
     const response = await axios.get(`${apiUrl}/api/public/leaderboard/${category}`, { timeout: 5000 });
     const { users } = response.data;
 
-    const leaderboardText = users
+    const leaderboardText = (users || [])
       .slice(0, 10)
-      .map((u, i) => `${i + 1}. **${u.username}** — ${u.score.toLocaleString()} pts`)
+      .map((u: any, i: number) => `${i + 1}. **${u.username}** — ${(u.score || 0).toLocaleString()} pts`)
       .join('\n');
 
     const embed = createEmbed(`🏆 ${category.charAt(0).toUpperCase() + category.slice(1)} Leaderboard`)
-      .setDescription(leaderboardText);
+      .setDescription(leaderboardText || 'No data available');
 
     await interaction.editReply({ embeds: [embed] });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Leaderboard error:', error);
     await interaction.editReply({
       embeds: [
-        createEmbed('Error', 'Failed to fetch leaderboard').setColor('#FF0000')
+        createEmbed('❌ Error', 'Failed to fetch leaderboard').setColor('#FF0000')
       ]
     });
   }
