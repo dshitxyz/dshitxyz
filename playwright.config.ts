@@ -72,9 +72,9 @@ export default defineConfig({
     },
   ],
 
-  // Web server configuration
+  // Web server configuration - start ONLY the web app for E2E tests
   webServer: {
-    command: 'pnpm dev',
+    command: 'pnpm --filter @dshit/web dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
