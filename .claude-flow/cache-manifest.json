@@ -1,0 +1,22 @@
+{
+  "cached_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "project_structure": {
+    ".claude": {
+      "settings": ".claude/settings.json",
+      "agents": 98,
+      "skills": 30,
+      "commands": 10,
+      "helpers": 25
+    },
+    ".claude-flow": {
+      "config": ".claude-flow/config.yaml",
+      "memory_db": ".claude-flow/data/memory.db"
+    }
+  },
+  "key_files": [
+    "CLAUDE.md",
+    ".mcp.json",
+    ".claude/settings.json",
+    ".claude-flow/config.yaml"
+  ]
+}

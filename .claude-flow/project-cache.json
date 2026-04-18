@@ -1,0 +1,25 @@
+{
+  "project_name": "dshitxyz",
+  "ruflo_version": "3.5.80",
+  "initialized_at": "2026-04-18T17:22:00Z",
+  "services": {
+    "memory": "initialized",
+    "swarm": "initialized",
+    "daemon": "started",
+    "mcp": "ready"
+  },
+  "configuration": {
+    "agents": 98,
+    "skills": 30,
+    "commands": 10,
+    "helpers": 25,
+    "topology": "hierarchical-mesh",
+    "max_agents": 15
+  },
+  "key_files_cached": [
+    ".claude/settings.json",
+    ".claude-flow/config.yaml",
+    "CLAUDE.md",
+    ".mcp.json"
+  ]
+}
