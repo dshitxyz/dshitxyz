@@ -42,3 +42,11 @@ npm-debug.log*
 
 # Clean install tracking
 .package-hash
+
+# Claude Flow Runtime (RuFlo)
+.claude-flow/data/
+.claude-flow/logs/
+.claude-flow/sessions/
+.claude-flow/neural/
+.claude-flow/*.log
+.claude-flow/*.tmp
