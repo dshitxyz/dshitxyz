@@ -48,5 +48,9 @@ npm-debug.log*
 .claude-flow/logs/
 .claude-flow/sessions/
 .claude-flow/neural/
+.claude-flow/swarm/
 .claude-flow/*.log
 .claude-flow/*.tmp
+.claude-flow/*.pid
+.claude/memory.db
+.swarm/
