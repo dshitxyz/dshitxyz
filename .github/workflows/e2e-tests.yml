@@ -42,15 +42,15 @@ jobs:
       - name: Install Playwright browsers
         run: pnpm exec playwright install ${{ matrix.browser }}
 
-      - name: Build applications
-        run: pnpm build
+      - name: Build web app
+        run: cd apps/web && pnpm build
         continue-on-error: true
 
-      - name: Start development server
+      - name: Start web dev server
         run: |
-          pnpm dev > /tmp/dev-server.log 2>&1 &
+          cd apps/web && pnpm dev > /tmp/dev-server.log 2>&1 &
           # Wait for server to start
-          sleep 15
+          sleep 10
           # Check if server is running
           if ! curl -f http://localhost:3000 > /dev/null 2>&1; then
             echo "Development server failed to start"
