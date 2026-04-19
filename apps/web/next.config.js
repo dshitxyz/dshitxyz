@@ -78,14 +78,6 @@ const nextConfig = {
     };
   },
 
-  // Webpack config for optional dependencies
-  webpack: (config, { isServer }) => {
-    config.ignoreWarnings = config.ignoreWarnings || [];
-    config.ignoreWarnings.push({ module: /pino-pretty/, message: /Module not found/ });
-    config.ignoreWarnings.push({ module: /@react-native-async-storage/, message: /Module not found/ });
-
-    return config;
-  },
 };
 
 module.exports = nextConfig;
