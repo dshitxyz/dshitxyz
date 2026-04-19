@@ -1,13 +1,22 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { baseSepolia } from 'wagmi/chains';
 
-export const config = getDefaultConfig({
-  appName: 'dshit.xyz',
-  projectId: 'DSHITXYZ_PROJECT_ID',
-  chains: [baseSepolia],
-  ssr: false,
-});
+let cachedConfig: any = null;
 
 export function getConfig() {
-  return config;
+  // Only initialize wagmi on the client side
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  if (!cachedConfig) {
+    const { getDefaultConfig } = require('@rainbow-me/rainbowkit');
+    cachedConfig = getDefaultConfig({
+      appName: 'dshit.xyz',
+      projectId: 'DSHITXYZ_PROJECT_ID',
+      chains: [baseSepolia],
+      ssr: false,
+    });
+  }
+
+  return cachedConfig;
 }
