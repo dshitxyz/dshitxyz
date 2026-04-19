@@ -72,13 +72,13 @@ export default defineConfig({
     },
   ],
 
-  // Web server configuration
-  webServer: {
-    command: 'pnpm -C apps/web dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
+  // Web server configuration - optional for now
+  // webServer: {
+  //   command: 'pnpm -C apps/web dev',
+  //   url: 'http://localhost:3000',
+  //   reuseExistingServer: !process.env.CI,
+  //   timeout: 120 * 1000,
+  // },
 
   // Use base URL for all tests
   use: {
