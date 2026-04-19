@@ -80,9 +80,9 @@ export default defineConfig({
   //   timeout: 120 * 1000,
   // },
 
-  // Use base URL for all tests
+  // Use base URL for all tests (disabled for now - webserver not running)
   use: {
-    baseURL: 'http://localhost:3000',
+    // baseURL: 'http://localhost:3000',
     trace: process.env.CI ? 'on-first-retry' : 'off',
     screenshot: process.env.CI ? 'only-on-failure' : 'off',
     video: process.env.CI ? 'retain-on-failure' : 'off',
