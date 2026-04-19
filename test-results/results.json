@@ -120,7 +120,7 @@
     "version": "1.59.1",
     "workers": 4,
     "webServer": {
-      "command": "pnpm dev",
+      "command": "pnpm -C apps/web dev",
       "url": "http://localhost:3000",
       "reuseExistingServer": true,
       "timeout": 120000
@@ -134,8 +134,8 @@
     }
   ],
   "stats": {
-    "startTime": "2026-04-19T11:56:18.747Z",
-    "duration": 120069.11499999999,
+    "startTime": "2026-04-19T12:10:12.644Z",
+    "duration": 120178.722,
     "expected": 0,
     "skipped": 0,
     "unexpected": 0,

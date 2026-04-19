@@ -28,7 +28,6 @@ const nextConfig = {
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['@rainbow-me/rainbowkit', 'wagmi', 'viem'],
-    cacheMaxMemorySize: 50 * 1024 * 1024, // 50MB cache
   },
 
   // Headers for caching

@@ -5,7 +5,7 @@ export const config = getDefaultConfig({
   appName: 'dshit.xyz',
   projectId: 'DSHITXYZ_PROJECT_ID',
   chains: [baseSepolia],
-  ssr: true,
+  ssr: false,
 });
 
 export function getConfig() {
