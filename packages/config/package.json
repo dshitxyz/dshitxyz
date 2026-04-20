@@ -1,17 +1,16 @@
 {
   "name": "@dshit/config",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Shared configuration for dshit.xyz monorepo",
   "private": true,
-  "type": "module",
-  "files": ["eslint-preset.js", "tsconfig.json"],
-  "scripts": {
-    "lint": "eslint . --ext .js,.ts",
-    "format": "prettier --write \"*.js\""
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
-    "eslint": "^8.56.0",
-    "prettier": "^3.1.0"
+  "main": "index.js",
+  "files": [
+    "tsconfig",
+    "tsconfig.json",
+    "eslint",
+    "prettier"
+  ],
+  "exports": {
+    "./tsconfig.json": "./tsconfig.json"
   }
 }

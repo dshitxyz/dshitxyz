@@ -1,0 +1,100 @@
+:root {
+  --shit-yellow: #F4D03F;
+  --shit-brown: #8B4513;
+  --glitch-red: #FF0000;
+  --toxic-green: #39FF14;
+  --cyber-purple: #BF00FF;
+  --industrial-orange: #FF6600;
+  --bg-dirty: #2D2D2D;
+  --bg-waste: #3D3D3D;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4d03f;
+  color: #1a1a1a;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #3d3d3d 100%);
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f4d03f;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #f4d03f;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #f4d03f;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+ul {
+  margin-left: 1.5rem;
+  line-height: 1.8;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: #39ff14;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #f4d03f;
+  text-decoration: underline;
+}
+
+section {
+  background: rgba(139, 69, 19, 0.1);
+  border: 3px solid #8b4513;
+  padding: 1.5rem;
+  border-radius: 0;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  opacity: 0.7;
+}

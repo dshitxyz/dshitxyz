@@ -2,6 +2,7 @@
   "name": "@dshit/api",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -29,5 +30,30 @@
     "tsx": "^4.7.0",
     "typescript": "^5.3.0",
     "vitest": "^1.0.0"
+    "type-check": "tsc --noEmit",
+    "test": "echo 'No tests yet'"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.4.2",
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/jwt": "^7.1.0",
+    "@fastify/postgres": "^6.0.2",
+    "@sentry/node": "^8.0.0",
+    "drizzle-kit": "^0.20.0",
+    "drizzle-orm": "^0.29.0",
+    "ethers": "^6.10.0",
+    "fastify": "^4.25.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.11.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.3.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.10.0",
+    "@types/pg": "^8.11.0",
+    "jest": "^30.3.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.3"
   }
 }

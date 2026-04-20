@@ -1,0 +1,22 @@
+{
+  "analyzerMode": "static",
+  "reportFilename": "bundle-report.html",
+  "openAnalyzer": false,
+  "generateStatsFile": true,
+  "statsFilename": "bundle-stats.json",
+  "statsOptions": {
+    "source": false,
+    "reasons": true,
+    "errors": true,
+    "errorDetails": true,
+    "warnings": true,
+    "warningDetails": true,
+    "publicPath": true,
+    "preset": "verbose"
+  },
+  "excludeAssets": [
+    /\.map$/,
+    /hot-update\.(js|json)$/,
+    /runtime~.+\.js$/
+  ]
+}

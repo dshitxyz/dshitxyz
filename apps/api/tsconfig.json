@@ -3,10 +3,19 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
+  "extends": "../../packages/config/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
