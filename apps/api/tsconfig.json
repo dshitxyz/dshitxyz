@@ -1,4 +1,8 @@
 {
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
   "extends": "../../packages/config/tsconfig.json",
   "compilerOptions": {
     "target": "ES2020",
@@ -11,6 +15,7 @@
       "@/*": ["./src/*"]
     }
   },
+  "include": ["src"],
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
