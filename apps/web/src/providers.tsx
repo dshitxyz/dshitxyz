@@ -1,16 +1,11 @@
-'use client';
+import dynamic from 'next/dynamic';
+import { ReactNode } from 'react';
 
-import { WagmiProvider } from 'wagmi';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { getConfig } from '@/config/wagmi';
+const ProvidersClient = dynamic(
+  () => import('./providers-client').then(mod => mod.ProvidersClient),
+  { ssr: false }
+);
 
-const queryClient = new QueryClient();
-const config = getConfig();
-
-export function Providers({ children }: { children: React.ReactNode }) {
-  return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </WagmiProvider>
-  );
+export function Providers({ children }: { children: ReactNode }) {
+  return <ProvidersClient>{children}</ProvidersClient>;
 }
