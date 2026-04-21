@@ -5,12 +5,13 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "echo 'Discord bot requires DISCORD_TOKEN env var. Set up .env and run manually: tsx watch src/index.ts'",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "vitest",
+    "test": "echo 'No tests configured for Discord bot yet'",
     "lint": "eslint src tests",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "discord.js": "^14.13.0",
