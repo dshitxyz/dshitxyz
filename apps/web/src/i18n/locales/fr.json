@@ -1,0 +1,106 @@
+{
+  "common": {
+    "language": "Langue",
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "german": "Deutsch",
+    "home": "Accueil",
+    "dashboard": "Tableau de Bord",
+    "gallery": "Galerie",
+    "products": "Produits",
+    "memeCreator": "Créateur de Mèmes",
+    "checkout": "Passer la Commande",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "connectWallet": "Connecter le Portefeuille",
+    "disconnect": "Déconnecter",
+    "settings": "Paramètres",
+    "about": "À Propos"
+  },
+  "header": {
+    "title": "dshit.xyz",
+    "subtitle": "Commerce de Mèmes Décentralisé"
+  },
+  "hero": {
+    "title": "Bienvenue sur dshit.xyz",
+    "subtitle": "L'avenir du commerce basé sur les mèmes",
+    "cta": "Commencer"
+  },
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "balance": "Votre Solde",
+    "portfolio": "Portefeuille",
+    "stats": "Statistiques",
+    "recentTransactions": "Transactions Récentes"
+  },
+  "gallery": {
+    "title": "Galerie de Mèmes",
+    "trending": "Tendances",
+    "newest": "Les Plus Récents",
+    "mostViral": "Le Plus Viral",
+    "empty": "Aucun mème trouvé",
+    "upvote": "Voter Pour",
+    "downvote": "Voter Contre",
+    "share": "Partager"
+  },
+  "products": {
+    "title": "Catalogue de Produits",
+    "price": "Prix",
+    "addToCart": "Ajouter au Panier",
+    "outOfStock": "Rupture de Stock",
+    "description": "Description",
+    "quantity": "Quantité"
+  },
+  "checkout": {
+    "title": "Passer la Commande",
+    "orderSummary": "Résumé de la Commande",
+    "shippingAddress": "Adresse de Livraison",
+    "firstName": "Prénom",
+    "lastName": "Nom de Famille",
+    "email": "Adresse E-mail",
+    "address": "Adresse",
+    "city": "Ville",
+    "country": "Pays",
+    "zipCode": "Code Postal",
+    "total": "Total",
+    "placeOrder": "Passer la Commande",
+    "orderConfirmed": "Commande Confirmée!",
+    "orderNumber": "Numéro de Commande",
+    "estimatedDelivery": "Livraison Estimée"
+  },
+  "memeCreator": {
+    "title": "Créateur de Mèmes",
+    "selectTemplate": "Sélectionner un Modèle",
+    "topText": "Texte Supérieur",
+    "bottomText": "Texte Inférieur",
+    "fontSize": "Taille de Police",
+    "color": "Couleur",
+    "download": "Télécharger le Mème",
+    "share": "Partager sur Twitter",
+    "upload": "Télécharger une Image Personnalisée"
+  },
+  "errors": {
+    "notFound": "Page non trouvée",
+    "unauthorized": "Non autorisé",
+    "forbidden": "Accès interdit",
+    "serverError": "Erreur du serveur",
+    "tryAgain": "Réessayer",
+    "goHome": "Aller à l'Accueil"
+  },
+  "footer": {
+    "about": "À Propos",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "contact": "Contact",
+    "social": "Nous Suivre",
+    "copyright": "© 2026 dshit.xyz. Tous droits réservés."
+  },
+  "auth": {
+    "signMessage": "Veuillez signer ce message pour vous authentifier",
+    "signing": "Signature en cours...",
+    "verifying": "Vérification en cours...",
+    "success": "Authentification réussie!",
+    "error": "L'authentification a échoué"
+  }
+}

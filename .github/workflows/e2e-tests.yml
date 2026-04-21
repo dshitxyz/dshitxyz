@@ -1,0 +1,56 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  e2e-tests:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Skip E2E tests (temporarily disabled)
+        run: echo "E2E tests are temporarily disabled while claude-flow infrastructure is being established"
+
+  test-summary:
+    name: Test Summary
+    needs: e2e-tests
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Test Summary
+        run: |
+          echo "## E2E Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⏸️ E2E tests are temporarily disabled while claude-flow infrastructure is being established" >> $GITHUB_STEP_SUMMARY

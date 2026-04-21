@@ -1,0 +1,137 @@
+<testsuites id="" name="" tests="10" failures="0" skipped="0" errors="5" time="6.255720999999999">
+<testsuite name="smoke.spec.ts" timestamp="2026-04-19T12:26:24.896Z" hostname="chromium" tests="2" failures="0" skipped="0" time="0.012" errors="1">
+<testcase name="Smoke Tests › playwright is working" classname="smoke.spec.ts" time="0.009">
+</testcase>
+<testcase name="Smoke Tests › test configuration is valid" classname="smoke.spec.ts" time="0.003">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-Smoke-Tests-test-configuration-is-valid-chromium/error-context.md]]
+]]>
+</system-out>
+<error message="browserType.launch: Executable doesn&apos;t exist at /opt/pw-browsers/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell" type="Error">
+<![CDATA[  [chromium] › smoke.spec.ts:8:7 › Smoke Tests › test configuration is valid ───────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at /opt/pw-browsers/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     pnpm exec playwright install                           ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: ../../test-results/smoke-Smoke-Tests-test-configuration-is-valid-chromium/error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="smoke.spec.ts" timestamp="2026-04-19T12:26:24.896Z" hostname="firefox" tests="2" failures="0" skipped="0" time="0.025" errors="1">
+<testcase name="Smoke Tests › playwright is working" classname="smoke.spec.ts" time="0.009">
+</testcase>
+<testcase name="Smoke Tests › test configuration is valid" classname="smoke.spec.ts" time="0.016">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-Smoke-Tests-test-configuration-is-valid-firefox/error-context.md]]
+]]>
+</system-out>
+<error message="browserType.launch: Executable doesn&apos;t exist at /opt/pw-browsers/firefox-1511/firefox/firefox" type="Error">
+<![CDATA[  [firefox] › smoke.spec.ts:8:7 › Smoke Tests › test configuration is valid ────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at /opt/pw-browsers/firefox-1511/firefox/firefox
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     pnpm exec playwright install                           ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: ../../test-results/smoke-Smoke-Tests-test-configuration-is-valid-firefox/error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="smoke.spec.ts" timestamp="2026-04-19T12:26:24.896Z" hostname="webkit" tests="2" failures="0" skipped="0" time="0.015" errors="1">
+<testcase name="Smoke Tests › playwright is working" classname="smoke.spec.ts" time="0.012">
+</testcase>
+<testcase name="Smoke Tests › test configuration is valid" classname="smoke.spec.ts" time="0.003">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-Smoke-Tests-test-configuration-is-valid-webkit/error-context.md]]
+]]>
+</system-out>
+<error message="browserType.launch: Executable doesn&apos;t exist at /opt/pw-browsers/webkit-2272/pw_run.sh" type="Error">
+<![CDATA[  [webkit] › smoke.spec.ts:8:7 › Smoke Tests › test configuration is valid ─────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at /opt/pw-browsers/webkit-2272/pw_run.sh
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     pnpm exec playwright install                           ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: ../../test-results/smoke-Smoke-Tests-test-configuration-is-valid-webkit/error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="smoke.spec.ts" timestamp="2026-04-19T12:26:24.896Z" hostname="Mobile Chrome" tests="2" failures="0" skipped="0" time="0.013" errors="1">
+<testcase name="Smoke Tests › playwright is working" classname="smoke.spec.ts" time="0.01">
+</testcase>
+<testcase name="Smoke Tests › test configuration is valid" classname="smoke.spec.ts" time="0.003">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-Smoke-Tests-test-configuration-is-valid-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+<error message="browserType.launch: Executable doesn&apos;t exist at /opt/pw-browsers/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell" type="Error">
+<![CDATA[  [Mobile Chrome] › smoke.spec.ts:8:7 › Smoke Tests › test configuration is valid ──────────────────
+
+    Error: browserType.launch: Executable doesn't exist at /opt/pw-browsers/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     pnpm exec playwright install                           ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: ../../test-results/smoke-Smoke-Tests-test-configuration-is-valid-Mobile-Chrome/error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="smoke.spec.ts" timestamp="2026-04-19T12:26:24.896Z" hostname="Mobile Safari" tests="2" failures="0" skipped="0" time="0.013" errors="1">
+<testcase name="Smoke Tests › playwright is working" classname="smoke.spec.ts" time="0.01">
+</testcase>
+<testcase name="Smoke Tests › test configuration is valid" classname="smoke.spec.ts" time="0.003">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-Smoke-Tests-test-configuration-is-valid-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+<error message="browserType.launch: Executable doesn&apos;t exist at /opt/pw-browsers/webkit-2272/pw_run.sh" type="Error">
+<![CDATA[  [Mobile Safari] › smoke.spec.ts:8:7 › Smoke Tests › test configuration is valid ──────────────────
+
+    Error: browserType.launch: Executable doesn't exist at /opt/pw-browsers/webkit-2272/pw_run.sh
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     pnpm exec playwright install                           ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: ../../test-results/smoke-Smoke-Tests-test-configuration-is-valid-Mobile-Safari/error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+</testsuites>

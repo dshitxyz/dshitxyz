@@ -39,3 +39,6 @@ npm-debug.log*
 
 # Testing
 .coverage
+
+# Clean install tracking
+.package-hash

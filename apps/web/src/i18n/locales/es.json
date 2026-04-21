@@ -1,0 +1,106 @@
+{
+  "common": {
+    "language": "Idioma",
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "german": "Deutsch",
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "gallery": "Galería",
+    "products": "Productos",
+    "memeCreator": "Creador de Memes",
+    "checkout": "Pagar",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "connectWallet": "Conectar Billetera",
+    "disconnect": "Desconectar",
+    "settings": "Configuración",
+    "about": "Acerca de"
+  },
+  "header": {
+    "title": "dshit.xyz",
+    "subtitle": "Comercio de Memes Descentralizado"
+  },
+  "hero": {
+    "title": "Bienvenido a dshit.xyz",
+    "subtitle": "El futuro del comercio basado en memes",
+    "cta": "Comenzar"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "balance": "Tu Saldo",
+    "portfolio": "Portafolio",
+    "stats": "Estadísticas",
+    "recentTransactions": "Transacciones Recientes"
+  },
+  "gallery": {
+    "title": "Galería de Memes",
+    "trending": "Tendencias",
+    "newest": "Más Nuevos",
+    "mostViral": "Más Viral",
+    "empty": "No se encontraron memes",
+    "upvote": "Votar Arriba",
+    "downvote": "Votar Abajo",
+    "share": "Compartir"
+  },
+  "products": {
+    "title": "Catálogo de Productos",
+    "price": "Precio",
+    "addToCart": "Agregar al Carrito",
+    "outOfStock": "Agotado",
+    "description": "Descripción",
+    "quantity": "Cantidad"
+  },
+  "checkout": {
+    "title": "Pagar",
+    "orderSummary": "Resumen del Pedido",
+    "shippingAddress": "Dirección de Envío",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo Electrónico",
+    "address": "Dirección",
+    "city": "Ciudad",
+    "country": "País",
+    "zipCode": "Código Postal",
+    "total": "Total",
+    "placeOrder": "Realizar Pedido",
+    "orderConfirmed": "¡Pedido Confirmado!",
+    "orderNumber": "Número de Pedido",
+    "estimatedDelivery": "Entrega Estimada"
+  },
+  "memeCreator": {
+    "title": "Creador de Memes",
+    "selectTemplate": "Seleccionar Plantilla",
+    "topText": "Texto Superior",
+    "bottomText": "Texto Inferior",
+    "fontSize": "Tamaño de Fuente",
+    "color": "Color",
+    "download": "Descargar Meme",
+    "share": "Compartir en Twitter",
+    "upload": "Subir Imagen Personalizada"
+  },
+  "errors": {
+    "notFound": "Página no encontrada",
+    "unauthorized": "No autorizado",
+    "forbidden": "Acceso prohibido",
+    "serverError": "Error del servidor",
+    "tryAgain": "Intentar de Nuevo",
+    "goHome": "Ir al Inicio"
+  },
+  "footer": {
+    "about": "Acerca de",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "contact": "Contacto",
+    "social": "Síguenos",
+    "copyright": "© 2026 dshit.xyz. Todos los derechos reservados."
+  },
+  "auth": {
+    "signMessage": "Por favor, firma este mensaje para autenticarte",
+    "signing": "Firmando...",
+    "verifying": "Verificando...",
+    "success": "¡Autenticación exitosa!",
+    "error": "La autenticación falló"
+  }
+}

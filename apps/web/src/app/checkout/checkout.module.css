@@ -1,0 +1,493 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg-raw);
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border: 3px solid var(--shit-yellow);
+  background: var(--bg-dirty);
+  box-shadow: 6px 6px 0px var(--shit-brown);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.stepNum {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--shit-brown);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--bg-raw);
+  color: var(--shit-yellow);
+}
+
+.step.active .stepNum {
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
+
+.step span {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.progressLine {
+  flex: 1;
+  height: 2px;
+  background: var(--shit-brown);
+  margin: 0 1rem;
+}
+
+.form,
+.review {
+  border: 3px solid var(--shit-yellow);
+  padding: 2rem;
+  background: var(--bg-dirty);
+  box-shadow: 6px 6px 0px var(--shit-brown);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin: 0 0 2rem 0;
+}
+
+.error {
+  background: var(--bg-raw);
+  border: 2px solid var(--glitch-red);
+  color: var(--glitch-red);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.formSection {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px dashed var(--shit-brown);
+}
+
+.formSection:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.formSection h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  margin: 0 0 1.5rem 0;
+  text-transform: uppercase;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-shit);
+  text-transform: uppercase;
+}
+
+.input {
+  padding: 0.75rem;
+  border: 2px solid var(--shit-brown);
+  background: var(--bg-raw);
+  color: var(--text-shit);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--shit-yellow);
+  box-shadow: 0 0 0 3px var(--bg-dirty);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.checkbox {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.checkbox input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--shit-yellow);
+}
+
+.checkbox label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  margin: 0;
+}
+
+.reviewSection {
+  border: 2px solid var(--shit-brown);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: var(--bg-raw);
+}
+
+.reviewSection h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.reviewItem {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--shit-yellow);
+  padding-top: 1rem;
+  border-top: 2px solid var(--shit-brown);
+}
+
+.shipping {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.shipping p {
+  margin: 0.25rem 0;
+}
+
+.anon {
+  color: var(--toxic-green);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  flex: 1;
+  padding: 1rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid var(--shit-brown);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primaryBtn {
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+}
+
+.primaryBtn:hover:not(:disabled) {
+  background: var(--shit-yellow-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondaryBtn {
+  background: transparent;
+  color: var(--shit-yellow);
+  border-color: var(--shit-yellow);
+}
+
+.secondaryBtn:hover {
+  background: var(--shit-yellow);
+  color: var(--bg-raw);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--shit-brown);
+}
+
+.confirmation {
+  border: 3px solid var(--toxic-green);
+  padding: 2rem;
+  background: var(--bg-dirty);
+  box-shadow: 6px 6px 0px var(--toxic-green);
+  text-align: center;
+}
+
+.confirmHeader {
+  margin-bottom: 2rem;
+}
+
+.checkmark {
+  font-size: 4rem;
+  color: var(--toxic-green);
+  margin-bottom: 1rem;
+}
+
+.confirmHeader h1 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--toxic-green);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.orderId {
+  font-family: var(--font-body);
+  color: var(--text-dim);
+  margin: 0.5rem 0 0 0;
+  font-size: 0.875rem;
+}
+
+.confirmDetails {
+  border: 2px solid var(--toxic-green);
+  padding: 1.5rem;
+  background: var(--bg-raw);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+}
+
+.detailRow span:first-child {
+  color: var(--text-dim);
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--shit-yellow);
+}
+
+.status {
+  font-weight: 700;
+  color: var(--toxic-green);
+  text-transform: uppercase;
+}
+
+.confirmMessage {
+  background: var(--bg-raw);
+  border: 2px dashed var(--toxic-green);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.confirmMessage h3 {
+  font-family: var(--font-display);
+  color: var(--shit-yellow);
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+}
+
+.confirmMessage p {
+  font-family: var(--font-body);
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.confirmActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.confirmActions button {
+  flex: 1;
+  padding: 1rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid var(--toxic-green);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.confirmActions .primaryBtn {
+  background: var(--toxic-green);
+  color: var(--bg-raw);
+  border-color: var(--toxic-green);
+}
+
+.confirmActions .primaryBtn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--toxic-green);
+}
+
+.confirmActions .secondaryBtn {
+  background: transparent;
+  color: var(--toxic-green);
+}
+
+.confirmActions .secondaryBtn:hover {
+  background: var(--toxic-green);
+  color: var(--bg-raw);
+}
+
+.loading,
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  border: 3px dashed var(--shit-brown);
+  background: var(--bg-dirty);
+}
+
+.loading p,
+.empty p {
+  font-family: var(--font-body);
+  color: var(--text-dim);
+}
+
+.empty h2 {
+  font-family: var(--font-display);
+  color: var(--shit-yellow);
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .form,
+  .review,
+  .confirmation {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .progress {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .progressLine {
+    margin: 0 0.5rem;
+  }
+
+  .step span {
+    font-size: 0.75rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .formSection h3,
+  .reviewSection h3,
+  .confirmMessage h3 {
+    font-size: 1.125rem;
+  }
+}

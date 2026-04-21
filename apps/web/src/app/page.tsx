@@ -1,48 +1,30 @@
-import Link from 'next/link';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col justify-center items-center px-4">
-      {/* Header */}
-      <header className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center">
-        <h1 className="text-4xl font-bold font-display text-shit-yellow">D-SHIT™</h1>
-        <ConnectButton />
-      </header>
+    <>
+      <main style={{ padding: '2rem' }}>
+        <h1>🚀 dshit.xyz</h1>
+        <p>Decentralized meme platform powered by DSHIT token</p>
 
-      {/* Hero Section */}
-      <section className="text-center max-w-2xl">
-        <h2 className="text-6xl md:text-8xl font-bold font-display text-shit-yellow mb-4 glitch-text">
-          DELIVERING HONEST FEEDBACK SINCE 2026
-        </h2>
+        <section style={{ marginTop: '2rem' }}>
+          <h2>Coming Soon</h2>
+          <p>Phase 1: Token contract deployed ✅</p>
+          <p>Phase 2: Frontend under development 🚧</p>
+        </section>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-12 font-body">
-          Some messages deserve better delivery.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Link href="/auth/login">
-            <button className="shit-button">SEND A PACKAGE</button>
-          </Link>
-          <Link href="/gallery">
-            <button className="shit-button">VIEW GALLERY</button>
-          </Link>
-        </div>
-
-        {/* Features */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 text-sm font-body">
-          <div className="brutalist-border p-4">✔ Wallet Login</div>
-          <div className="brutalist-border p-4">✔ Anonymous Profile</div>
-          <div className="brutalist-border p-4">✔ On-Chain Signature</div>
-          <div className="brutalist-border p-4">✔ Base L2 Verified</div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="absolute bottom-0 left-0 right-0 p-6 text-center text-gray-500 text-sm">
-        <p>Built on Base L2 • Anonymous-First • No Passwords • No BS</p>
-      </footer>
-    </main>
+        <section style={{ marginTop: '2rem' }}>
+          <h3>Features</h3>
+          <ul>
+            <li>💰 DSHIT ERC-20 token on Base L2</li>
+            <li>🎨 Meme creation and sharing</li>
+            <li>🛍️ Prank product marketplace</li>
+            <li>🤝 Community governance</li>
+            <li>🔐 Anonymous identity system</li>
+          </ul>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
