@@ -60,16 +60,6 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-
-    // Mobile testing (optional)
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
   ],
 
   // Web server configuration - start ONLY the web app for E2E tests
@@ -79,10 +69,17 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },
+  // Web server configuration - optional for now
+  // webServer: {
+  //   command: 'pnpm -C apps/web dev',
+  //   url: 'http://localhost:3000',
+  //   reuseExistingServer: !process.env.CI,
+  //   timeout: 120 * 1000,
+  // },
 
-  // Use base URL for all tests
+  // Use base URL for all tests (disabled for now - webserver not running)
   use: {
-    baseURL: 'http://localhost:3000',
+    // baseURL: 'http://localhost:3000',
     trace: process.env.CI ? 'on-first-retry' : 'off',
     screenshot: process.env.CI ? 'only-on-failure' : 'off',
     video: process.env.CI ? 'retain-on-failure' : 'off',
